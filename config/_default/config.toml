@@ -1,0 +1,21 @@
+baseURL = "http://localhost:1313"  # Will be overridden in production config
+languageCode = "en-us"
+title = "Your Portfolio"  # You can customize this
+
+# Content Management
+enableGitInfo = true  # For last modified dates
+enableRobotsTXT = true  # For SEO
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Performance
+minify = true
+disableKinds = ['taxonomy', 'term']  # We'll enable these later as needed
+
+[markup]
+  [markup.highlight]
+    style = "dracula"  # Code highlighting style
+    lineNos = true
+  [markup.goldmark.renderer]
+    unsafe = true  # Allows HTML in markdown

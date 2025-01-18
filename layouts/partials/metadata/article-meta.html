@@ -1,0 +1,13 @@
+<div class="article-metadata">
+  {{ if .Params.difficulty }}
+      {{ partial "metadata/difficulty-badge.html" . }}
+  {{ end }}
+  {{ partial "metadata/reading-time.html" . }}
+  {{ with .Params.categories }}
+  <div class="categories">
+      {{ range . }}
+      <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a>
+      {{ end }}
+  </div>
+  {{ end }}
+</div>

@@ -19,3 +19,5 @@ disableKinds = ['taxonomy', 'term']  # We'll enable these later as needed
     lineNos = true
   [markup.goldmark.renderer]
     unsafe = true  # Allows HTML in markdown
+
+theme = "PaperMod"

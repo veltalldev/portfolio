@@ -21,3 +21,26 @@ disableKinds = ['taxonomy', 'term']  # We'll enable these later as needed
     unsafe = true  # Allows HTML in markdown
 
 theme = "PaperMod"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[permalinks]
+  [permalinks.taxonomies]
+    category = "/categories/:slug/"
+    tag = "/tags/:slug/"
+    series = "/series/:slug/"
+
+# Configure taxonomy terms pages
+[taxonomyTerms]
+  [taxonomyTerms.categories]
+    title = "Categories"
+    description = "Browse technical articles by category"
+  [taxonomyTerms.tags]
+    title = "Tags"
+    description = "Browse content by tags"
+  [taxonomyTerms.series]
+    title = "Series"
+    description = "Article series and learning journeys"

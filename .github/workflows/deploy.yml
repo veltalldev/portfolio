@@ -65,7 +65,12 @@ jobs:
 
       # Step 7: Build the actual site
       - name: Build site
-        run: hugo --minify
+        run: |
+          echo "Starting Hugo build..."
+          hugo --minify --debug
+          echo "Build complete. Checking output..."
+          ls -la public/
+          cat public/index.html
         env:
           HUGO_ENV: production
           HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}

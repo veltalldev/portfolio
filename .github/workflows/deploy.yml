@@ -41,80 +41,34 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
       
-      - name: Install dependencies
+      - name: Initialize npm project and install dependencies
         run: |
-          npm init -y
-          npm install -D tailwindcss@latest postcss@latest autoprefixer@latest postcss-cli@latest @fullhuman/postcss-purgecss@latest
-          npm install -D html-validate
-          npm install -D broken-link-checker
-          npm install -D lighthouse
+          # Initialize npm project if package.json doesn't exist
+          if [ ! -f package.json ]; then
+            npm init -y
+          fi
           
+          # Install dependencies and ensure they're saved to package.json
+          npm install -D tailwindcss postcss autoprefixer postcss-cli @fullhuman/postcss-purgecss
+          npm install -D html-validate broken-link-checker lighthouse
+          
+          # Create lock file
+          npm install
+          
+          # Verify lock file was created
+          ls -la package-lock.json
+      
       - name: Setup Tailwind
         run: |
-          # Create Tailwind config
-          cat > tailwind.config.js << 'EOF'
-          /** @type {import('tailwindcss').Config} */
-          module.exports = {
-            content: ['./layouts/**/*.html', './content/**/*.md'],
-            darkMode: 'class',
-            theme: {
-              extend: {},
-            },
-            plugins: [],
-          }
-          EOF
-
-          # Create PostCSS config
-          cat > postcss.config.js << 'EOF'
-          module.exports = {
-            plugins: {
-              tailwindcss: {},
-              autoprefixer: {},
-              '@fullhuman/postcss-purgecss': {
-                content: ['./layouts/**/*.html', './content/**/*.md'],
-                safelist: ['dark', 'body', 'html']
-              }
-            }
-          }
-          EOF
-
-          # Create assets/css/main.css with Tailwind directives
-          mkdir -p assets/css
-          cat > assets/css/main.css << 'EOF'
-          @tailwind base;
-          @tailwind components;
-          @tailwind utilities;
-          EOF
-
-      - name: Validate HTML
-        if: github.event_name == 'pull_request'
-        run: |
-          hugo --minify
-          npx html-validate public/**/*.html
-
-      - name: Check for broken links
-        if: github.event_name == 'pull_request'
-        run: npx blc http://localhost:1313 -r --exclude-external
-
-      - name: Build site
-        run: |
-          hugo --minify
-          echo "Build complete. Checking output..."
-          ls -la public/
-        env:
-          HUGO_ENV: production
-          HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './public'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          # Create Tailwind config if it doesn't exist
+          if [ ! -f tailwind.config.js ]; then
+            cat > tailwind.config.js << 'EOF'
+            /** @type {import('tailwindcss').Config} */
+            module.exports = {
+              content: ['./layouts/**/*.html', './content/**/*.md'],
+              darkMode: 'class',
+              theme: {
+                extend: {},
+              },
+              plugin

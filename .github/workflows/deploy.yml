@@ -15,8 +15,8 @@ on:
 # A workflow is made up of one or more jobs
 jobs:
   build-and-deploy:
-    # We're running this on Windows as specified in your TDIS
-    runs-on: windows-latest
+    # CI/CD can run on Ubuntu even though local development is on Windows
+    runs-on: ubuntu-22.04
     
     steps:
       # Step 1: Get your code from GitHub
@@ -28,9 +28,9 @@ jobs:
       
       # Step 2: Set up Hugo on the GitHub Actions machine
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.121.1'
+          hugo-version: '0.121.1'  # Using a specific, stable version
           extended: true    # We need the extended version for SCSS/SASS
       
       # Step 3: Set up Node.js for our testing tools

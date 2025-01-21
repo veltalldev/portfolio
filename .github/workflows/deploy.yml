@@ -1,0 +1,93 @@
+# Name of our workflow - you'll see this in the GitHub Actions tab
+name: Deploy Hugo site to GitHub Pages
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches:
+      - main
+  # Also triggers on pull requests to main
+  pull_request:
+    branches:
+      - main
+
+# A workflow is made up of one or more jobs
+jobs:
+  build-and-deploy:
+    # We're running this on Windows as specified in your TDIS
+    runs-on: windows-latest
+    
+    steps:
+      # Step 1: Get your code from GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # In case you're using Git submodules
+          fetch-depth: 0    # Gets all history for .GitInfo and .Lastmod
+      
+      # Step 2: Set up Hugo on the GitHub Actions machine
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true    # We need the extended version for SCSS/SASS
+      
+      # Step 3: Set up Node.js for our testing tools
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      # Step 4: Install all the tools we need for testing
+      - name: Install dependencies
+        run: |
+          # Install tools for CSS processing
+          npm install postcss-cli autoprefixer @fullhuman/postcss-purgecss
+          # Install HTML validator
+          npm install html-validate
+          # Install link checker
+          npm install broken-link-checker -g
+          # Install Lighthouse for performance testing
+          npm install --save-dev @google/lighthouse
+
+      # Step 5: Check HTML validity (only on pull requests)
+      - name: Validate HTML
+        if: github.event_name == 'pull_request'
+        run: |
+          hugo --minify
+          html-validate public/**/*.html
+
+      # Step 6: Check for broken links (only on pull requests)
+      - name: Check for broken links
+        if: github.event_name == 'pull_request'
+        run: blc http://localhost:1313 -r --exclude-external
+
+      # Step 7: Build the actual site
+      - name: Build site
+        run: |
+          hugo --minify
+          hugo deploy --force --maxDeletes -1  # Ensures complete deployment
+        env:
+          HUGO_ENV: production
+          HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}
+
+      # Step 8: Run performance tests
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            https://veltalldev.github.io/portfolio/
+            https://veltalldev.github.io/portfolio/professional/
+            https://veltalldev.github.io/portfolio/personal/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: './lighthouserc.json'
+
+      # Step 9: Deploy to GitHub Pages (only on push to main)
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

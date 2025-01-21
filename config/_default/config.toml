@@ -33,3 +33,17 @@ minify = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
   ShowWordCount = true
+  homeInfoParams = false
+  profileMode = false
+
+[menu]
+  [[menu.main]]
+    identifier = "professional"
+    name = "Professional"
+    url = "/professional/"
+    weight = 10
+  [[menu.main]]
+    identifier = "personal"
+    name = "Personal"
+    url = "/personal/"
+    weight = 20

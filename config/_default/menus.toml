@@ -1,0 +1,9 @@
+[[main]]
+name = "Professional"
+url = "/professional/"
+weight = 10
+
+[[main]]
+name = "Personal"
+url = "/personal/"
+weight = 20

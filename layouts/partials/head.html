@@ -1,21 +1,7 @@
-{{ $styles := slice 
-    (resources.Get "css/professional.css")
-    (resources.Get "css/personal.css")
-    (resources.Get "css/metadata.css")
-    (resources.Get "css/taxonomy.css")
-    (resources.Get "css/home.css")
-}}
-{{ $bundle := $styles | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ .Site.Title }}</title>
-    
-    {{ $css := resources.Get "css/main.css" | resources.PostCSS }}
-    {{ if hugo.IsProduction }}
-        {{ $css = $css | minify | fingerprint | resources.PostProcess }}
-    {{ end }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-</head> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{end}}{{end}}">
+{{ $css := resources.Get "css/main.css" | css.PostCSS }}
+{{ $css := $css | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

@@ -1,0 +1,9 @@
+{{ $styles := slice 
+    (resources.Get "css/professional.css")
+    (resources.Get "css/personal.css")
+    (resources.Get "css/metadata.css")
+    (resources.Get "css/taxonomy.css")
+    (resources.Get "css/home.css")
+}}
+{{ $bundle := $styles | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"> 

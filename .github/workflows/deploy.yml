@@ -8,8 +8,20 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-22.04
     
     steps:
@@ -22,7 +34,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.126.0'  # Updated to latest stable version
+          hugo-version: '0.126.0'
           extended: true
       
       - name: Setup Node.js
@@ -49,17 +61,21 @@ jobs:
 
       - name: Build site
         run: |
-          echo "Starting Hugo build..."
           hugo --minify
           echo "Build complete. Checking output..."
           ls -la public/
-          cat public/index.html
         env:
           HUGO_ENV: production
           HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          path: './public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

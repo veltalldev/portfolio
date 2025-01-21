@@ -1,7 +1,7 @@
 ---
 title: Professional
 description: Technical writing, projects, and professional development journey
-layout: professional-section
+layout: professional/list
 menu:
   main:
     weight: 10

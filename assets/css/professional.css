@@ -1,0 +1,61 @@
+/* assets/css/professional.css */
+
+.professional-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.content-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+}
+
+.technical-insights {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.difficulty {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin: 1rem;
+}
+
+.difficulty.beginner { background: #e7f5e7; color: #2c682c; }
+.difficulty.intermediate { background: #fff3e0; color: #b36200; }
+.difficulty.advanced { background: #fde7e7; color: #c62828; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .professional-section {
+      padding: 1rem;
+  }
+}

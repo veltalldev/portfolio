@@ -343,10 +343,16 @@ portfolio/
   - [x] Personal section
 
 ### Phase 4: Development Pipeline
-- [ ] GitHub Actions Setup
-  - [ ] Create workflow file
-  - [ ] Configure build process
+- [x] GitHub Actions Setup
+  - [x] Create workflow file
+  - [x] Configure build process
   - [ ] Set up deployment
+    - [ ] Fix workflow errors
+      - [x] Use correct repository name for Lighthouse package
+      - [x] Use Ubuntu environment instead of Windows
+      - [x] Fix configs for taxonomies
+      - [x] Add home page and related components
+      - [x] Remove testing from remote server and keep it local
 - [ ] Quality Checks
   - [ ] HTML validation
   - [ ] Link checking

@@ -35,6 +35,7 @@ minify = true
   ShowWordCount = true
   homeInfoParams = false
   profileMode = false
+  hideHeader = true
 
 [menu]
   [[menu.main]]

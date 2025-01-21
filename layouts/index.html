@@ -1,11 +1,24 @@
 {{ define "main" }}
-<div class="min-h-screen bg-white dark:bg-gray-900">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
+                <a href="/">{{ .Site.Title }}</a>
+            </div>
+            <div class="flex space-x-6">
+                <a href="/professional" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium">Professional</a>
+                <a href="/personal" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium">Personal</a>
+            </div>
+        </nav>
+    </header>
+
     <!-- Hero Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ .Title }}</h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{{ .Description }}</p>
-            <div class="prose dark:prose-invert max-w-2xl mx-auto">
+        <div>
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ .Params.author | default .Site.Params.author }}</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{{ .Params.role | default .Site.Params.role }}</p>
+            <div class="max-w-2xl text-gray-600 dark:text-gray-300">
                 {{ .Content }}
             </div>
         </div>
@@ -15,30 +28,63 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid md:grid-cols-2 gap-8">
             <!-- Professional Section -->
-            <section class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Professional</h2>
                 <div class="space-y-4">
-                    {{ range where .Site.RegularPages "Section" "professional" }}
-                    <a href="{{ .RelPermalink }}" class="block hover:bg-gray-200 dark:hover:bg-gray-700 p-4 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ .Title }}</h3>
-                        <p class="text-gray-600 dark:text-gray-300">{{ .Description }}</p>
+                    <a href="/professional/blog" class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-500">{{ partial "icons/book-text.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Blog</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Technical writing and problem-solving journeys</p>
+                            </div>
+                        </div>
                     </a>
-                    {{ end }}
+                    <a href="/professional/projects" class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500">{{ partial "icons/code.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Projects</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Software development projects and applications</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/professional/journey" class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-purple-500">{{ partial "icons/laptop.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Learning Journey</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Progress tracking and skill development</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </section>
+            </div>
 
             <!-- Personal Section -->
-            <section class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Personal</h2>
                 <div class="space-y-4">
-                    {{ range where .Site.RegularPages "Section" "personal" }}
-                    <a href="{{ .RelPermalink }}" class="block hover:bg-gray-200 dark:hover:bg-gray-700 p-4 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ .Title }}</h3>
-                        <p class="text-gray-600 dark:text-gray-300">{{ .Description }}</p>
+                    <a href="/personal/gaming" class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-red-500 dark:hover:border-red-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-red-500">{{ partial "icons/gamepad.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Gaming</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Game analysis and technical perspectives</p>
+                            </div>
+                        </div>
                     </a>
-                    {{ end }}
+                    <a href="/personal/interests" class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-yellow-500 dark:hover:border-yellow-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-yellow-500">{{ partial "icons/palette.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Interests</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Other technical interests and explorations</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 </div>

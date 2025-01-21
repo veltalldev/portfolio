@@ -1,19 +1,6 @@
 ---
-title: "Welcome to My Portfolio"
-description: "A showcase of my work and interests"
+title: Home
+author: Vu Dinh
+role: Software Engineer & Problem Solver
 ---
-
-## Professional Work
-
-Explore my technical writing, projects, and learning journey:
-
-- [Professional Work](/professional/) - Technical writing and projects
-- [Personal Interests](/personal/) - Gaming and other explorations
-
-## Recent Updates
-
-Check out my latest work across different areas:
-
-- [Latest Blog Posts](/professional/blog/)
-- [Current Projects](/professional/projects/)
-- [Learning Progress](/professional/journey/)
+I build elegant solutions to complex problems, focusing on clean code and thoughtful system design. My portfolio showcases both professional work and personal interests, reflecting my journey in software development and technical writing.

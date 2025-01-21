@@ -1,10 +1,9 @@
-{{/* layouts/_default/professional/single.html */}}
 {{ define "main" }}
 <article class="professional-content">
     <header class="content-header">
         <h1>{{ .Title }}</h1>
         {{ with .Description }}<p class="description">{{ . }}</p>{{ end }}
-        {{ partial "metadata/default.html" . }}
+        {{ partial "metadata/professional.html" . }}
     </header>
 
     <div class="content-body">

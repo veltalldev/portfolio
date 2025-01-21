@@ -1,4 +1,3 @@
-{{/* layouts/_default/personal/list.html */}}
 {{ define "main" }}
 <div class="personal-section">
     <header class="section-header">
@@ -18,7 +17,7 @@
                 {{ end }}
                 <div class="card-content">
                     {{ with .Summary }}<p>{{ . }}</p>{{ end }}
-                    {{ partial "metadata/default.html" . }}
+                    {{ partial "metadata/personal.html" . }}
                 </div>
             </article>
             {{ end }}

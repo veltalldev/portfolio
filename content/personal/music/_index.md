@@ -1,7 +1,7 @@
 ---
 title: Music
 description: Just a curated list
-layout: music-list
+layout: personal/list
 menu:
   personal:
     weight: 20

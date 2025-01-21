@@ -44,3 +44,12 @@ theme = "PaperMod"
   [taxonomyTerms.series]
     title = "Series"
     description = "Article series and learning journeys"
+
+[params.sections]
+  [params.sections.professional]
+    title = "Professional"
+    description = "Technical writing and projects"
+    
+  [params.sections.personal]
+    title = "Personal"
+    description = "Gaming, music, and interests"

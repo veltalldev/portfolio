@@ -1,7 +1,7 @@
 ---
 title: Other Interests
 description: Technology-adjacent hobbies and learning experiences
-layout: interests-list
+layout: personal/list
 menu:
   personal:
     weight: 30

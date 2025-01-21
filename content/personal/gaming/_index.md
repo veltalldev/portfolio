@@ -1,7 +1,7 @@
 ---
 title: Gaming Analysis
 description: Technical analysis of game systems and mechanics
-layout: gaming-list
+layout: personal/list
 menu:
   personal:
     weight: 10

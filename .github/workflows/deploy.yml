@@ -67,7 +67,7 @@ jobs:
           fi
 
           # Update Tailwind config
-          cat > tailwind.config.js << 'EOF'
+          cat > tailwind.config.js << "EOF"
           /** @type {import('tailwindcss').Config} */
           module.exports = {
             content: [
@@ -85,7 +85,7 @@ jobs:
 
           # Create PostCSS config if it doesn't exist
           if [ ! -f postcss.config.js ]; then
-            cat > postcss.config.js << 'EOF'
+            cat > postcss.config.js << "EOF"
             module.exports = {
               plugins: {
                 tailwindcss: {},
@@ -98,7 +98,7 @@ jobs:
           # Create assets/css directory and main.css if they don't exist
           mkdir -p assets/css
           if [ ! -f assets/css/main.css ]; then
-            cat > assets/css/main.css << 'EOF'
+            cat > assets/css/main.css << "EOF"
             @tailwind base;
             @tailwind components;
             @tailwind utilities;

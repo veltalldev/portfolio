@@ -1,54 +1,35 @@
-baseURL = "http://localhost:1313"  # Will be overridden in production config
+baseURL = "http://localhost:1313"
 languageCode = "en-us"
-title = "Your Portfolio"  # You can customize this
+title = "Your Portfolio"
+theme = "PaperMod"
 
-# Content Management
-enableGitInfo = true  # For last modified dates
-enableRobotsTXT = true  # For SEO
+# Core settings
+enableGitInfo = true
+enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
 buildExpired = false
-
-# Performance
 minify = true
-disableKinds = ['taxonomy', 'term']  # We'll enable these later as needed
 
-[markup]
-  [markup.highlight]
-    style = "dracula"  # Code highlighting style
-    lineNos = true
-  [markup.goldmark.renderer]
-    unsafe = true  # Allows HTML in markdown
-
-theme = "PaperMod"
-
+# Taxonomies
 [taxonomies]
   category = "categories"
   tag = "tags"
   series = "series"
 
-[permalinks]
-  categories = "/categories/:slug/"
-  tags = "/tags/:slug/"
-  series = "/series/:slug/"
+# Markup Configuration
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = true
+  [markup.goldmark.renderer]
+    unsafe = true
 
-# Configure taxonomy terms pages
-[taxonomyTerms]
-  [taxonomyTerms.categories]
-    title = "Categories"
-    description = "Browse technical articles by category"
-  [taxonomyTerms.tags]
-    title = "Tags"
-    description = "Browse content by tags"
-  [taxonomyTerms.series]
-    title = "Series"
-    description = "Article series and learning journeys"
-
-[params.sections]
-  [params.sections.professional]
-    title = "Professional"
-    description = "Technical writing and projects"
-    
-  [params.sections.personal]
-    title = "Personal"
-    description = "Gaming, music, and interests"
+# Basic theme parameters (only essential configs)
+[params]
+  env = "production"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true

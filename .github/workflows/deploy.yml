@@ -28,9 +28,9 @@ jobs:
       
       # Step 2: Set up Hugo on the GitHub Actions machine
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.121.1'  # Using a specific, stable version
+          hugo-version: '0.121.1'
           extended: true    # We need the extended version for SCSS/SASS
       
       # Step 3: Set up Node.js for our testing tools

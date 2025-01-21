@@ -70,6 +70,24 @@
      content: markdown
    ```
 
+4. Personal Content
+   type: gaming
+   fields:
+     title: string
+     date: datetime
+     categories: string[]
+     thumbnail: image?
+     relatedProfessional: string[]
+     content: markdown
+
+   type: interests
+   fields:
+     title: string
+     date: datetime
+     categories: string[]
+     relatedProfessional: string[]
+     content: markdown
+
 #### URL Structure
 ```
 /                           # Home
@@ -162,8 +180,25 @@ portfolio/
 │       └── config.toml      # Production overrides
 ├── content/                 # Content files
 ├── layouts/                 # Template files
+│   ├── _default/
+│   │   ├── professional/
+│   │   │   ├── list.html      # Professional section list template
+│   │   │   └── single.html    # Professional content template
+│   │   └── personal/
+│   │       ├── list.html      # Personal section list template
+│   │       └── single.html    # Personal content template
+│   └── partials/
+│       └── metadata/
+│           ├── professional.html  # Professional metadata template
+│           └── personal.html      # Personal metadata template
 ├── static/                  # Static assets
 └── themes/                  # Hugo theme
+└── assets/
+    ├── css/
+    │   ├── professional.css   # Professional section styles
+    │   ├── personal.css      # Personal section styles
+    │   ├── metadata.css      # Shared metadata styles
+    │   └── taxonomy.css      # Taxonomy and term styles
 ```
 
 ### 3. Content Management Workflow

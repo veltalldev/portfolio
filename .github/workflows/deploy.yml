@@ -56,12 +56,27 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
-      - name: Install Node.js dependencies
+      - name: Initialize npm and install dependencies
         run: |
+          # Initialize package.json with specific values
           npm init -y
+          # Update package.json with specific properties
+          node -e '
+            const pkg = require("./package.json");
+            pkg.type = "module";
+            require("fs").writeFileSync("package.json", JSON.stringify(pkg, null, 2))
+          '
+          # Install dependencies and create lock file
           npm install -D tailwindcss postcss autoprefixer postcss-cli @tailwindcss/typography
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Setup Tailwind CSS
         run: |

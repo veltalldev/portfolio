@@ -41,23 +41,62 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       
       - name: Install dependencies
         run: |
-          npm install postcss-cli autoprefixer @fullhuman/postcss-purgecss
-          npm install html-validate
-          npm install broken-link-checker -g
-          npm install lighthouse
+          npm init -y
+          npm install -D tailwindcss@latest postcss@latest autoprefixer@latest postcss-cli@latest @fullhuman/postcss-purgecss@latest
+          npm install -D html-validate
+          npm install -D broken-link-checker
+          npm install -D lighthouse
+          
+      - name: Setup Tailwind
+        run: |
+          # Create Tailwind config
+          cat > tailwind.config.js << 'EOF'
+          /** @type {import('tailwindcss').Config} */
+          module.exports = {
+            content: ['./layouts/**/*.html', './content/**/*.md'],
+            darkMode: 'class',
+            theme: {
+              extend: {},
+            },
+            plugins: [],
+          }
+          EOF
+
+          # Create PostCSS config
+          cat > postcss.config.js << 'EOF'
+          module.exports = {
+            plugins: {
+              tailwindcss: {},
+              autoprefixer: {},
+              '@fullhuman/postcss-purgecss': {
+                content: ['./layouts/**/*.html', './content/**/*.md'],
+                safelist: ['dark', 'body', 'html']
+              }
+            }
+          }
+          EOF
+
+          # Create assets/css/main.css with Tailwind directives
+          mkdir -p assets/css
+          cat > assets/css/main.css << 'EOF'
+          @tailwind base;
+          @tailwind components;
+          @tailwind utilities;
+          EOF
 
       - name: Validate HTML
         if: github.event_name == 'pull_request'
         run: |
           hugo --minify
-          html-validate public/**/*.html
+          npx html-validate public/**/*.html
 
       - name: Check for broken links
         if: github.event_name == 'pull_request'
-        run: blc http://localhost:1313 -r --exclude-external
+        run: npx blc http://localhost:1313 -r --exclude-external
 
       - name: Build site
         run: |

@@ -48,8 +48,8 @@ jobs:
           npm install html-validate
           # Install link checker
           npm install broken-link-checker -g
-          # Install Lighthouse for performance testing
-          npm install --save-dev @google/lighthouse
+          # Install Lighthouse (corrected package name)
+          npm install lighthouse
 
       # Step 5: Check HTML validity (only on pull requests)
       - name: Validate HTML

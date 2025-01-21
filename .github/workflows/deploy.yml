@@ -82,9 +82,10 @@ jobs:
         run: |
           # Create Tailwind config
           cat > tailwind.config.js << 'EOF'
-          module.exports = {
+          /** @type {import('tailwindcss').Config} */
+          export default {
             content: [
-              "./layouts/**/*.html",
+              "./layouts/**/*.{html,js}",
               "./content/**/*.{html,md}",
               "./themes/**/layouts/**/*.html"
             ],
@@ -116,12 +117,26 @@ jobs:
           @tailwind utilities;
           EOF
 
+      - name: Build CSS
+        run: |
+          # Build Tailwind CSS
+          npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --minify
+          
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
+          # Create required directories
+          mkdir -p layouts/_default layouts/partials
+          
+          # Ensure base template exists
+          if [ ! -f layouts/_default/baseof.html ]; then
+            echo '<!DOCTYPE html><html><head>{{ partial "head.html" . }}</head><body>{{ block "main" . }}{{ end }}</body></html>' > layouts/_default/baseof.html
+          fi
+          
+          # Build Hugo site
           hugo \
             --gc \
             --minify \

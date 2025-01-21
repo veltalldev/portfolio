@@ -42,65 +42,35 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Initialize npm project and install dependencies
+      - name: Install dependencies
         run: |
-          # Initialize npm project if package.json doesn't exist
-          if [ ! -f package.json ]; then
-            npm init -y
-          fi
-          
-          # Install dependencies and ensure they're saved to package.json
-          npm install -D tailwindcss postcss autoprefixer postcss-cli @fullhuman/postcss-purgecss
-          npm install -D html-validate broken-link-checker lighthouse
-          
-          # Create lock file
+          npm init -y
+          npm install -D tailwindcss postcss autoprefixer postcss-cli
           npm install
-          
-          # Verify lock file was created
-          ls -la package-lock.json
-      
+
       - name: Setup Tailwind
         run: |
-          # Create Tailwind config if it doesn't exist
-          if [ ! -f tailwind.config.js ]; then
-            npx tailwindcss init
-          fi
-
-          # Update Tailwind config
-          cat > tailwind.config.js << "EOF"
-          /** @type {import('tailwindcss').Config} */
-          module.exports = {
+          npx tailwindcss init -p
+          echo 'module.exports = {
             content: [
-              './layouts/**/*.html',
-              './content/**/*.{html,md}',
-              './themes/**/layouts/**/*.html'
+              "./layouts/**/*.html",
+              "./content/**/*.{html,md}",
+              "./themes/**/layouts/**/*.html"
             ],
-            darkMode: 'class',
             theme: {
               extend: {},
             },
             plugins: [],
-          }
-          EOF
+          }' > tailwind.config.js
 
-          # Create PostCSS config if it doesn't exist
-          if [ ! -f postcss.config.js ]; then
-            cat > postcss.config.js << "EOF"
-            module.exports = {
-              plugins: {
-                tailwindcss: {},
-                autoprefixer: {},
-              }
-            }
-            EOF
-          fi
+      - name: Build site
+        run: hugo --minify
+        env:
+          HUGO_ENV: production
+          HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}
 
-          # Create assets/css directory and main.css if they don't exist
-          mkdir -p assets/css
-          if [ ! -f assets/css/main.css ]; then
-            cat > assets/css/main.css << "EOF"
-            @tailwind base;
-            @tailwind components;
-            @tailwind utilities;
-            EOF
-          fi
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

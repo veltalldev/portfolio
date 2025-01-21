@@ -305,7 +305,7 @@ portfolio/
   - [x] Series
 - [x] Set up Content Sections
   - [x] Professional section
-  - [ ] Personal section
+  - [x] Personal section
 
 ### Phase 4: Development Pipeline
 - [ ] GitHub Actions Setup

@@ -65,9 +65,7 @@ jobs:
 
       # Step 7: Build the actual site
       - name: Build site
-        run: |
-          hugo --minify
-          hugo deploy --force --maxDeletes -1  # Ensures complete deployment
+        run: hugo --minify
         env:
           HUGO_ENV: production
           HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}

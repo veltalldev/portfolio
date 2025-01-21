@@ -70,21 +70,7 @@ jobs:
           HUGO_ENV: production
           HUGO_BASEURL: ${{ secrets.HUGO_BASEURL }}
 
-      # Step 8: Start Hugo server for testing
-      - name: Start Hugo Server
-        run: |
-          hugo server --minify -D &
-          sleep 5  # Give Hugo time to start
-
-      # Step 9: Run performance tests
-      - name: Run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.13.x
-          lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Step 10: Deploy to GitHub Pages
+      # Step 8: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

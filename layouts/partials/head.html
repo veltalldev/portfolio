@@ -6,4 +6,16 @@
     (resources.Get "css/home.css")
 }}
 {{ $bundle := $styles | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"> 
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Site.Title }}</title>
+    
+    {{ $css := resources.Get "css/main.css" | resources.PostCSS }}
+    {{ if hugo.IsProduction }}
+        {{ $css = $css | minify | fingerprint | resources.PostProcess }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+</head> 

@@ -28,10 +28,9 @@ theme = "PaperMod"
   series = "series"
 
 [permalinks]
-  [permalinks.taxonomies]
-    category = "/categories/:slug/"
-    tag = "/tags/:slug/"
-    series = "/series/:slug/"
+  categories = "/categories/:slug/"
+  tags = "/tags/:slug/"
+  series = "/series/:slug/"
 
 # Configure taxonomy terms pages
 [taxonomyTerms]

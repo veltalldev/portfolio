@@ -2,6 +2,8 @@
 title: Gaming Analysis
 description: Technical analysis of game systems and mechanics
 layout: personal/list
+icon: gamepad
+iconColor: blue-500
 menu:
   personal:
     weight: 10

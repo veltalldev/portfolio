@@ -2,6 +2,8 @@
 title: Other Interests
 description: Technology-adjacent hobbies and learning experiences
 layout: personal/list
+icon: palette
+iconColor: blue-500
 menu:
   personal:
     weight: 30

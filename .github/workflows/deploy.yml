@@ -62,14 +62,43 @@ jobs:
       
       - name: Setup Tailwind
         run: |
-          # Create Tailwind config if it doesn't exist
-          if [ ! -f tailwind.config.js ]; then
-            cat > tailwind.config.js << 'EOF'
-            /** @type {import('tailwindcss').Config} */
-            module.exports = {
-              content: ['./layouts/**/*.html', './content/**/*.md'],
-              darkMode: 'class',
-              theme: {
-                extend: {},
-              },
-              plugin
+            # Create Tailwind config if it doesn't exist
+            if [ ! -f tailwind.config.js ]; then
+              cat > tailwind.config.js << 'EOF'
+              /** @type {import('tailwindcss').Config} */
+              module.exports = {
+                content: ['./layouts/**/*.html', './content/**/*.md'],
+                darkMode: 'class',
+                theme: {
+                  extend: {},
+                },
+                plugins: []
+              }
+              EOF
+            fi
+  
+            # Create PostCSS config if it doesn't exist
+            if [ ! -f postcss.config.js ]; then
+              cat > postcss.config.js << 'EOF'
+              module.exports = {
+                plugins: {
+                  tailwindcss: {},
+                  autoprefixer: {},
+                  '@fullhuman/postcss-purgecss': {
+                    content: ['./layouts/**/*.html', './content/**/*.md'],
+                    safelist: ['dark', 'body', 'html']
+                  }
+                }
+              }
+              EOF
+            fi
+  
+            # Create assets/css directory and main.css if they don't exist
+            mkdir -p assets/css
+            if [ ! -f assets/css/main.css ]; then
+              cat > assets/css/main.css << 'EOF'
+              @tailwind base;
+              @tailwind components;
+              @tailwind utilities;
+              EOF
+            fi

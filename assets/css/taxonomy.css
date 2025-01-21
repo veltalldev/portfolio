@@ -1,0 +1,95 @@
+/* assets/css/taxonomy.css */
+
+.taxonomy-list, .terms-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.content-item {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.content-item:last-child {
+  border-bottom: none;
+}
+
+.metadata {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.term-item {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.term-item:hover {
+  transform: translateY(-2px);
+}
+
+.count {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.taxonomy-nav {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.taxonomy-section {
+  margin-bottom: 1.5rem;
+}
+
+.taxonomy-section:last-child {
+  margin-bottom: 0;
+}
+
+.taxonomy-section h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.taxonomy-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.taxonomy-section li {
+  margin: 0.5rem 0;
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags-cloud a {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  background: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.tag-sm { font-size: 0.8rem; }
+.tag-md { font-size: 1rem; }
+.tag-lg { font-size: 1.2rem; }

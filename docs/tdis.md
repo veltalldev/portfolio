@@ -299,12 +299,12 @@ portfolio/
   - [x] Blog post archetype
   - [x] Project showcase archetype
   - [x] Learning journey archetype
-- [ ] Implement Taxonomies
-  - [ ] Categories
-  - [ ] Tags
-  - [ ] Series
-- [ ] Set up Content Sections
-  - [ ] Professional section
+- [x] Implement Taxonomies
+  - [x] Categories
+  - [x] Tags
+  - [x] Series
+- [x] Set up Content Sections
+  - [x] Professional section
   - [ ] Personal section
 
 ### Phase 4: Development Pipeline

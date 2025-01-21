@@ -30,7 +30,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.121.1'  # Using a specific, stable version
           extended: true    # We need the extended version for SCSS/SASS
       
       # Step 3: Set up Node.js for our testing tools

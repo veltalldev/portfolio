@@ -1,45 +1,18 @@
-baseURL = "http://localhost:1313"
-languageCode = "en-us"
-title = "My Portfolio"
-theme = "PaperMod"
-
-# Core settings
-enableGitInfo = true
-enableRobotsTXT = true
-buildDrafts = false
-buildFuture = false
-buildExpired = false
-minify = true
-
-# Taxonomies
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-
-# Markup Configuration
-[markup]
-[markup.highlight]
-style = "dracula"
-lineNos = true
-[markup.goldmark.renderer]
-unsafe = true
-
-# Basic theme parameters (only essential configs)
 [params]
-env = "production"
-defaultTheme = "auto"
-ShowReadingTime = true
-ShowBreadCrumbs = true
-ShowCodeCopyButtons = true
-ShowWordCount = true
-homeInfoParams = false
-profileMode = false
-hideHeader = true
-author = "Vu Dinh"
-role = "Software Engineer & Problem Solver"
+  mainSections = ["professional", "personal"]
 
-# [params.socialIcons]
+# Profile mode configurations
+[params.profileMode]
+enabled = true
+title = "Welcome to My Portfolio"
+subtitle = "I build elegant solutions to complex problems, focusing on clean code and thoughtful system design. My portfolio showcases both professional work and personal interests, reflecting my journey in software development and technical writing."
+imageUrl = "" # Add if you want a profile image
+buttons = [
+    { name = "Professional", url = "/professional" },
+    { name = "Personal", url = "/personal" }
+]
+
+# Keep your social icons config
 [[params.socialIcons]]
 name = "GitHub"
 url = "https://github.com/veltalldev"
@@ -51,3 +24,9 @@ url = "https://www.youtube.com/@vdinh143"
 [[params.socialIcons]]
 name = "BlueSky"
 url = "https://bsky.app/profile/kafeaulait.bsky.social"
+
+[markup.highlight]
+  noClasses = false
+  
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

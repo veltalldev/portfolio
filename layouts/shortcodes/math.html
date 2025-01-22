@@ -1,9 +1,0 @@
-{{ if .IsNamedParams }}
-    {{ if .Get "block" }}
-        $$ {{ .Get "tex" }} $$
-    {{ else }}
-        $ {{ .Get "tex" }} $
-    {{ end }}
-{{ else }}
-    $ {{ .Get 0 }} $
-{{ end }}

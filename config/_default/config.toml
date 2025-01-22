@@ -1,11 +1,11 @@
 baseURL = "http://localhost:1313"
 languageCode = "en-us"
-title = "My Portfolio"
+title = "Veltalldev"
 theme = "PaperMod"
 
 [params]
   mainSections = ["professional", "personal"]
-
+  math = true
 # Profile mode configurations
 [params.profileMode]
 enabled = true

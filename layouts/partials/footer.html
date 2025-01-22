@@ -1,0 +1,18 @@
+{{- if not .Site.Params.hideFooter }}
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-content">
+        <div class="footer-left">
+            <div class="footer-links">
+                {{- range .Site.Params.socialIcons }}
+                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a>
+                {{- end }}
+            </div>
+        </div>
+        <div class="footer-right">
+            © {{ now.Format "2006" }} • Built with Hugo
+        </div>
+        </div>
+    </div>
+</footer>
+{{- end }}

@@ -1,0 +1,21 @@
+{{/* layouts/_default/terms.html */}}
+{{ define "main" }}
+<div class="terms-list">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="terms-description">{{ . }}</p>{{ end }}
+    
+    <div class="terms-grid">
+        {{ range .Data.Terms.Alphabetical }}
+        <div class="term-item">
+            <h2>
+                <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+                <span class="count">({{ .Count }})</span>
+            </h2>
+            {{ with (index .Pages 0).Summary }}
+            <p class="summary">{{ . }}</p>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

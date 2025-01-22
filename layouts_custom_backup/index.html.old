@@ -1,0 +1,89 @@
+{{ define "main" }}
+<div class="bg-gray-50 dark:bg-gray-900">
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div>
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ .Params.author | default
+                .Site.Params.author }}</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{{ .Params.role | default .Site.Params.role }}</p>
+            <div class="max-w-2xl text-gray-600 dark:text-gray-300">
+                {{ .Content }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Professional Section -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Professional</h2>
+                <div class="space-y-4">
+                    <a href="/professional/blog"
+                        class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-500">{{ partial "icons/book-text.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Blog</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Technical writing and
+                                    problem-solving journeys</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/professional/projects"
+                        class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500">{{ partial "icons/code.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Projects</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Software development projects and
+                                    applications</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/professional/journey"
+                        class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-purple-500">{{ partial "icons/laptop.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Learning Journey</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Progress tracking and skill
+                                    development</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Personal Section -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Personal</h2>
+                <div class="space-y-4">
+                    <a href="/personal/gaming"
+                        class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-red-500 dark:hover:border-red-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-red-500">{{ partial "icons/gamepad.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Gaming</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Game analysis and technical
+                                    perspectives</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/personal/interests"
+                        class="block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-yellow-500 dark:hover:border-yellow-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="text-yellow-500">{{ partial "icons/palette.html" . }}</span>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Interests</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Other technical interests and
+                                    explorations</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

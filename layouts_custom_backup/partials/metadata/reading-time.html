@@ -1,0 +1,7 @@
+<span class="reading-time">
+  {{ if .Params.timeToRead }}
+      {{ .Params.timeToRead }} min read
+  {{ else }}
+      {{ math.Round (div (countwords .Content) 200.0) }} min read
+  {{ end }}
+</span>

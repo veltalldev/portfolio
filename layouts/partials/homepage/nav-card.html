@@ -1,0 +1,11 @@
+<div class="nav-card">
+  <div class="card-content">
+    <h2 class="card-title">{{ .title }}</h2>
+    <p class="card-desc">{{ .description }}</p>
+    <div class="sub-links">
+      {{ range .links }}
+        <span class="sub-link">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+</div>

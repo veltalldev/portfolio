@@ -1,0 +1,17 @@
+<header class="bg-gray-900 dark:bg-gray-900 w-full">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center">
+      <a href="{{ .Site.BaseURL }}" class="text-xl font-bold text-white hover:text-gray-200">
+        {{ .Site.Title }}
+      </a>
+    </div>
+    
+    <div class="flex items-center space-x-4">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+        {{ .Name }}
+      </a>
+      {{ end }}
+    </div>
+  </nav>
+</header> 

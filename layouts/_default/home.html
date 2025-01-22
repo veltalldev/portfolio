@@ -1,0 +1,44 @@
+{{ define "main" }}
+<div class="refined-container">
+  <div class="content-wrapper">
+    <!-- Name and Tagline Section -->
+    <div class="hero-section">
+      <h1 class="post-title">Vu Dinh</h1>
+      <div class="post-description math-tagline">
+          $\forall x \: \neq \: \heartsuit \; : \; \partial \, \heartsuit \: / \: \partial \, x \: = \: 0$
+      </div>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="intro-section">
+      <p class="intro-text">
+        I'm passionate about solving complex problems and creating elegant solutions.
+        This space serves as a living document of my journey through professional growth and personal interests.
+      </p>
+    </div>
+
+    <!-- Navigation Cards -->
+    <div class="refined-nav">
+      {{ partial "homepage/nav-card.html" (dict 
+        "title" "Professional" 
+        "description" "Technical writing, projects, and professional development journey"
+        "links" (slice 
+          "Development"
+          "Problem Solving"
+          "Projects"
+        )
+      ) }}
+      
+      {{ partial "homepage/nav-card.html" (dict 
+        "title" "Personal" 
+        "description" "Fun things I like to do"
+        "links" (slice 
+          "Gaming"
+          "Media"
+          "Thoughts"
+        )
+      ) }}
+    </div>
+  </div>
+</div>
+{{ end }}

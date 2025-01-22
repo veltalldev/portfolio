@@ -1,0 +1,15 @@
+<div class="taxonomy-navigation">
+    <div class="taxonomy-section">
+        <h3>Categories</h3>
+        {{ range $name, $items := .Site.Taxonomies.categories }}
+        <a href="{{ "categories/" | relLangURL }}{{ $name | urlize }}" class="taxonomy-link">{{ $name }}</a>
+        {{ end }}
+    </div>
+    
+    <div class="taxonomy-section">
+        <h3>Tags</h3>
+        {{ range $name, $items := .Site.Taxonomies.tags }}
+        <a href="{{ "tags/" | relLangURL }}{{ $name | urlize }}" class="taxonomy-link">{{ $name }}</a>
+        {{ end }}
+    </div>
+</div> 

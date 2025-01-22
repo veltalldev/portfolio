@@ -16,7 +16,7 @@
 }
 
 /* Background with Subtle Grid - Moved outside content-wrapper */
-.refined-container::before {
+/* .refined-container::before {
   content: '';
   position: fixed;
   top: 0;
@@ -30,6 +30,24 @@
     radial-gradient(circle at 100% 100%, rgba(100, 255, 218, 0.03), transparent 50%);
   background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
   z-index: -1;
+} */
+
+/* Update just the background section */
+.refined-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+      linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+      radial-gradient(circle at top left, rgba(75, 0, 130, 0.07), transparent 60%),
+      radial-gradient(circle at bottom right, rgba(0, 102, 102, 0.07), transparent 60%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Hero Section with Name and Tagline */

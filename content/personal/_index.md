@@ -1,7 +1,6 @@
 ---
 title: Personal
 description: Gaming analysis, music, and other interests that shape my perspective
-layout: personal/list
 menu:
   main:
     weight: 20

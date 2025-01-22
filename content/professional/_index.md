@@ -1,8 +1,6 @@
 ---
 title: Professional
 description: Technical writing, projects, and professional development journey
-# Remove the custom layout
-# layout: professional/list
 menu:
   main:
     weight: 10

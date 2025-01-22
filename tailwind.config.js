@@ -3,7 +3,12 @@ module.exports = {
   content: ["./layouts/**/*.html"],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

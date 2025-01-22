@@ -8,10 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "hugo server -D",
-    "build": "hugo --gc --minify",
-    "dev:css": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
-    "build:css": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --minify"
+    "start": "concurrently \"npm run dev\" \"hugo server -D\"",
+    "build": "npm run build:css && hugo --gc --minify",
+    "dev": "npx tailwindcss -i ./assets/css/extended/tailwind.css -o ./assets/css/extended/tailwind.min.css --watch",
+    "build:css": "npx tailwindcss -i ./assets/css/extended/tailwind.css -o ./assets/css/extended/tailwind.min.css --minify"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
     "postcss": "^8.5.1",
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.4.17"

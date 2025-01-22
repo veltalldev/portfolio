@@ -1,7 +1,6 @@
 ---
 title: Projects
 description: Showcase of technical implementations and practical solutions
-layout: professional/list
 icon: code
 iconColor: blue-500
 menu:

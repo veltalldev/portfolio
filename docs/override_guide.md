@@ -199,4 +199,39 @@ Solution:
 
 ### Internal References
 - Technical Specifications (`docs/technical_specs.md`)
-- Style Guide (`docs/style_guide.md`) 
+- Style Guide (`docs/style_guide.md`)
+
+## Component Size Modifications
+
+### The Mental Model
+When you want to add space to a component, your first instinct might be:
+
+```css
+/* ❌ Tempting but breaks layout */
+.header {
+    padding: 1rem;
+}
+```
+
+Instead, think in terms of the theme's layout system:
+
+```css
+/* ✅ Updates the layout system */
+:root {
+    --header-height: calc(60px + 2rem);
+}
+```
+
+### Why This Matters
+PaperMod uses these variables for layout calculations:
+- Main content height: `calc(100vh - var(--header-height) - var(--footer-height))`
+- Profile mode centering
+- Responsive adjustments
+
+Adding padding directly creates a mismatch between the actual component size and what the theme expects, leading to layout issues.
+
+### Best Practices
+1. Check if the component has an associated size variable
+2. Modify the variable instead of the component directly
+3. Use CSS comments to document size dependencies
+4. Test layout calculations after size changes 

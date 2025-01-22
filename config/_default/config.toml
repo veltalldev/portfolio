@@ -1,7 +1,7 @@
 baseURL = "http://localhost:1313"
 languageCode = "en-us"
 title = "My Portfolio"
-# theme = "PaperMod"
+theme = "PaperMod"
 
 # Core settings
 enableGitInfo = true
@@ -13,38 +13,41 @@ minify = true
 
 # Taxonomies
 [taxonomies]
-  category = "categories"
-  tag = "tags"
-  series = "series"
+category = "categories"
+tag = "tags"
+series = "series"
 
 # Markup Configuration
 [markup]
-  [markup.highlight]
-    style = "dracula"
-    lineNos = true
-  [markup.goldmark.renderer]
-    unsafe = true
+[markup.highlight]
+style = "dracula"
+lineNos = true
+[markup.goldmark.renderer]
+unsafe = true
 
 # Basic theme parameters (only essential configs)
 [params]
-  env = "production"
-  defaultTheme = "auto"
-  ShowReadingTime = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowWordCount = true
-  homeInfoParams = false
-  profileMode = false
-  hideHeader = true
+env = "production"
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+homeInfoParams = false
+profileMode = false
+hideHeader = true
+author = "Vu Dinh"
+role = "Software Engineer & Problem Solver"
 
-[menu]
-  [[menu.main]]
-    identifier = "professional"
-    name = "Professional"
-    url = "/professional/"
-    weight = 10
-  [[menu.main]]
-    identifier = "personal"
-    name = "Personal"
-    url = "/personal/"
-    weight = 20
+# [params.socialIcons]
+[[params.socialIcons]]
+name = "GitHub"
+url = "https://github.com/veltalldev"
+
+[[params.socialIcons]]
+name = "YouTube"
+url = "https://www.youtube.com/@vdinh143"
+
+[[params.socialIcons]]
+name = "BlueSky"
+url = "https://bsky.app/profile/kafeaulait.bsky.social"

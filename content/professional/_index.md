@@ -1,4 +1,4 @@
 ---
-title: Professional
-layout: professional
+title: "Professional"
+layout: "landing"
 ---

@@ -1,11 +1,8 @@
 ---
-title: Learning Journey
-description: Documentation of professional growth and skill development
-icon: laptop
-iconColor: blue-500
+title: "Problem Solving"
+description: "Deep dives into algorithmic challenges and systematic problem-solving approaches"
+layout: "list"  # Using the default list layout
 menu:
   professional:
-    weight: 30
+    weight: 20  # This places it after Development in the menu
 ---
-
-Tracking my progress in mastering software engineering concepts and practices.

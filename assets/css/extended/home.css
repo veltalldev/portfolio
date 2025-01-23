@@ -33,7 +33,7 @@
 }
 
 .hero-section .math-tagline {
-  margin-top: -0.65rem !important; 
+  margin-top: -0.65rem !important;
   display: block;
   opacity: 0.67;
   margin-top: 0.5rem;
@@ -76,7 +76,7 @@
 }
 
 /* Card Styles */
-.nav-card {
+/* .nav-card {
   position: relative;
   background: #1d1d1d;
   border: 1px solid #333;
@@ -91,7 +91,6 @@
   flex-direction: column;
 }
 
-/* Card Content */
 .card-content {
   position: relative;
   z-index: 1;
@@ -100,7 +99,6 @@
   height: 100%;
 }
 
-/* Card Typography */
 .card-title {
   font-size: clamp(1.5rem, 4vw, 1.8rem);
   margin: 0 0 clamp(15px, 3vw, 20px) 0;
@@ -112,7 +110,7 @@
   line-height: 1.6;
   margin-bottom: clamp(20px, 4vw, 30px);
   font-size: clamp(1rem, 2.5vw, 1.15rem);
-}
+} */
 
 /* Sub Links */
 .sub-links {
@@ -131,84 +129,31 @@
   opacity: 0.8;
 }
 
-/* Chevron Indicator */
-.nav-card::before {
-  content: '→';
-  position: absolute;
-  top: 50%;
-  right: clamp(15px, 4vw, 25px);
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: #64FFDA;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
 /* Height-based responsive adjustments */
 @media (max-height: 800px) {
   .hero-section {
     padding: clamp(10px, 2vw, 20px) 0;
   }
-  
+
   .intro-section {
     padding: clamp(5px, 1.5vw, 15px) 0;
   }
-  
-  .nav-card {
-    padding: clamp(20px, 3vw, 30px);
-  }
+
 }
 
-/* Touch Device Styles */
-@media (hover: none) {
-  .nav-card {
-    padding-right: clamp(35px, 8vw, 50px);
-  }
-  
-  .nav-card::before {
-    opacity: 0.5;
-    animation: chevronPulse 2s ease-in-out infinite;
-  }
-  
-  .nav-card:active {
-    background: #252525;
-    transform: scale(0.98);
-  }
-}
-
-/* Desktop Hover Effects */
-@media (hover: hover) {
-  .nav-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(100, 255, 218, 0.2);
-    box-shadow: 0 5px 20px -5px rgba(100, 255, 218, 0.1);
-  }
-  
-  .nav-card:hover::before {
-    opacity: 1;
-    transform: translateY(-50%) translateX(5px);
-  }
-}
 
 /* Mobile Layout */
 @media (max-width: 768px) {
   .refined-container {
     height: auto;
   }
-  
+
   .content-wrapper {
     overflow: visible;
   }
-  
+
   .refined-nav {
     margin-top: clamp(24px, 3vw, 32px);
     grid-template-columns: 1fr;
   }
-}
-
-/* Animation Keyframes */
-@keyframes chevronPulse {
-  0% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-50%) translateX(5px); }
-  100% { transform: translateY(-50%) translateX(0); }
 }

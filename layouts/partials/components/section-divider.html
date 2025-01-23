@@ -1,0 +1,30 @@
+{{/* layouts/partials/components/section-divider.html */}}
+
+{{ $style := .style | default "1" }}
+
+{{/* Include this style block in your main CSS or as a separate partial */}}
+
+
+<div class="my-section-divider">
+  {{ if eq $style "1" }}
+    <div class="divider-1"></div>
+  {{ else if eq $style "2" }}
+    <div class="divider-2"></div>
+  {{ else if eq $style "3" }}
+    <div class="divider-3"></div>
+  {{ else if eq $style "4" }}
+    <div class="divider-4"></div>
+  {{ else if eq $style "5" }}
+    <div class="divider-5"></div>
+  {{ else if eq $style "6" }}
+    <div class="divider-6"></div>
+  {{ else if eq $style "7" }}
+    <div class="divider-7">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  {{ else if eq $style "8" }}
+    <div class="divider-8"></div>
+  {{ end }}
+</div>

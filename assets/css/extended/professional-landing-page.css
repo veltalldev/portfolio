@@ -1,0 +1,328 @@
+/* Base Variables */
+:root {
+  /* Colors */
+  --accent: #64FFDA;
+  --background: #1a1a1a;
+  --card-bg: #1d1d1d;
+  --border: #333;
+  --text-primary: #fff;
+  --text-secondary: #888;
+  --accent-subtle: rgba(100, 255, 218, 0.03);
+  --accent-mild: rgba(100, 255, 218, 0.1);
+  --accent-medium: rgba(100, 255, 218, 0.2);
+  
+  /* Spacing Scale */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 4vw, 2rem);
+  --space-xl: clamp(2rem, 5vw, 3rem);
+}
+
+/* Base Styles */
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.page-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+/* Section Titles */
+.section-title {
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+/* Featured Section Styles */
+.featured-content {
+  max-width: 900px;
+  margin: 0 auto var(--space-xl);
+}
+
+.featured-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.featured-card:hover {
+  border-color: var(--accent-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px -5px var(--accent-subtle);
+}
+
+.resume-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-xl);
+  align-items: flex-start;
+}
+
+.resume-content {
+  max-width: 600px;
+}
+
+.resume-content h1 {
+  color: var(--accent);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  margin: 0 0 var(--space-xs) 0;
+  letter-spacing: -0.02em;
+}
+
+.resume-content h3 {
+  color: var(--text-secondary);
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: normal;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.contact-info {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.resume-content p {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.resume-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 200px;
+}
+
+.action-button {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: center;
+}
+
+.action-button:hover {
+  background: var(--accent-subtle);
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .featured-card {
+    padding: var(--space-lg);
+  }
+
+  .resume-preview {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .resume-actions {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .timeline {
+    padding-left: 30px;
+  }
+
+  /* Ensure consistent left alignment with other sections */
+  .timeline-section {
+    padding: 0 var(--space-sm);
+  }
+
+  .era-marker::before {
+    left: -34px;
+  }
+
+  .timeline-entry::before {
+    left: -30px;
+  }
+
+  .timeline-entry.transformative::before {
+    left: -32px;
+  }
+}
+
+/* Navigation Grid Styles */
+.section-nav {
+  margin-bottom: var(--space-xl);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Timeline Styles */
+.timeline-section {
+  position: relative;
+}
+
+.timeline-intro {
+  margin-bottom: var(--space-xl);
+}
+
+.timeline-intro h2 {
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.timeline-intro p {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  margin: 0;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.era {
+  margin-bottom: var(--space-xl);
+  position: relative;
+}
+
+.era-marker {
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.era-marker::before {
+  content: '';
+  position: absolute;
+  left: -44px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+.era-years {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.era-title {
+  margin: var(--space-xs) 0;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.era-description {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.timeline-entry {
+  margin-bottom: var(--space-lg);
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 12px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+}
+
+.timeline-entry.transformative {
+  background: var(--accent-subtle);
+  border-left: 2px solid var(--accent);
+  margin-left: -2px;
+  padding: var(--space-md);
+  border-radius: 0 4px 4px 0;
+}
+
+.timeline-entry.transformative::before {
+  background: var(--accent);
+  width: 6px;
+  height: 6px;
+  left: -42px;
+}
+
+.timeline-entry time {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.entry-content {
+  margin-top: var(--space-xs);
+}
+
+.entry-content h4 {
+  margin: 0 0 var(--space-xs) 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.entry-content p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.insight {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--accent-mild);
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* Ensure section dividers have room */
+.section-divider {
+  margin: var(--space-xl) 0;
+}

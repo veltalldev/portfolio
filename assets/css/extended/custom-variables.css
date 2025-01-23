@@ -1,0 +1,8 @@
+/* assets/css/extended/custom-variables.css */
+:root {
+  /* Custom accent colors */
+  --accent: #64FFDA;
+  --accent-subtle: rgba(100, 255, 218, 0.03);
+  --accent-mild: rgba(100, 255, 218, 0.1);
+  --accent-medium: rgba(100, 255, 218, 0.2);
+}

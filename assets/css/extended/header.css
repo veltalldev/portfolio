@@ -11,13 +11,13 @@
   --accent-medium: rgba(100, 255, 218, 0.2);
   --base-header-height: 60px;
   --header-padding: 1rem;
-  --header-height: calc(var(--base-header-height) + (var(--header-padding) * 2));
+  --header-height: calc(var(--base-header-height) + var(--header-padding) + var(--header-padding));
 }
 
 .header {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  /* padding: 1rem; */
+  min-height: var(--header-height);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);

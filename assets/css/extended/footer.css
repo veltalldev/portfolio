@@ -1,7 +1,7 @@
 /* Footer Layout Variables */
 :root {
   --footer-padding: 1rem;
-  --base-footer-height: 50px;
+  --base-footer-height: 60px;
   --footer-height: calc(var(--base-footer-height) + (var(--footer-padding) * 2));
 }
 

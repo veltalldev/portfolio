@@ -1,0 +1,10 @@
+{{ $type := .Get 0 | default "info" }}
+{{ $icon := cond (eq $type "info") "ℹ️" (cond (eq $type "tip") "💡" (cond (eq $type "warning") "⚠️" "❗")) }}
+<div class="notice {{ $type }}">
+    <div class="notice-header">
+        <span class="notice-icon">{{ $icon }}</span>
+    </div>
+    <div class="notice-content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>

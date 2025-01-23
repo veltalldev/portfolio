@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="page-container page-background">
+    <header class="section-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="description">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="section-content">
+        {{ .Content }}
+        
+        <div class="posts-list">
+            {{ range .Pages.ByDate.Reverse }}
+            <article class="post-entry">
+                <header class="entry-header">
+                    <h2>
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </h2>
+                </header>
+                {{ if not (.Param "hideSummary") }}
+                <div class="entry-content">
+                    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+                </div>
+                {{ end }}
+                <footer class="entry-footer">
+                    <time>{{ .Date.Format "January 2, 2006" }}</time>
+                    {{ with .Params.difficulty }}
+                    <span class="difficulty {{ . }}">{{ . }}</span>
+                    {{ end }}
+                </footer>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
+

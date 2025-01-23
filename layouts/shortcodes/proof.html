@@ -1,0 +1,21 @@
+{{ $type := .Get "type" | default "proof" }}
+{{ $name := .Get "name" | default "" }}
+{{ $method := .Get "method" | default "" }}
+
+<div class="proof-block {{ $type }}">
+    <div class="proof-header">
+        {{ if eq $type "theorem" }}
+            <span class="proof-type">Theorem{{ with $name }}: {{ . }}{{ end }}</span>
+        {{ else if eq $type "lemma" }}
+            <span class="proof-type">Lemma{{ with $name }}: {{ . }}{{ end }}</span>
+        {{ else }}
+            <span class="proof-type">Proof{{ with $method }} (by {{ . }}){{ end }}{{ with $name }}: {{ . }}{{ end }}</span>
+        {{ end }}
+    </div>
+    <div class="proof-content">
+        {{ .Inner | markdownify }}
+    </div>
+    {{ if eq $type "proof" }}
+    <div class="proof-end">∎</div>
+    {{ end }}
+</div>

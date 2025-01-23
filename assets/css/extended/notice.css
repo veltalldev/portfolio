@@ -1,0 +1,64 @@
+/* assets/css/extended/notice.css */
+.notice {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  position: relative;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.notice.info {
+  border-left: 4px solid #3b82f6;
+}
+
+.notice.tip {
+  border-left: 4px solid var(--accent);
+}
+
+.notice.warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.notice.error {
+  border-left: 4px solid #ef4444;
+}
+
+.notice:hover {
+  transform: translateX(2px);
+  border-color: rgba(100, 255, 218, 0.2);
+  box-shadow: 0 5px 20px -5px var(--accent-subtle);
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.notice-icon {
+  font-size: 1.25rem;
+}
+
+.notice-content {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.notice-content strong {
+  color: var(--text-primary);
+}
+
+/* Dark theme adjustments */
+:root[data-theme="dark"] .notice {
+  background: var(--card-bg);
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .notice:active {
+      transform: scale(0.99);
+  }
+}

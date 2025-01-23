@@ -1,0 +1,58 @@
+/* assets/css/extended/proof.css */
+.proof-block {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.proof-block:hover {
+  border-color: var(--accent-medium);
+  transform: translateX(2px);
+  box-shadow: 0 5px 20px -5px var(--accent-subtle);
+}
+
+/* Different types of proofs get different accent colors */
+.proof-block.theorem {
+  border-left: 4px solid #3b82f6;
+}
+
+.proof-block.lemma {
+  border-left: 4px solid #8b5cf6;
+}
+
+.proof-block.proof {
+  border-left: 4px solid var(--accent);
+}
+
+.proof-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono, monospace);
+}
+
+.proof-type {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.proof-content {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.proof-content strong {
+  color: var(--text-primary);
+}
+
+.proof-end {
+  text-align: right;
+  margin-top: 1rem;
+  color: var(--accent);
+  font-weight: bold;
+}

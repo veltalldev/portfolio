@@ -30,8 +30,14 @@ url = "https://www.youtube.com/@vdinh143"
 name = "BlueSky"
 url = "https://bsky.app/profile/kafeaulait.bsky.social"
 
-[markup.highlight]
-  noClasses = false
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = true
+  
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   
 [outputs]
   home = ["HTML", "RSS", "JSON"]

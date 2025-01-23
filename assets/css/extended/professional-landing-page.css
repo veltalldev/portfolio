@@ -256,7 +256,7 @@ body {
 .era-description {
   color: var(--text-secondary);
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .timeline-entry {
@@ -304,13 +304,13 @@ body {
 .entry-content h4 {
   margin: 0 0 var(--space-xs) 0;
   color: var(--text-primary);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .entry-content p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .insight {

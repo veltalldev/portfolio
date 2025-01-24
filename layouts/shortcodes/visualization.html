@@ -1,0 +1,19 @@
+{{/* Check if we have a source file specified */}}
+{{ $svg := "" }}
+{{ with .Get "src" }}
+  {{ $svg = resources.Get . }}
+{{ end }}
+
+<figure class="visualization">
+  {{/* If we have a source file, use its content */}}
+  {{ if $svg }}
+    {{ $svg.Content | safeHTML }}
+  {{/* Otherwise use the inner content */}}
+  {{ else }}
+    {{ .Inner }}
+  {{ end }}
+  
+  {{- with .Get "title" }}
+  <figcaption class="visualization-title">{{ . }}</figcaption>
+  {{- end }}
+</figure>

@@ -1,0 +1,105 @@
+/* Table of Contents */
+.toc {
+  background-color: green;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: clamp(32px, 6vw, 48px) 0;
+  transition: all var(--transition-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+
+}
+
+.toc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.toc-header h2 {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.chevron {
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.toc.collapsed .chevron {
+  transform: rotate(-180deg);
+}
+
+.toc-content {
+  background-color: green;
+  padding: 1.5rem;
+  max-height: 500px;
+  overflow-y: auto;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.toc.collapsed .toc-content {
+  max-height: 0;
+  padding: 0 1.5rem;
+  overflow: hidden;
+}
+
+/* Existing TOC nav styles from your codebase */
+.toc nav {
+  font-size: var(--text-sm);
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.toc li {
+  margin: 0.75rem 0;
+  position: relative;
+}
+
+.toc li::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.7em;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.toc a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.toc a:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.toc li:hover::before {
+  opacity: 1;
+  transform: scale(1.2);
+} 

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#1a1a1a"/>
+    
+    <!-- Grid lines -->
+    <g stroke="#333333" stroke-width="1">
+        <!-- Vertical grid lines -->
+        <line x1="100" y1="50" x2="100" y2="350" />
+        <line x1="200" y1="50" x2="200" y2="350" />
+        <line x1="300" y1="50" x2="300" y2="350" />
+        <line x1="400" y1="50" x2="400" y2="350" />
+        <line x1="500" y1="50" x2="500" y2="350" />
+        <line x1="600" y1="50" x2="600" y2="350" />
+        <line x1="700" y1="50" x2="700" y2="350" />
+        
+        <!-- Horizontal grid lines -->
+        <line x1="50" y1="100" x2="750" y2="100" />
+        <line x1="50" y1="150" x2="750" y2="150" />
+        <line x1="50" y1="200" x2="750" y2="200" />
+        <line x1="50" y1="250" x2="750" y2="250" />
+        <line x1="50" y1="300" x2="750" y2="300" />
+    </g>
+
+    <!-- Left tall wall (definitive left bound) -->
+    <rect x="100" y="80" width="80" height="220" fill="#64FFDA"/>
+    
+    <!-- Second wall (now faded as irrelevant) -->
+    <rect x="200" y="150" width="80" height="150" fill="rgba(100, 255, 218, 0.3)"/>
+    
+    <!-- Current element being processed (highlighted) -->
+    <rect x="300" y="200" width="80" height="100" fill="#FF6B6B"/>
+    
+    <!-- Some intermediate walls -->
+    <rect x="400" y="180" width="80" height="120" fill="rgba(100, 255, 218, 0.3)"/>
+    
+    <!-- Max right wall (definitive right bound) -->
+    <rect x="500" y="100" width="80" height="200" fill="#64FFDA"/>
+    
+    <!-- Final walls leading to end -->
+    <rect x="600" y="220" width="80" height="80" fill="rgba(100, 255, 218, 0.3)"/>
+    <rect x="700" y="200" width="80" height="100" fill="rgba(100, 255, 218, 0.3)"/>
+    
+    <!-- Ceiling line extending all the way from left to max right -->
+    <line x1="140" y1="100" x2="540" y2="100" 
+          stroke="#64FFDA" stroke-width="2" 
+          stroke-dasharray="10,5"/>
+    
+    <!-- Labels -->
+    <text x="140" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Left Wall</text>
+    <text x="340" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Current</text>
+    <text x="540" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Max Right</text>
+    <text x="740" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">End</text>
+    
+    <!-- Height indicators -->
+    <text x="70" y="100" fill="#888" font-family="monospace" font-size="12" text-anchor="end">5</text>
+    <text x="70" y="150" fill="#888" font-family="monospace" font-size="12" text-anchor="end">4</text>
+    <text x="70" y="200" fill="#888" font-family="monospace" font-size="12" text-anchor="end">3</text>
+    <text x="70" y="250" fill="#888" font-family="monospace" font-size="12" text-anchor="end">2</text>
+    <text x="70" y="300" fill="#888" font-family="monospace" font-size="12" text-anchor="end">1</text>
+    
+    <!-- Key observation callout -->
+    <text x="100" y="65" fill="#64FFDA" font-family="monospace" font-size="14">Having seen full array → Max right wall becomes definitive boundary for current position</text>
+    
+    <!-- End marker -->
+    <text x="740" y="180" fill="#888" font-family="monospace" font-size="24" text-anchor="middle">|</text>
+</svg>

@@ -32,9 +32,18 @@ url = "https://bsky.app/profile/kafeaulait.bsky.social"
 
 [markup]
   [markup.highlight]
-    style = "dracula"
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
     lineNos = true
-  
+    lineNumbersInTable = false
+    noClasses = false  # Important! Use CSS classes instead of inline styles
+    noHl = false
+    style = 'monokai'  # You can pick a base style, but we'll override with CSS
+    tabWidth = 2
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true

@@ -7,6 +7,7 @@ description: "An exploration of dynamic programming and greedy approaches to the
 tags: ["algorithms", "dynamic-programming", "greedy-algorithms", "problem-solving"]
 categories: ["problem-solving"]
 series: ["algorithm-deep-dives"]
+slug: "coin-change"
 math: true
 toc: true
 ---
@@ -62,17 +63,17 @@ The journey took an interesting turn when I began exploring whether a greedy app
 ### Evolution of the Proof
 The proof development process itself revealed valuable insights about approaching algorithm verification:
 
-1. **First Attempt**: Tried to prove you can't exceed larger denominations
-   - Too strong a condition
-   - Unnecessary for optimality
-   - Led to dead ends
+**First Attempt**: Tried to prove you can't exceed larger denominations
+  - Too strong a condition
+  - Unnecessary for optimality
+  - Led to dead ends
 
-2. **Second Attempt**: Shifted focus to exact denomination matching
-   - More promising direction
-   - Focused on comparing coin counts between greedy and non-greedy approaches
-   - Still missing key insights
+**Second Attempt**: Shifted focus to exact denomination matching
+  - More promising direction
+  - Focused on comparing coin counts between greedy and non-greedy approaches
+  - Still missing key insights
 
-3. **Key Breakthrough**: Identified the critical property
+**Key Breakthrough**: Identified the critical property
    - Exact reproducibility of larger denominations
    - Proved that matching exactly always requires at least 2 smaller coins
    - This was the crucial insight that unlocked the proof
@@ -112,15 +113,15 @@ This journey yielded several valuable insights about problem-solving and proof d
 **Core Insight**: The key to proving greedy optimality wasn't showing that exceeding denominations was impossible, but rather that it was always inefficient. This inefficiency lies in the ability to construct exactly that denomination, but with at least 2 coins.
 {{< /notice >}}
 
-1. **Separation of Concerns**
-   - Distinguishing correctness from optimality
-   - Breaking complex proofs into manageable lemmas
+**Separation of Concerns**
+  - Distinguishing correctness from optimality
+  - Breaking complex proofs into manageable lemmas
 
-2. **Property Selection**
+**Property Selection**
    - Finding the right property to prove is often more crucial than the proof itself
    - Exact matching vs. impossibility of exceeding was a key pivot
 
-3. **Generalization vs. Specialization**
+**Generalization vs. Specialization**
    - Understanding when to use specific properties (US denominations)
    - Maintaining awareness of generality where possible
 
@@ -135,17 +136,17 @@ Beyond being applicable to determining "greedy-compatibility" in other denominat
 
 ## Learning Outcomes
 
-1. **Proof Development Strategy**
+**Proof Development Strategy**
    - Start with stronger conditions and relax as needed
    - Look for key properties that enable simpler proofs
    - Use supporting lemmas to handle technical requirements
 
-2. **Algorithm Design Philosophy**
+**Algorithm Design Philosophy**
    - Begin with reliable approaches (DP)
    - Explore optimizations based on specific constraints
    - Balance generality with optimization opportunities
 
-3. **Problem-Solving Methodology**
+**Problem-Solving Methodology**
    - Systematic exploration of solution space
    - Iterative refinement of proofs and approaches
    - Clear documentation of thinking process

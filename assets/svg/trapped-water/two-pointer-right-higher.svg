@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#1a1a1a"/>
+    
+    <!-- Grid lines -->
+    <g stroke="#333333" stroke-width="1">
+        <!-- Vertical grid lines -->
+        <line x1="100" y1="50" x2="100" y2="350" />
+        <line x1="200" y1="50" x2="200" y2="350" />
+        <line x1="300" y1="50" x2="300" y2="350" />
+        <line x1="400" y1="50" x2="400" y2="350" />
+        <line x1="500" y1="50" x2="500" y2="350" />
+        <line x1="600" y1="50" x2="600" y2="350" />
+        <line x1="700" y1="50" x2="700" y2="350" />
+        
+        <!-- Horizontal grid lines -->
+        <line x1="50" y1="100" x2="750" y2="100" />
+        <line x1="50" y1="150" x2="750" y2="150" />
+        <line x1="50" y1="200" x2="750" y2="200" />
+        <line x1="50" y1="250" x2="750" y2="250" />
+        <line x1="50" y1="300" x2="750" y2="300" />
+    </g>
+
+    <!-- Left pointer's wall (cyan) -->
+    <rect x="100" y="150" width="80" height="150" fill="#64FFDA"/>
+    
+    <!-- Left dark pillar (not of interest) -->
+    <rect x="200" y="200" width="80" height="100" fill="#333333"/>
+    
+    <!-- Left processing pillar (red) -->
+    <rect x="300" y="250" width="80" height="50" fill="#FF6B6B"/>
+    
+    <!-- Unknown middle region -->
+    <rect x="400" y="50" width="100" height="300" fill="rgba(100, 255, 218, 0.1)" stroke="#333"/>
+    <text x="450" y="200" fill="#888" font-family="monospace" font-size="24" text-anchor="middle">???</text>
+    
+    <!-- Right processing pillar (red) -->
+    <rect x="520" y="220" width="80" height="80" fill="#FF6B6B"/>
+    
+    <!-- Right dark pillar (not of interest) -->
+    <rect x="620" y="180" width="80" height="120" fill="#333333"/>
+    
+    <!-- Right pointer's wall (cyan, taller) -->
+    <rect x="700" y="120" width="80" height="180" fill="#64FFDA"/>
+    
+    <!-- Water level ceiling line -->
+    <line x1="140" y1="150" x2="740" y2="150" 
+          stroke="#64FFDA" stroke-width="2" 
+          stroke-dasharray="10,5"/>
+    
+    <!-- Labels -->
+    <text x="140" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Left Max</text>
+    <text x="740" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Right Max</text>
+    
+    <!-- Key observation -->
+    <text x="400" y="80" fill="#64FFDA" font-family="monospace" font-size="14" text-anchor="middle">Right wall higher: Process left side (bounded by left max)</text>
+</svg>

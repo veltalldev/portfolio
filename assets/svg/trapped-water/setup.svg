@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#1a1a1a"/>
+    
+    <!-- Grid lines -->
+    <g stroke="#333333" stroke-width="1">
+        <!-- Vertical grid lines -->
+        <line x1="100" y1="50" x2="100" y2="350" />
+        <line x1="200" y1="50" x2="200" y2="350" />
+        <line x1="300" y1="50" x2="300" y2="350" />
+        <line x1="400" y1="50" x2="400" y2="350" />
+        <line x1="500" y1="50" x2="500" y2="350" />
+        <line x1="600" y1="50" x2="600" y2="350" />
+        <line x1="700" y1="50" x2="700" y2="350" />
+        
+        <!-- Horizontal grid lines -->
+        <line x1="50" y1="100" x2="750" y2="100" />
+        <line x1="50" y1="150" x2="750" y2="150" />
+        <line x1="50" y1="200" x2="750" y2="200" />
+        <line x1="50" y1="250" x2="750" y2="250" />
+        <line x1="50" y1="300" x2="750" y2="300" />
+    </g>
+
+    <!-- Left tall wall -->
+    <rect x="100" y="100" width="80" height="200" fill="#64FFDA"/>
+    
+    <!-- Shorter wall -->
+    <rect x="200" y="150" width="80" height="150" fill="#64FFDA"/>
+    
+    <!-- Current processing element (highlighted) -->
+    <rect x="300" y="200" width="80" height="100" fill="#FF6B6B"/>
+    
+    <!-- First ambiguous region -->
+    <rect x="400" y="50" width="150" height="300" fill="rgba(100, 255, 218, 0.1)" stroke="#333"/>
+    <text x="475" y="200" fill="#888" font-family="monospace" font-size="24" text-anchor="middle">???</text>
+    
+    <!-- Potential right wall -->
+    <rect x="570" y="100" width="80" height="200" fill="rgba(100, 255, 218, 0.2)" stroke="#64FFDA" stroke-width="2" stroke-dasharray="4"/>
+    <text x="610" y="210" fill="#64FFDA" font-family="monospace" font-size="32" text-anchor="middle">?</text>
+    
+    <!-- Second ambiguous region -->
+    <rect x="670" y="50" width="80" height="300" fill="rgba(100, 255, 218, 0.1)" stroke="#333"/>
+    <text x="710" y="200" fill="#888" font-family="monospace" font-size="20" text-anchor="middle">...</text>
+    
+    <!-- Labels -->
+    <text x="140" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Left Wall</text>
+    <text x="340" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Current</text>
+    <text x="475" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Unknown Region</text>
+    <text x="610" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Potential Wall?</text>
+    <text x="710" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">More?</text>
+    
+    <!-- Height indicators -->
+    <text x="70" y="150" fill="#888" font-family="monospace" font-size="12" text-anchor="end">4</text>
+    <text x="70" y="200" fill="#888" font-family="monospace" font-size="12" text-anchor="end">3</text>
+    <text x="70" y="250" fill="#888" font-family="monospace" font-size="12" text-anchor="end">2</text>
+    <text x="70" y="300" fill="#888" font-family="monospace" font-size="12" text-anchor="end">1</text>
+    
+    <!-- Key observation callout -->
+    <text x="400" y="80" fill="#64FFDA" font-family="monospace" font-size="14" text-anchor="start">Key Challenge: Right wall location and height unknown</text>
+</svg>

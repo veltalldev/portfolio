@@ -1,0 +1,35 @@
+<div class="problem-example">
+    <div class="example-header">
+        Example{{ with .Get "number" }} {{ . }}{{ end }}
+    </div>
+    <div class="example-content">
+        <div class="example-section">
+            <div class="section-header">
+                <span class="section-label">Input:</span>
+                {{ with .Get "input-type" }}
+                <span class="type-info">{{ . }}</span>
+                {{ end }}
+            </div>
+            <div class="value-display">{{ .Get "input" }}</div>
+        </div>
+
+        <div class="example-section">
+            <div class="section-header">
+                <span class="section-label">Output:</span>
+                {{ with .Get "output-type" }}
+                <span class="type-info">{{ . }}</span>
+                {{ end }}
+            </div>
+            <div class="value-display">{{ .Get "output" }}</div>
+        </div>
+
+        {{ with .Inner }}
+        <div class="example-explanation">
+            <div class="explanation-label">Explanation:</div>
+            <div class="explanation-content">
+                {{ . | markdownify }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>

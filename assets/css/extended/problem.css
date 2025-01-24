@@ -1,0 +1,94 @@
+/* Problem Statement Container */
+.problem-statement {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: var(--space-lg) 0;
+  overflow: hidden;
+}
+
+.problem-description {
+  padding: var(--space-md);
+}
+
+/* Examples Section */
+.examples-section {
+  border-top: 1px solid var(--border);
+  padding: var(--space-md);
+}
+
+.examples-section h3 {
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  font-size: var(--text-lg);
+}
+
+/* Individual Example */
+.example {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: var(--space-md);
+}
+
+.example:last-child {
+  margin-bottom: 0;
+}
+
+.example-title {
+  color: var(--accent);
+  font-size: var(--text-base);
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.example-body {
+  padding: var(--space-md);
+}
+
+/* Input/Output Blocks */
+.io-block {
+  margin-bottom: var(--space-sm);
+}
+
+.io-block:last-child {
+  margin-bottom: 0;
+}
+
+.io-label {
+  color: var(--text-secondary);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.io-value {
+  background: var(--card-bg);
+  padding: var(--space-sm);
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  display: block;
+}
+
+/* Explanation Section */
+.example-explanation {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--border);
+}
+
+.explanation-label {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.explanation-content {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}

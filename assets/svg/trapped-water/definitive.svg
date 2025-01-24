@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#1a1a1a"/>
+    
+    <!-- Grid lines -->
+    <g stroke="#333333" stroke-width="1">
+        <!-- Vertical grid lines -->
+        <line x1="100" y1="50" x2="100" y2="350" />
+        <line x1="200" y1="50" x2="200" y2="350" />
+        <line x1="300" y1="50" x2="300" y2="350" />
+        <line x1="400" y1="50" x2="400" y2="350" />
+        <line x1="500" y1="50" x2="500" y2="350" />
+        <line x1="600" y1="50" x2="600" y2="350" />
+        <line x1="700" y1="50" x2="700" y2="350" />
+        
+        <!-- Horizontal grid lines -->
+        <line x1="50" y1="100" x2="750" y2="100" />
+        <line x1="50" y1="150" x2="750" y2="150" />
+        <line x1="50" y1="200" x2="750" y2="200" />
+        <line x1="50" y1="250" x2="750" y2="250" />
+        <line x1="50" y1="300" x2="750" y2="300" />
+    </g>
+
+    <!-- Left tall wall -->
+    <rect x="100" y="100" width="80" height="200" fill="#64FFDA"/>
+    
+    <!-- Shorter wall -->
+    <rect x="200" y="150" width="80" height="150" fill="#64FFDA"/>
+    
+    <!-- Current element being processed (highlighted) -->
+    <rect x="300" y="200" width="80" height="100" fill="#FF6B6B"/>
+    
+    <!-- Intermediate wall (less relevant) -->
+    <rect x="400" y="180" width="80" height="120" fill="rgba(100, 255, 218, 0.3)"/>
+    
+    <!-- Definitive tall wall -->
+    <rect x="500" y="100" width="80" height="200" fill="#64FFDA"/>
+    
+    <!-- Ceiling line connecting left and right walls -->
+    <line x1="140" y1="100" x2="540" y2="100" 
+          stroke="#64FFDA" stroke-width="2" 
+          stroke-dasharray="10,5"/>
+    
+    <!-- Unknown region (now irrelevant) -->
+    <rect x="600" y="50" width="150" height="300" fill="rgba(100, 255, 218, 0.1)" stroke="#333"/>
+    <text x="675" y="200" fill="#888" font-family="monospace" font-size="24" text-anchor="middle">???</text>
+    
+    <!-- Labels -->
+    <text x="140" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Left Wall</text>
+    <text x="340" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Current</text>
+    <text x="540" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Definitive Wall</text>
+    <text x="675" y="330" fill="#888" font-family="monospace" font-size="14" text-anchor="middle">Irrelevant</text>
+    
+    <!-- Height indicators -->
+    <text x="70" y="150" fill="#888" font-family="monospace" font-size="12" text-anchor="end">4</text>
+    <text x="70" y="200" fill="#888" font-family="monospace" font-size="12" text-anchor="end">3</text>
+    <text x="70" y="250" fill="#888" font-family="monospace" font-size="12" text-anchor="end">2</text>
+    <text x="70" y="300" fill="#888" font-family="monospace" font-size="12" text-anchor="end">1</text>
+    
+    <!-- Key observation callout -->
+    <text x="100" y="80" fill="#64FFDA" font-family="monospace" font-size="14">Found definitive right wall ≥ left wall: Creates "ceiling" for water calculation</text>
+</svg>

@@ -1,45 +1,56 @@
 /* assets/css/extended/notice.css */
 .notice {
   margin: 1.5rem 0;
-  padding: 1rem;
+  padding: 0.15rem 1.25rem;
   border-radius: 8px;
-  border: 1px solid var(--border);
   background: var(--card-bg);
   position: relative;
   transition: all var(--transition-base) var(--ease-out);
 }
 
-.notice.info {
-  border-left: 4px solid #3b82f6;
+/* Subtle corner accents */
+.notice::before,
+.notice::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 12px;
+  opacity: 0.7;
+  transition: all var(--transition-base) var(--ease-out);
 }
 
-.notice.tip {
-  border-left: 4px solid var(--accent);
+.notice::before {
+  top: 0;
+  left: 0;
+  border-top-left-radius: 2px;
 }
 
-.notice.warning {
-  border-left: 4px solid #f59e0b;
+.notice::after {
+  top: 0;
+  left: 12px;
+  transform: rotate(90deg);
+  transform-origin: top left;
 }
 
-.notice.error {
-  border-left: 4px solid #ef4444;
+/* Type-specific colors */
+.notice.info::before,
+.notice.info::after {
+  background: #3b82f6;
 }
 
-.notice:hover {
-  transform: translateX(2px);
-  border-color: rgba(100, 255, 218, 0.2);
-  box-shadow: 0 5px 20px -5px var(--accent-subtle);
+.notice.tip::before,
+.notice.tip::after {
+  background: var(--accent);
 }
 
-.notice-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+.notice.warning::before,
+.notice.warning::after {
+  background: #f59e0b;
 }
 
-.notice-icon {
-  font-size: 1.25rem;
+.notice.error::before,
+.notice.error::after {
+  background: #ef4444;
 }
 
 .notice-content {
@@ -51,6 +62,12 @@
   color: var(--text-primary);
 }
 
+/* Hover effect */
+.notice:hover::before,
+.notice:hover::after {
+  opacity: 1;
+}
+
 /* Dark theme adjustments */
 :root[data-theme="dark"] .notice {
   background: var(--card-bg);
@@ -59,6 +76,6 @@
 /* Touch device optimizations */
 @media (hover: none) {
   .notice:active {
-      transform: scale(0.99);
+    transform: scale(0.99);
   }
 }

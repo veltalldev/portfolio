@@ -1,0 +1,40 @@
+/* Content Typography */
+.post-content {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-top: clamp(32px, 5vw, 48px);
+}
+
+.post-content p {
+  margin: 1.5em 0;
+  color: var(--text-secondary);
+}
+
+.post-content strong {
+  color: var(--text-primary);
+}
+
+.post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.post-content img {
+  border-radius: var(--radius);
+  margin: clamp(24px, 4vw, 32px) 0;
+}
+
+.post-content blockquote {
+  margin: clamp(24px, 4vw, 32px) 0;
+  padding: 0 0 0 1.5rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-secondary);
+  font-style: italic;
+} 

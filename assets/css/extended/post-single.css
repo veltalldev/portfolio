@@ -1,10 +1,10 @@
 /* Import all post components */
-@import "./components/post-container.css";
-@import "./components/post-header.css";
-@import "./components/post-toc.css";
-@import "./components/post-content.css";
-@import "./components/post-lists.css";
-@import "./components/post-code.css";
+@import url("components/post-container.css");
+@import url("components/post-header.css");
+@import url("components/post-toc.css");
+@import url("components/post-content.css");
+@import url("components/post-lists.css");
+@import url("components/post-code.css");
 
 /* Any additional post-specific styles that don't fit in components */ 
 
@@ -15,6 +15,7 @@
   margin: clamp(32px, 6vw, 48px) 0;
   position: relative;
   overflow: hidden;
+  background: #1a1a1a !important;
 }
 
 .toc::before {
@@ -34,7 +35,7 @@
   padding: 1.25rem 1.5rem;
   cursor: pointer;
   border-bottom: 1px solid var(--border);
-  background: var(--code-bg);
+  background: rgba(50, 122, 109, 0.2);
 }
 
 .toc-header h2 {
@@ -108,4 +109,8 @@
   max-height: 0;
   padding: 0 1.5rem;
   overflow: hidden;
+}
+
+.toc-canyouseethis {
+  height: 100%;
 }

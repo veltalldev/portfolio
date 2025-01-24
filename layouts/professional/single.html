@@ -22,16 +22,16 @@
     {{- end }}
   </header>
 
-  {{- if .Params.toc }}
+  <!-- {{- if .Params.toc }}
   <div class="table-of-contents">
     <h2>Contents</h2>
     {{ .TableOfContents }}
   </div>
-  {{- end }}
-
-  <!-- {{- if .Params.toc }}
-  {{- partial "toc.html" . }}
   {{- end }} -->
+
+  {{- if .Params.toc }}
+  {{- partial "toc.html" . }}
+  {{- end }}
 
   <div class="post-content">
     {{ .Content }}

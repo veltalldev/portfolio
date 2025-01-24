@@ -1,6 +1,5 @@
 /* Table of Contents */
 .toc {
-  background-color: green;
   border: 1px solid var(--border);
   border-radius: 8px;
   margin: clamp(32px, 6vw, 48px) 0;
@@ -47,7 +46,6 @@
 }
 
 .toc-content {
-  background-color: green;
   padding: 1.5rem;
   max-height: 500px;
   overflow-y: auto;
@@ -103,3 +101,7 @@
   opacity: 1;
   transform: scale(1.2);
 } 
+
+.toc-canyouseethis {
+  height: 100%;
+}

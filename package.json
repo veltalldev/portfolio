@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run dev\" \"hugo server -D\"",
+    "start": "concurrently \"npm run dev\" \"hugo server --bind 0.0.0.0 -D\"",
     "build": "npm run build:css && hugo --gc --minify",
     "dev": "npx tailwindcss -i ./assets/css/extended/tailwind.css -o ./assets/css/extended/tailwind.min.css --watch",
     "build:css": "npx tailwindcss -i ./assets/css/extended/tailwind.css -o ./assets/css/extended/tailwind.min.css --minify"

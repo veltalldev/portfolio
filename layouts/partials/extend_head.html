@@ -20,3 +20,30 @@
 {{ $css := resources.Get "css/extended/tailwind.min.css" }}
 {{ $css = $css | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Add expand buttons to all code blocks
+  document.querySelectorAll('.post-content pre').forEach(pre => {
+    const expandBtn = document.createElement('button');
+    expandBtn.className = 'code-expand-btn';
+    expandBtn.innerHTML = '⤢'; // Expand icon
+    expandBtn.setAttribute('aria-label', 'Expand code block');
+    
+    expandBtn.addEventListener('click', () => {
+      pre.classList.toggle('code-block-expanded');
+      expandBtn.innerHTML = pre.classList.contains('code-block-expanded') ? '✕' : '⤢';
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pre.classList.contains('code-block-expanded')) {
+        pre.classList.remove('code-block-expanded');
+        expandBtn.innerHTML = '⤢';
+      }
+    });
+
+    pre.appendChild(expandBtn);
+  });
+});
+</script>

@@ -1,0 +1,63 @@
+/* assets/css/extended/section.css */
+
+/* Section Layout */
+.section-container {
+  max-width: var(--main-width, 1200px);
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 40px) clamp(16px, 2vw, 20px);
+}
+
+.section-header {
+  margin-bottom: clamp(32px, 5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.section-title {
+  color: var(--accent);
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  margin: 0;
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  max-width: 700px;
+  margin: 0;
+}
+
+/* Featured Card Modifiers */
+.featured-card {
+  margin-bottom: clamp(32px, 5vw, 40px);
+}
+
+.featured-label {
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+/* Post Meta Styling */
+.post-meta {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+/* Grid Layout */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+  gap: clamp(16px, 3vw, 24px);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+}

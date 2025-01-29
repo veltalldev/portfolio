@@ -10,6 +10,7 @@ series: ["algorithm-deep-dives"]
 slug: "coin-change"
 math: true
 toc: true
+readingTime: 15
 ---
 
 

@@ -1,0 +1,58 @@
+{{/* layouts/_default/section.html */}}
+{{ define "main" }}
+<main class="main page-background">
+  <article class="post-single">
+    <div class="section-container">
+      <header class="section-header">
+        <h1 class="section-title">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="section-description">{{ . }}</p>
+        {{ end }}
+      </header>
+
+      {{ with .Params.featuredPost }}
+      {{ $path := path.Base (path.Dir .) }}
+      {{ $featured := $.GetPage $path }}
+      {{ with $featured }}
+      <a href="{{ .RelPermalink }}" class="nav-card featured-card">
+        <div class="card-content">
+          <div class="featured-label">Featured Solution</div>
+          <h2 class="card-title">{{ .Title }}</h2>
+          <div class="post-meta">
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{ if .Params.readingTime }}
+            • {{ .Params.readingTime }} min read
+            {{ end }}
+          </div>
+          {{ with .Description }}
+          <p class="card-desc">{{ . }}</p>
+          {{ end }}
+        </div>
+      </a>
+      {{ end }}
+      {{ end }}
+
+      <div class="posts-grid">
+        {{ range .Pages }}
+        {{ if ne .RelPermalink $.Params.featuredPost }}
+        <a href="{{ .RelPermalink }}" class="nav-card">
+          <div class="card-content">
+            <h3 class="card-title">{{ .Title }}</h3>
+            <div class="post-meta">
+              <time>{{ .Date.Format "January 2, 2006" }}</time>
+              {{ if .Params.readingTime }}
+              • {{ .Params.readingTime }} min read
+              {{ end }}
+            </div>
+            {{ with .Description }}
+            <p class="card-desc">{{ . }}</p>
+            {{ end }}
+          </div>
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </article>
+</main>
+{{ end }}

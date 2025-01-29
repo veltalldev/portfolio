@@ -10,6 +10,7 @@ series: ["algorithm-deep-dives"]
 slug: "trapped-water"
 math: true
 toc: true
+readingTime: 10
 ---
 
 {{% problem %}}

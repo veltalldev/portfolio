@@ -1,0 +1,14 @@
+/* Override KaTeX text color */
+.katex {
+  color: var(--accent-light);
+}
+
+/* For display mode (centered equations) */
+.katex-display {
+  color: var(--text-primary);
+}
+
+/* For inline math */
+.katex-inline {
+  color: var(--text-primary);
+} 

@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="refined-container page-background">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Explore</h2>
+      </div>
+    
+      <div class="nav-grid">
+        <a href="{{ "personal/thoughts" | relURL }}" class="nav-card">
+          <div class="card-content">
+            <h3 class="card-title">Thoughts</h3>
+            <p class="card-desc">Mostly Philosophical Musings</p>
+          </div>
+        </a>
+        <!-- Repeat structure for other cards -->
+        <a href="{{ "personal/media" | relURL }}" class="nav-card">
+          <div class="card-content">
+            <h3 class="card-title">Media</h3>
+            <p class="card-desc">Random Stuff worth sharing
+            </p>
+          </div>
+        </a>
+        <a href="{{ "personal/gaming-analysis" | relURL }}" class="nav-card">
+          <div class="card-content">
+            <h3 class="card-title">Gaming Analysis</h3>
+            <p class="card-desc">Being a tryhard</p>
+          </div>
+        </a>
+      </div>
+    </div>
+</div>
+{{ end }} 

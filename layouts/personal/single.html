@@ -1,0 +1,46 @@
+{{/* layouts/_default/single.html */}}
+{{ define "main" }}
+<div class="refined-container page-background">
+    <div class="content-wrapper">
+        <article class="post-single">
+            <header class="post-header">
+                <div class="post-meta">
+                    <time>{{ .Date.Format "January 2, 2006" }}</time>
+                    {{- if .Params.readingTime }}
+                    <span class="meta-item">•</span>
+                    <span>{{ .Params.readingTime }} min read</span>
+                    {{- end }}
+                </div>
+
+                <h1 class="post-title">{{ .Title }}</h1>
+
+                {{- if .Params.tags }}
+                <div class="post-tags">
+                    {{- range .Params.tags }}
+                    <a href="{{ "tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                    {{- end }}
+                </div>
+                {{- end }}
+            </header>
+
+            {{- if .Params.toc }}
+            {{- partial "toc.html" . }}
+            {{- end }}
+
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+
+            <footer class="post-footer">
+                {{- if .Site.Params.ShowShareButtons }}
+                {{- partial "share-buttons.html" . }}
+                {{- end }}
+
+                {{- if .Site.Params.ShowPostNavLinks }}
+                {{- partial "post-nav-links.html" . }}
+                {{- end }}
+            </footer>
+        </article>
+    </div>
+</div>
+{{ end }}

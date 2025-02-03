@@ -59,6 +59,7 @@ body {
   padding: var(--space-xl);
   position: relative;
   transition: all 0.3s ease;
+  margin-bottom: 0 !important;
 }
 
 .featured-card:hover {

@@ -6,4 +6,40 @@
   --accent-mild: rgba(100, 255, 218, 0.1);
   --accent-medium: rgba(100, 255, 218, 0.2);
   --accent-light: rgba(100, 255, 218, 0.4);
+  /* Container widths */
+  --main-container-width: min(860px, 90vw);  /* For article content */
+  --wide-container-width: min(1200px, 95vw); /* For list pages */
+  
+  /* Standard padding */
+  --container-padding: var(--gap);
+  --main-width: min(860px, 90vw);
+  --main-padding: var(--gap);
+}
+
+/* Base container styles */
+.main-container {
+  width: var(--main-width);
+  margin: 0 auto;
+  padding: 0 var(--main-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-single {
+  width: 100%;
+  max-width: var(--main-width);
+}
+
+.wide-container {
+  width: var(--wide-container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Apply to your refined container */
+.refined-container {
+  width: var(--main-container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
 }

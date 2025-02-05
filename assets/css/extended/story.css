@@ -37,7 +37,7 @@
 
 /* Content Area */
 .story-content {
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   z-index: 1;
   color: var(--text-primary);

@@ -1,48 +1,46 @@
 {{/* layouts/_default/single.html */}}
 {{ define "main" }}
-<div class="refined-container page-background">
-    <div class="content-wrapper">
-        <article class="post-single">
-            <header class="post-header">
-                <div class="post-meta">
-                    <time>{{ .Date.Format "January 2, 2006" }}</time>
-                    <span class="meta-item">•</span>
-                    {{- if .Params.readingTime }}
-                    <span>{{ .Params.readingTime }} min read</span>
-                    {{- else }}
-                    <span>{{ .ReadingTime }} min read</span>
-                    {{- end }}
-                </div>
-
-                <h1 class="post-title">{{ .Title }}</h1>
-
-                {{- if .Params.tags }}
-                <div class="post-tags">
-                    {{- range .Params.tags }}
-                    <a href="{{ "tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
-                    {{- end }}
-                </div>
+<div class="main-container page-background">
+    <article class="post-single">
+        <header class="post-header">
+            <div class="post-meta">
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                <span class="meta-item">•</span>
+                {{- if .Params.readingTime }}
+                <span>{{ .Params.readingTime }} min read</span>
+                {{- else }}
+                <span>{{ .ReadingTime }} min read</span>
                 {{- end }}
-            </header>
-
-            {{- if .Params.toc }}
-            {{- partial "toc.html" . }}
-            {{- end }}
-
-            <div class="post-content">
-                {{ .Content }}
             </div>
 
-            <footer class="post-footer">
-                {{- if .Site.Params.ShowShareButtons }}
-                {{- partial "share-buttons.html" . }}
-                {{- end }}
+            <h1 class="post-title">{{ .Title }}</h1>
 
-                {{- if .Site.Params.ShowPostNavLinks }}
-                {{- partial "post-nav-links.html" . }}
+            {{- if .Params.tags }}
+            <div class="post-tags">
+                {{- range .Params.tags }}
+                <a href="{{ " tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
                 {{- end }}
-            </footer>
-        </article>
-    </div>
+            </div>
+            {{- end }}
+        </header>
+
+        {{- if .Params.toc }}
+        {{- partial "toc.html" . }}
+        {{- end }}
+
+        <div class="post-content">
+            {{ .Content }}
+        </div>
+
+        <footer class="post-footer">
+            {{- if .Site.Params.ShowShareButtons }}
+            {{- partial "share-buttons.html" . }}
+            {{- end }}
+
+            {{- if .Site.Params.ShowPostNavLinks }}
+            {{- partial "post-nav-links.html" . }}
+            {{- end }}
+        </footer>
+    </article>
 </div>
 {{ end }}

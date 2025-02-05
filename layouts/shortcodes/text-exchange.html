@@ -1,0 +1,9 @@
+{{ $date := .Get "date" }}
+<div class="text-exchange">
+  <div class="text-exchange-container">
+  {{ with $date }}
+  <div class="text-exchange-date"> {{ . }} </div>
+  {{ end }}
+  {{ .Inner }}
+  </div>
+</div>

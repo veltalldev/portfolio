@@ -1,0 +1,138 @@
+/* Add to your story.css */
+
+.text-exchange {
+  margin: 2rem 0;
+}
+
+.text-exchange-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 32rem;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 3.5rem; /* Increased to accommodate fake input */
+}
+
+/* Subtle gradient overlay */
+.text-exchange-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at top left, var(--accent-subtle), transparent 70%),
+    radial-gradient(circle at bottom right, var(--accent-subtle), transparent 70%);
+  pointer-events: none;
+}
+
+.text-message {
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-bubble {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  position: relative;
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.text-sender {
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.text-content {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Clara's messages */
+.sender-clara {
+  align-items: flex-start;
+}
+
+.sender-clara .text-bubble {
+  background: rgba(255, 192, 203, 0.15); /* Subtle pink base */
+  border: 1px solid rgba(255, 192, 203, 0.3); /* Slightly stronger pink border */
+}
+
+.sender-clara .text-sender {
+  color: rgb(219, 112, 147); /* Darker pink for contrast */
+}
+
+/* Add dark mode override */
+.dark .sender-clara .text-bubble {
+  background: rgba(219, 112, 147, 0.1); /* Darker, more muted pink in dark mode */
+  border: 1px solid rgba(219, 112, 147, 0.2);
+}
+
+.dark .sender-clara .text-sender {
+  color: rgb(255, 182, 193); /* Lighter pink in dark mode for readability */
+}
+
+/* Ethan's messages */
+.sender-ethan {
+  align-items: flex-end;
+}
+
+.sender-ethan .text-bubble {
+  background: var(--accent-subtle);
+}
+
+.sender-ethan .text-sender {
+  color: var(--accent);
+}
+
+/* Message spacing */
+.text-message + .text-message {
+  margin-top: 0.5rem;
+}
+
+.text-exchange-date {
+  background: var(--entry);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  margin: -1.5rem -1.5rem 1rem -1.5rem; /* Negative margin to reach container edges */
+  border-radius: 0.75rem 0.75rem 0 0; /* Round top corners only */
+  font-weight: 500;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+/* Add subtle gradient in dark mode */
+.dark .text-exchange-date {
+  background: var(--entry);
+  border-bottom: 1px solid var(--border);
+}
+
+.text-exchange-container::after {
+  content: 'Message';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem 1rem;
+  background: var(--entry);
+  border-top: 1px solid var(--border);
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin: 0 -1px -1px -1px; /* Align with container borders */
+  border-radius: 0 0 0.75rem 0.75rem; /* Round bottom corners */
+  pointer-events: none;
+}
+
+/* Optional: Add a subtle inner shadow to the container for depth */
+.dark .text-exchange-container::after {
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+}

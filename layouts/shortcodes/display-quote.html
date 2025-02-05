@@ -1,0 +1,17 @@
+{{ $speaker := .Get "speaker" }}
+{{ $speakerClass := "" }}
+{{ $firstWord := index (split (index (split $speaker ",") 0) " ") 0 }}
+{{ $normalizedSpeaker := lower $firstWord }}
+
+{{ if eq $normalizedSpeaker "clara" }}
+  {{ $speakerClass = "speaker-clara" }}
+{{ else if eq $normalizedSpeaker "ethan" }}
+  {{ $speakerClass = "speaker-ethan" }}
+{{ end }}
+
+<div class="display-quote{{ with $speakerClass }} {{ . }}{{ end }}">
+  {{ with $speaker }}
+  <div class="quote-speaker">{{ . }}</div>
+  {{ end }}
+  <div class="quote-content">{{ .Inner | markdownify }}</div>
+</div>

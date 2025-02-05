@@ -1,0 +1,8 @@
+{{ $sender := .Get "from" }}
+{{ $class := cond (eq $sender "Clara") "sender-clara" "sender-ethan" }}
+<div class="text-message {{ $class }}">
+  <div class="text-bubble">
+    <div class="text-sender">{{ $sender }}</div>
+    <div class="text-content">{{ .Inner | markdownify }}</div>
+  </div>
+</div>

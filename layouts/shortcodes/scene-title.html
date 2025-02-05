@@ -1,0 +1,10 @@
+{{ $title := .Get "title" }}
+{{ $subtitle := .Get "subtitle" }}
+<div class="scene-title">
+  {{ with $title }}
+  <h3 class="scene-title-main">{{ . }}</h3>
+  {{ end }}
+  {{ with $subtitle }}
+  <div class="scene-title-sub">{{ . }}</div>
+  {{ end }}
+</div>

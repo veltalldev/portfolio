@@ -15,28 +15,61 @@ Writing can sometimes feel like carving away at marble—each chip revealing som
 
 This scene takes place at a Boys & Girls Club event, where Ethan, against his usual inclinations, has been roped into a Q&A with a room full of kids. Clara drops by for an entirely unrelated reason—but what she witnesses shakes something loose in her.
 
----
-
-### **Boys & Girls Club - The Moment Clara Didn't Expect to Matter**  
+{{< story >}}
+{{< scene-title 
+    title="Boys & Girls Club" 
+    subtitle="The Moment Clara Didn't Expect to Matter" 
+>}}
 
 Clara didn't expect much from the evening.  
 
-She was **already out**, vaguely hungry, debating what to eat, when she spotted an AYCE place--and, **naturally, they refused to seat a party of one.**  
+She was **already out**, vaguely hungry, debating what to eat, when she spotted an AYCE place—and, naturally, they refused to seat a party of one.  
 
 **Annoying.**  
 
 So she pulled out her phone.  
 
-**Clara:** *You busy?*  
-**Ethan:** *Sort of. I'm in a thing at X school.*  
-**Clara:** *What thing?*  
-**Ethan:** *Guest speaker thing. Got roped into it.*  
-**Clara:** *LMAO. You, giving life advice? Must be inspiring.*  
-**Ethan:** *They seem entertained.*  
-**Clara:** *I'm craving AYCE sushi but they won't seat me alone. You wanna eat after?*  
-**Ethan:** *I won't be done for another hour or so.*  
-**Clara:** *I'll just meet you there and wait. I'm nearby anyway.*  
-**Ethan:** *Sure, if you want. I'm in class 7D.*  
+{{< text-exchange date="Wednesday / Week 2">}}
+{{< text from="Clara" >}}
+You busy?
+{{< /text >}}
+
+{{< text from="Ethan" >}}
+Sort of. I'm in a thing at X school.
+{{< /text >}}
+
+{{< text from="Clara" >}}
+What thing?
+{{< /text >}}
+
+{{< text from="Ethan" >}}
+Guest speaker thing. Got roped into it.
+{{< /text >}}
+
+{{< text from="Clara" >}}
+LMAO. You, giving life advice? Must be inspiring.
+{{< /text >}}
+
+{{< text from="Ethan" >}}
+They seem entertained.
+{{< /text >}}
+
+{{< text from="Clara" >}}
+I'm craving AYCE sushi but they won't seat me alone. You wanna eat after?
+{{< /text >}}
+
+{{< text from="Ethan" >}}
+I won't be done for another hour or so.
+{{< /text >}}
+
+{{< text from="Clara" >}}
+I'll just meet you there and wait. I'm nearby anyway.
+{{< /text >}}
+
+{{< text from="Ethan" >}}
+Sure, if you want. I'm in class 7D.
+{{< /text >}}
+{{< /text-exchange >}}
 
 And that was it.  
 
@@ -44,228 +77,365 @@ No expectation. No curiosity. Just **a practical solution to an annoying problem
 
 Except, somewhere between stepping inside and waiting for him to wrap up, she found herself **leaning against the back wall of a crowded classroom, watching him talk to a bunch of kids.**  
 
----
 
-**Ethan was... good at this.**  
+{{< scene-break >}}
+
+{{< scene-title 
+    title="The Unexpected Answers" 
+    subtitle="Ethan’s Q&A with the Kids" 
+>}}
 
 Clara wasn't sure what she expected. Some half-assed motivational spiel? A stiff, awkward Q&A where he dodged anything remotely personal?  
 
 Instead, he was **relaxed. Dryly amused. Effortlessly engaging.**  
 
-*"How much money do you make?"*  
+{{< display-quote speaker="Kid" >}}  
+How much money do you make?  
+{{< /display-quote >}}  
 
-*"Not enough."*  
+{{< display-quote speaker="Ethan" >}}  
+Not enough.  
+{{< /display-quote >}}  
 
-The way he said it--**flat, deadpan, unbothered--**made the kids **laugh instantly.** Clara smirked despite herself.  
+The way he said it—{{< emphasis >}} flat, deadpan, unbothered {{< /emphasis >}}—made the kids **laugh instantly.** Clara smirked despite herself.  
 
-*"Are you married?"*  
+{{< display-quote speaker="Another Kid" >}}  
+Are you married?  
+{{< /display-quote >}}  
 
-*"Nope."*  
+{{< display-quote speaker="Ethan" >}}  
+Nope.  
+{{< /display-quote >}}  
 
-*"Why not?"*  
+{{< display-quote speaker="Another Kid" >}}  
+Why not?  
+{{< /display-quote >}}  
 
-Ethan shrugged. *"Haven't found someone who can tolerate me yet."*  
+{{< display-quote speaker="Ethan, shrugging" >}}  
+Haven't found someone who can tolerate me yet.  
+{{< /display-quote >}}  
 
 Clara **tilted her head slightly at that.** **Lie.** She tolerated him just fine.  
 
-The kids threw more at him *"What's the worst thing you've ever done?"* 
+The kids threw more at him—  
 
-*"Agreeing to answer your questions."* each response landed **without hesitation, without effort.**  
+{{< display-quote speaker="Kid" >}}  
+What's the worst thing you've ever done?  
+{{< /display-quote >}}  
+
+{{< display-quote speaker="Ethan" >}}  
+Agreeing to answer your questions.  
+{{< /display-quote >}}  
+
+And **each response landed without hesitation, without effort.**  
 
 Then came the shift.  
 
-*"What's the hardest thing about being an adult?"*  
+{{< display-quote speaker="Kid" >}}  
+What's the hardest thing about being an adult?  
+{{< /display-quote >}}  
 
-Ethan **paused.**  He **took his time** in silence.
+Ethan **paused.**  
 
-It was the first time Clara had seen him actually **think** about an answer, not just tonight, but in all of the time she had known him.  
+It was the first time Clara had seen him actually **think** about an answer.  
 
-*"Sometimes, you can fix things that are broken."* His fingers tapped lightly against the desk. *"A car, a watch, even a friendship--if you're lucky."*  
+{{< display-quote speaker="Ethan, fingers tapping lightly against the desk" >}}  
+Sometimes, you can fix things that are broken. A car, a watch, even a friendship—if you're lucky.  
+{{< /display-quote >}}  
 
 A beat.  
 
-*"But some other times, even when you do all the right things..."* He exhaled, voice quieter now. *"The world is just too large to hold in your hands."*  
+{{< display-quote speaker="Ethan, exhaling, voice quieter now" >}}  
+But some other times, even when you do all the right things... the world is just too large to hold in your hands.  
+{{< /display-quote >}}  
 
 That landed differently.  
 
 A few kids frowned, trying to process it. One of them opened their mouth like they wanted to ask something, but Ethan continued.  
 
-*"For me, I do the best I can."* A brief pause. *"Does everybody here know about lottery tickets?"*  
+{{< display-quote speaker="Ethan" >}}  
+For me, I do the best I can.  
+{{< /display-quote >}}  
+
+A brief pause.  
+
+{{< display-quote speaker="Ethan raises his hand" >}}  
+Does everybody here know about lottery tickets?  
+{{< /display-quote >}}  
 
 Scattered nods. Some kids looked confused.  
 
-*"I studied math,"* he explained, *"and with it, I've decided that lottery tickets are a bad idea. So I don't buy them."*  
+{{< display-quote speaker="Ethan" >}}  
+I studied math, and with it, I've decided that lottery tickets are a bad idea. So I don't buy them.  
+{{< /display-quote >}}  
 
-*"Ever?"* a kid interrupted.  
+{{< display-quote speaker="Kid" >}}  
+Ever?  
+{{< /display-quote >}}  
 
-*"Ever."*  
+{{< display-quote speaker="Ethan" >}}  
+Ever.  
+{{< /display-quote >}}  
 
-*"But what if you saw the winning number yesterday and didn't buy it?"*  
+{{< display-quote speaker="Ethan quickly follows up" >}}  
+But what if you saw the winning number yesterday and didn't buy it?  
+{{< /display-quote >}}  
 
 The reaction was **immediate.** Groans. Laughter. **A full-body wince from one kid in the front row.**  
 
-*"If that happened to you, would you feel bad?"* Ethan asked. *"Raise your hand."*  
+{{< display-quote speaker="Ethan" >}}  
+If that happened to you, would you feel bad? Raise your hand.  
+{{< /display-quote >}}  
 
 Every single hand went up. A couple of kids raised both.  
 
 Ethan nodded like he **expected that.**  
 
-*"Yeah. Most people would."* His voice was **steady.** Unrushed. *"It's very easy to feel bad when things don't go the way you want."*  
+{{< display-quote speaker="Ethan, voice steady, unrushed" >}}  
+Yeah. Most people would. It's very easy to feel bad when things don't go the way you want.  
+{{< /display-quote >}}  
 
 The noise in the room **settled slightly.**  
 
-*"But you can't fix everything."*  
+{{< display-quote speaker="Ethan" >}}  
+But you can't fix everything.  
+{{< /display-quote >}}  
 
 A few kids lowered their hands slowly.  
 
-*"The hardest thing about being an adult,"* Ethan said finally, *"is learning to live with that. You do the best thing you can now, so that you don't ever have to regret the past."*  
+{{< display-quote speaker="Ethan, finally" >}}  
+The hardest thing about being an adult is learning to live with that. You do the best thing you can now, and you try not to regret the past.  
+{{< /display-quote >}}  
 
----
-Clara almost didn't catch it.
+{{< scene-break >}}
 
-A fraction of a second after finishing his sentence, his fingers curled into a loose fist on the desk, then slowly flattened out again. Like a quiet correction. Like an unconscious slip.
+{{< scene-title 
+    title="The Weight He Carries" 
+    subtitle="Clara Sees It, Finally" 
+>}}
 
-Like something had almost surfaced, but he pushed it back down.
+Clara almost didn't catch it.  
 
-The lottery ticket analogy wasn't supposed to get to her.
+A fraction of a second after finishing his sentence, **his fingers curled into a loose fist on the desk, then slowly flattened out again.**  
 
-It was for them. For the kids. A simple way to understand regret.
+Like a quiet correction. Like an unconscious slip.  
 
-And yet--she felt it **land in her chest** like a small, unwanted weight.
+Like something had almost surfaced, but he pushed it back down.  
 
-*"You can't fix everything."*
+The lottery ticket analogy **wasn't supposed to get to her.**  
 
-Ethan said it **easily. Unshaken**. Like it was the **most obvious thing in the world**.
+It was for them. For the kids. A simple way to understand regret.  
 
-And yet, something about the way he said it--the **quiet finality** of it--felt different. Something about the way he powered through that moment of vulnerability felt different.
+And yet—she felt it **land in her chest** like a small, unwanted weight.  
 
-Like he wasn't just saying it to them.
+{{< emphasis >}}"You can't fix everything." {{< /emphasis >}}
 
-Like he wasn't just saying it to himself, either.
+Ethan said it {{< emphasis >}}easily. Unshaken.{{< /emphasis >}} Like it was the **most obvious thing in the world**.
 
-It felt like he had said it to the abyss a million times and gotten no answer back.
+And yet, something about the way he said it—the {{< emphasis >}}quiet finality{{< /emphasis >}} of it—felt different.  
 
-Clara's breath hitched slightly.
+Something about the way he powered through that moment of vulnerability **felt different.**  
 
-She wasn't an emotional person. She didn't cry at movies. She didn't carry around some deep, aching past.
+Like he **wasn't just saying it for them.**  
 
-But for some reason--for no goddamn reason at all--her throat felt tight.
+Like he **wasn't just saying it for himself, either.**  
 
-Her chest felt too full.
+It felt like he had said it to the abyss {{< emphasis >}}**a million times**{{< /emphasis >}} and gotten no answer back.  
 
-Like she had just been let in on something too real, too personal, too quietly devastating.
+Clara's breath hitched slightly.  
 
-Her fingers curled slightly against her bicep.
+She wasn't an emotional person. She didn’t cry at movies. She didn’t carry around some deep, aching past.  
 
-For the first time since she met him, she felt the weight he was carrying.
+But for some reason—for **no goddamn reason at all**—her throat felt tight.  
 
-And it hit her, suddenly--that weight had always been there. He just held it like it didn't matter.
+Her chest felt **too full.**  
 
----
+Like she had just been let in on something **too real, too personal, too quietly devastating.**  
 
-The conversation moved on.
+Her fingers curled slightly against her bicep.  
 
-*"Do you like your job?"*  
+For the first time since she met him, **she felt the weight he was carrying.**  
 
-*"Some days."*  
+And it hit her, suddenly—**that weight had always been there.**  
 
-*"Then why do it?"*  
+**He just held it like it didn’t matter.**  
 
-*"Because I need to."*  
+{{< scene-break >}}
 
-He didn't hesitate. Didn't soften it.
+{{< scene-title 
+    title="Why Work?" 
+    subtitle="Ethan’s Response to Duty" 
+>}}
 
-*"I need the money to buy pasta and meatballs."* A few kids giggled. He glanced at a little girl in the front row, something flickering in his expression. *"And sometimes, bubble tea."*  
+The conversation moved on.  
+
+{{< display-quote speaker="Kid" >}}  
+Do you like your job?  
+{{< /display-quote >}}  
+
+{{< display-quote speaker="Ethan" >}}  
+Some days.  
+{{< /display-quote >}}  
+
+{{< display-quote speaker="Kid" >}}  
+Then why do it?  
+{{< /display-quote >}}  
+
+{{< display-quote speaker="Ethan" >}}  
+Because I need to.  
+{{< /display-quote >}}  
+
+He didn't hesitate. **Didn't soften it.**  
+
+{{< display-quote speaker="Ethan" >}}  
+I need the money to buy pasta and meatballs.  
+{{< /display-quote >}}  
+
+A few kids **giggled.** He glanced at a little girl in the front row, something flickering in his expression.  
+
+{{< display-quote speaker="Ethan" >}}  
+And sometimes, bubble tea.  
+{{< /display-quote >}}  
 
 The girl **lit up.** Clara, inexplicably, felt herself smiling.  
 
-*"But that's not all,"* Ethan continued, **tone smoothing into something quieter.**  
-
-*"I do it because other people need me."*  
+{{< display-quote speaker="Ethan, tone smoothing into something quieter" >}}  
+But that's not all. I do it because other people need me.  
+{{< /display-quote >}}  
 
 The room **settled.**  
 
-*"Houses can only be built by engineers. Sick people can only be healed by doctors."* He glanced around, making sure they were still with him. *"I help make things like YouTube and TikTok work."*  
+{{< display-quote speaker="Ethan" >}}  
+Houses can only be built by engineers. Sick people can only be healed by doctors.  
+{{< /display-quote >}}  
 
-That earned a mix of reactions--**some excitement, some immediate suspicion.**  
+He glanced around, making sure they were still with him.  
 
-*"Wait, you do that?"*  
+{{< display-quote speaker="Ethan" >}}  
+I help make things like YouTube and TikTok work.  
+{{< /display-quote >}}  
 
-*"Are you the reason I get ads?"*  
+That earned a mix of reactions—**some excitement, some immediate suspicion.**  
 
-*"Can you make it so my mom can't see my screen time?"*  
+{{< display-quote speaker="Kid" >}}  
+Wait, you do that?  
+{{< /display-quote >}}  
 
-Ethan, for the first time, **actually laughed.**  
+{{< display-quote speaker="Kid" >}}  
+Are you the reason I get ads?  
+{{< /display-quote >}}  
 
-*"Yes, no, and definitely no."*  
+{{< display-quote speaker="Kid" >}}  
+Can you make it so my mom can't see my screen time?  
+{{< /display-quote >}}  
+
+For the first time, **Ethan actually laughed.**  
+
+{{< display-quote speaker="Ethan" >}}  
+Yes, no, and definitely no.  
+{{< /display-quote >}}  
 
 It was **easy.** Effortless.  
 
-*"We each, in our own way,"* he said finally, *"do something to make the world a better place for ourselves, our loved ones, and everybody else to live in."*  
+{{< display-quote speaker="Ethan, finally" >}}  
+We each, in our own way, do something to make the world a better place for ourselves, our loved ones, and everybody else to live in.  
+{{< /display-quote >}}  
 
-Simple. Nothing dramatic.  
+Simple. **Nothing dramatic.**  
 
 And yet, **Clara felt it stick.**  
 
----
+{{< scene-break >}}
 
-### **Afterwards - The Walk to Dinner**  
+{{< scene-title 
+    title="The Walk to Dinner" 
+    subtitle="A Conversation That Stays" 
+>}}
 
 Ethan packed up his things as the kids shuffled out, a few of them lingering to say quick goodbyes before disappearing down the hall. He slung his bag over his shoulder, stepping out of the classroom just as Clara pushed off the wall to meet him.  
 
 He **wasn't surprised to see her.**  
 
-*"Sorry I made you wait,"* he said, voice warm with polite concern.  
+{{< display-quote speaker="Ethan, with polite warmth" >}}  
+Sorry to have kept you waiting.  
+{{< /display-quote >}}  
 
-Clara should've had something sarcastic to say.
+Clara should've had something sarcastic to say.  
 
-She didn't.
+She didn’t.  
 
-Instead, she exhaled slowly, then shrugged.
+Instead, she exhaled slowly, then shrugged.  
 
-*"You're good at that,"* she said, voice a little steadier than she felt.  
+{{< display-quote speaker="Clara, voice a little steadier than she felt" >}}  
+You're good at that.  
+{{< /display-quote >}}  
 
 Ethan blinked, like the words took half a second longer to register.  
 
-It wasn't a compliment, not really. Not in the way people usually gave them. But something about the way she said it--**absent of flattery, just observant, like she had simply stated a fact--**made it land differently.  
+It wasn’t a compliment, not really. Not in the way people usually gave them. But something about the way she said it—**absent of flattery, just observant, like she had simply stated a fact—**made it land differently.  
 
-*"At what?"* he asked.  
+{{< display-quote speaker="Ethan" >}}  
+At what?  
+{{< /display-quote >}}  
 
-*"Talking to them. Answering their questions."* Clara tilted her head, eyes scanning him like she was seeing something she hadn't fully noticed before. *"You're not just saying things. You actually mean it."*  
+{{< display-quote speaker="Clara, studying him" >}}  
+Talking to them. Answering their questions.  
+{{< /display-quote >}}  
+
+She tilted her head, scanning him like she was seeing something she hadn’t fully noticed before.  
+
+{{< display-quote speaker="Clara" >}}  
+You’re not just saying things. You actually mean it.  
+{{< /display-quote >}}  
 
 A beat.  
 
-Ethan exhaled through his nose, shaking his head slightly. *"What, you thought I'd just fake my way through it?"*  
+Ethan exhaled through his nose, shaking his head slightly.  
 
-Clara shrugged. She didn't know what she thought.
+{{< display-quote speaker="Ethan" >}}  
+What, you thought I’d just fake my way through it?  
+{{< /display-quote >}}  
 
-She only knew that something about this conversation--the whole evening, really--wasn't sitting right.
+Clara shrugged. She didn’t know what she thought.  
 
-Not in a bad way. Not in a good way.
+She only knew that something about this conversation—the whole evening, really—wasn’t sitting right.  
 
-Just in **a way she couldn't shake**.
+Not in a bad way. Not in a good way.  
 
-*"So."* He lightened the mood as they walked towards the exit. *"All-you-can-eat sushi, huh?"*  
+Just in **a way she couldn’t shake.**  
 
-Clara huffed a quiet laugh, stuffing her phone into her pocket. *"You don't have to sound so skeptical. You'll like it. They have a conveyor belt and everything!"*  
+{{< display-quote speaker="Ethan, lightening up as they walked" >}}  
+So. All-you-can-eat sushi, huh?  
+{{< /display-quote >}}  
 
-*"I can't wait. It's been a day."*  
+Clara huffed a quiet laugh, stuffing her phone into her pocket.  
 
-And then--**a small, casual thing, so minor she almost didn't register it**--Ethan **opened the door first and held it without thinking.**  
+{{< display-quote speaker="Clara" >}}  
+You don’t have to sound so skeptical. You’ll like it. They have a conveyor belt and everything!  
+{{< /display-quote >}}  
+
+{{< display-quote speaker="Ethan, exhaling slightly" >}}  
+I can’t wait. It has been a day.  
+{{< /display-quote >}}  
+
+And then—**a small, casual thing, so minor she almost didn’t register it**—Ethan **opened the door first and held it without thinking.**  
 
 Not like a **grand gesture.** Not **even something he was particularly conscious of.**  
 
 Just **a small, thoughtless courtesy.**  
 
-And Clara--**for some reason she didn't entirely understand--felt it.**  
+And Clara—**for some reason she didn’t entirely understand—felt it.**  
 
 **She walked through, into the night.**  
 
 And when Ethan stepped out beside her, **something about it felt... settled.**  
 
-Like **this was the most normal thing in the world.**
+Like **this was the most normal thing in the world.**  
 
----
+Like **she understood Ethan just a bit better.**  
+
+
+{{< /story >}}
 
 ## **Reflections**
 This scene wasn’t originally planned. It emerged from an attempt to drop Clara into Ethan's life in a spontaneous moment. It gives her and us a chance to peek into who he is "when the cameras are off", so to speak.

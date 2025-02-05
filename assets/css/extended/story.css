@@ -1,0 +1,255 @@
+/* assets/css/story.css */
+
+/* Story Section Container */
+.story-section {
+  margin: 2rem 0;
+  font-family: var(--sys-font-stack);
+}
+
+.story-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at top left, var(--accent-subtle), transparent 70%),
+    radial-gradient(circle at bottom right, var(--accent-subtle), transparent 70%);
+  pointer-events: none;
+}
+
+/* Accent Lines */
+.accent-line {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, 
+    rgba(100, 255, 218, 0.3),
+    rgba(100, 255, 218, 1),
+    rgba(100, 255, 218, 0.3)
+  );
+}
+
+/* Content Area */
+.story-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  color: var(--text-primary);
+  line-height: 1.33;
+}
+
+/* Display Quotes */
+/* Enhanced Display Quotes with Character Themes */
+.display-quote {
+  position: relative;
+  background: linear-gradient(to right,
+    var(--card-bg) 0%,
+    rgba(100, 255, 218, 0.005) 30%,
+    transparent 70%
+  );
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+}
+
+/* Base gradient for neutral quotes */
+.display-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--text-secondary),
+    transparent,
+    var(--text-secondary)
+  );
+  opacity: 0.3;
+}
+
+.quote-speaker {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+.quote-content {
+  font-size: 1rem;
+}
+
+/* Clara's quotes */
+.display-quote.speaker-clara {
+  background: linear-gradient(
+    to right,
+    rgba(255, 192, 203, 0.03) 0%,
+    rgba(255, 192, 203, 0.03) 10%,
+    rgba(255, 192, 203, 0.01) 30%,
+    transparent 70%
+  );
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.display-quote.speaker-clara::before {
+  background: linear-gradient(to bottom,
+    rgb(219, 112, 147),
+    rgba(219, 112, 147, 0.4),
+    rgb(219, 112, 147)
+  );
+  opacity: 0.6;
+}
+
+.speaker-clara .quote-speaker {
+  color: rgb(219, 112, 147);
+}
+
+.speaker-clara .quote-content::before,
+.speaker-clara .quote-content::after {
+  color: rgb(219, 112, 147);
+}
+
+/* Dark mode overrides for Clara */
+.dark .display-quote.speaker-clara {
+  background: linear-gradient(
+    to right,
+    rgba(219, 112, 147, 0.05) 0%,
+    rgba(219, 112, 147, 0.05) 10%,
+    rgba(219, 112, 147, 0.02) 30%,
+    transparent 70%
+  );
+}
+
+.dark .speaker-clara .quote-speaker {
+  color: rgb(255, 182, 193);
+}
+
+.dark .speaker-clara .quote-content::before,
+.dark .speaker-clara .quote-content::after {
+  color: rgb(255, 182, 193);
+  opacity: 0.6;
+}
+
+/* Ethan's quotes */
+.display-quote.speaker-ethan {
+  background: linear-gradient(
+    to right,
+    var(--accent-subtle) 0%,
+    var(--accent-subtle) 10%,
+    rgba(100, 255, 218, 0.03) 30%,
+    transparent 70%
+  );
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.display-quote.speaker-ethan::before {
+  background: linear-gradient(to bottom,
+    var(--accent),
+    rgba(100, 255, 218, 0.4),
+    var(--accent)
+  );
+  opacity: 0.6;
+}
+
+.speaker-ethan .quote-speaker {
+  color: var(--accent);
+}
+
+.speaker-ethan .quote-content::before,
+.speaker-ethan .quote-content::after {
+  color: var(--accent);
+}
+
+/* Enhanced quote decorations */
+.quote-content::before,
+.quote-content::after {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.display-quote:hover .quote-content::before,
+.display-quote:hover .quote-content::after {
+  opacity: 0.8;
+}
+
+/* Spacing adjustments for themed quotes */
+.display-quote.speaker-clara + .display-quote.speaker-clara,
+.display-quote.speaker-ethan + .display-quote.speaker-ethan {
+  margin-top: 1rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .display-quote.speaker-clara,
+  .display-quote.speaker-ethan {
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .quote-content {
+    font-size: 0.95rem;
+  }
+}
+
+/* Scene Break */
+.scene-break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3rem 0;
+}
+
+.scene-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.5;
+}
+
+/* Emphasis Text */
+.emphasis {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Scene title */
+.scene-title {
+  margin: 2.5rem 0;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+}
+
+.scene-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px; 
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    rgba(100, 255, 218, 0.2),
+    rgba(100, 255, 218, 1),
+    rgba(100, 255, 218, 0.2)
+  );
+}
+
+.scene-title-main {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.scene-title-sub {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+}

@@ -16,13 +16,6 @@ A dynamic record of professional growth and learning, built with Hugo. This site
 - Theme: PaperMod with customizations
 - Hosted on GitHub Pages
 
-## Local Development
-
-1. Install Hugo Extended and Git
-2. Clone this repository
-3. Run `hugo server -D` for local development
-4. Visit `http://localhost:1313`
-
 ## Structure
 
 - `/content/professional/` - Technical writing and projects

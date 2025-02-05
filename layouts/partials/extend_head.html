@@ -1,5 +1,4 @@
 <!-- PaperMod allows extending head via this partial -->
-<!-- <script src="https://cdn.tailwindcss.com"></script>  -->
 
 <!-- Always load KaTeX regardless of params -->
 {{ if or .Params.math .Site.Params.math }}
@@ -15,11 +14,6 @@
     });">
 </script>
 {{ end }}
-
-<!-- Load Tailwind CSS -->
-{{ $css := resources.Get "css/extended/tailwind.min.css" }}
-{{ $css = $css | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

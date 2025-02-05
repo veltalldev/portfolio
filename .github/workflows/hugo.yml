@@ -25,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.121.0  # Using a more stable version
+      HUGO_VERSION: 0.121.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -41,66 +41,6 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Initialize npm and install dependencies
-        run: |
-          npm init -y
-          npm install -D tailwindcss postcss autoprefixer @tailwindcss/typography
-
-      - name: Setup Tailwind CSS
-        run: |
-          # Create Tailwind config if it doesn't exist
-          if [ ! -f tailwind.config.js ]; then
-            cat > tailwind.config.js << 'EOF'
-            /** @type {import('tailwindcss').Config} */
-            export default {
-              content: [
-                "./layouts/**/*.{html,js}",
-                "./content/**/*.{html,md}",
-                "./themes/**/layouts/**/*.html"
-              ],
-              darkMode: "class",
-              theme: {
-                extend: {},
-              },
-              plugins: [
-                require("@tailwindcss/typography")
-              ],
-            }
-            EOF
-          fi
-
-          # Create PostCSS config if it doesn't exist
-          if [ ! -f postcss.config.js ]; then
-            cat > postcss.config.js << 'EOF'
-            module.exports = {
-              plugins: {
-                tailwindcss: {},
-                autoprefixer: {},
-              }
-            }
-            EOF
-          fi
-
-          # Create or update main Tailwind CSS file
-          mkdir -p assets/css
-          if [ ! -f assets/css/tailwind.css ]; then
-            cat > assets/css/tailwind.css << 'EOF'
-            @tailwind base;
-            @tailwind components;
-            @tailwind utilities;
-            EOF
-          fi
-
-      - name: Build Tailwind CSS
-        run: |
-          npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/style.css --minify
 
       - name: Build with Hugo
         env:

@@ -6,9 +6,11 @@
             <header class="post-header">
                 <div class="post-meta">
                     <time>{{ .Date.Format "January 2, 2006" }}</time>
-                    {{- if .Params.readingTime }}
                     <span class="meta-item">•</span>
+                    {{- if .Params.readingTime }}
                     <span>{{ .Params.readingTime }} min read</span>
+                    {{- else }}
+                    <span>{{ .ReadingTime }} min read</span>
                     {{- end }}
                 </div>
 

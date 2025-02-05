@@ -1,0 +1,130 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.121.0  # Using a more stable version
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Initialize npm and install dependencies
+        run: |
+          npm init -y
+          npm install -D tailwindcss postcss autoprefixer @tailwindcss/typography
+
+      - name: Setup Tailwind CSS
+        run: |
+          # Create Tailwind config if it doesn't exist
+          if [ ! -f tailwind.config.js ]; then
+            cat > tailwind.config.js << 'EOF'
+            /** @type {import('tailwindcss').Config} */
+            export default {
+              content: [
+                "./layouts/**/*.{html,js}",
+                "./content/**/*.{html,md}",
+                "./themes/**/layouts/**/*.html"
+              ],
+              darkMode: "class",
+              theme: {
+                extend: {},
+              },
+              plugins: [
+                require("@tailwindcss/typography")
+              ],
+            }
+            EOF
+          fi
+
+          # Create PostCSS config if it doesn't exist
+          if [ ! -f postcss.config.js ]; then
+            cat > postcss.config.js << 'EOF'
+            module.exports = {
+              plugins: {
+                tailwindcss: {},
+                autoprefixer: {},
+              }
+            }
+            EOF
+          fi
+
+          # Create or update main Tailwind CSS file
+          mkdir -p assets/css
+          if [ ! -f assets/css/tailwind.css ]; then
+            cat > assets/css/tailwind.css << 'EOF'
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+            EOF
+          fi
+
+      - name: Build Tailwind CSS
+        run: |
+          npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/style.css --minify
+
+      - name: Build with Hugo
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    if: github.ref == 'refs/heads/main'  # Only deploy on main branch
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

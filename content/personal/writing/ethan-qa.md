@@ -1,5 +1,5 @@
 ---
-title: "Ethan and the Lottery Ticket: A Moment of Unexpected Depth"
+title: "Ethan and the Youths"
 date: 2024-02-05
 lastmod: 2024-02-05
 draft: false

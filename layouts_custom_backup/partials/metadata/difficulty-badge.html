@@ -1,5 +1,0 @@
-{{ $color := cond (eq .Params.difficulty "beginner") "green" 
-         (cond (eq .Params.difficulty "intermediate") "yellow" "red") }}
-<span class="difficulty-badge {{ $color }}">
-    {{ .Params.difficulty }}
-</span>

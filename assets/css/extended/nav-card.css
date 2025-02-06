@@ -38,18 +38,21 @@
 /* Sub Links */
 .sub-links {
   display: flex;
-  white-space: nowrap;
-  margin-top: auto;
-  gap: clamp(12px, 2.5vw, 16px);
-  pointer-events: none;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .sub-link {
   color: #64FFDA;
   text-decoration: none;
   padding: clamp(5px, 1.5vw, 8px) 0;
+  padding-right: 1rem;
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 /* Chevron Indicator */

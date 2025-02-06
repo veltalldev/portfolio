@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language }}" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
+    
+    {{/* No theme toggle script needed anymore */}}
+    
+    {{/* Load CSS */}}
+    {{ $css := slice }}
+    {{ with site.Params.customCSS }}
+        {{ range . }}
+            {{ with resources.Get . }}
+                {{ $css = $css | append . }}
+            {{ end }}
+        {{ end }}
+        {{ if gt (len $css) 0 }}
+            {{ $final_css := $css | resources.Concat "css/main.css" | minify }}
+            <link rel="stylesheet" href="{{ $final_css.RelPermalink }}">
+        {{ end }}
+    {{ end }}
+
+    {{/* Head section for additional meta tags, scripts, etc. */}}
+    {{ block "head" . }}{{ end }}
+</head>
+<body class="base-theme {{ if eq .Kind `page` }}single{{ else }}list{{ end }}">
+
+    {{/* Header partial */}}
+    {{ partial "header.html" . }}
+
+    {{/* Main content */}}
+    <main class="main">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    {{/* Footer partial */}}
+    {{ partial "footer.html" . }}
+
+    {{/* Late-loading scripts */}}
+    {{ block "scripts" . }}{{ end }}
+
+    {{/* Initialize theme-dependent elements after DOM load */}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update theme-dependent elements
+            const updateThemeElements = () => {
+                const theme = document.documentElement.getAttribute('data-theme');
+                // Update any theme-dependent elements here
+                // For example, updating syntax highlighting classes
+            };
+
+            // Watch for theme changes
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'data-theme') {
+                        updateThemeElements();
+                    }
+                });
+            });
+
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['data-theme']
+            });
+
+            // Initial update
+            updateThemeElements();
+        });
+    </script>
+</body>
+</html>

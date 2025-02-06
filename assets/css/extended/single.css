@@ -1,7 +1,8 @@
 /* Single Post Overrides - Extends PaperMod */
 
 .post-single {
-  max-width: var(--container-md);
+  width: 100%;
+  max-width: var(--main-container-width);
   margin: 0 auto;
   padding: var(--gap);
 }

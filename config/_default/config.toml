@@ -1,21 +1,40 @@
 baseURL = "http://localhost:1313"
 languageCode = "en-us"
 title = "Veltalldev"
-theme = "PaperMod"
+
 
 [params]
-  mainSections = ["professional", "personal"]
-  math = true
+math = true
+defaultTheme = "dark"
+disableThemeToggle = true
+customCSS = [
+  "css/extended/custom-variables.css",
+  "css/extended/footer.css",
+  "css/extended/header.css",
+  "css/extended/home.css",
+  "css/extended/math.css",
+  "css/extended/nav-card.css",
+  "css/extended/notice.css",
+  "css/extended/problem-example.css",
+  "css/extended/problem.css",
+  "css/extended/professional-landing-page.css",
+  "css/extended/proof.css",
+  "css/extended/section-divider.css",
+  "css/extended/section.css",
+  "css/extended/shared-backgrounds.css",
+  "css/extended/single.css",
+  "css/extended/story.css",
+  "css/extended/svg.css",
+  "css/extended/text-exchange.css",
+  "css/extended/toc.css",
+]
 # Profile mode configurations
 [params.profileMode]
 enabled = true
 title = "Welcome to My Portfolio"
 subtitle = "I build elegant solutions to complex problems, focusing on clean code and thoughtful system design. My portfolio showcases both professional work and personal interests, reflecting my journey in software development and technical writing."
 imageUrl = "" # Add if you want a profile image
-buttons = [
-    { name = "Professional", url = "/professional" },
-    { name = "Personal", url = "/personal" }
-]
+
 
 # Keep your social icons config
 [[params.socialIcons]]
@@ -31,22 +50,22 @@ name = "BlueSky"
 url = "https://bsky.app/profile/kafeaulait.bsky.social"
 
 [markup]
-  [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
-    guessSyntax = true
-    hl_Lines = ''
-    lineAnchors = ''
-    lineNoStart = 1
-    lineNos = true
-    lineNumbersInTable = false
-    noClasses = false  # Important! Use CSS classes instead of inline styles
-    noHl = false
-    style = 'monokai'  # You can pick a base style, but we'll override with CSS
-    tabWidth = 2
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-  
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = true
+hl_Lines = ''
+lineAnchors = ''
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = false
+noClasses = false          # Important! Use CSS classes instead of inline styles
+noHl = false
+style = 'monokai'          # You can pick a base style, but we'll override with CSS
+tabWidth = 2
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON"]

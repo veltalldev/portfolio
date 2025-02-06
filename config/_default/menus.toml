@@ -1,0 +1,41 @@
+[[professional]]
+  identifier = "development"
+  name = "Development"
+  url = "/professional/development/"
+  weight = 10
+
+[[professional]]
+  identifier = "problem-solving"
+  name = "Problem Solving"
+  url = "/professional/problem-solving/"
+  weight = 20
+
+[[professional]]
+  identifier = "projects"
+  name = "Projects"
+  url = "/professional/projects/"
+  weight = 30
+
+[[personal]]
+  identifier = "gaming"
+  name = "Gaming"
+  url = "/personal/gaming/"
+  weight = 10
+
+[[personal]]
+  identifier = "media"
+  name = "Media"
+  url = "/personal/media/"
+  weight = 20
+
+[[personal]]
+  identifier = "thoughts"
+  name = "Thoughts"
+  url = "/personal/thoughts/"
+  weight = 30
+
+[[personal]]
+  identifier = "writing"
+  name = "Creative Writing"
+  url = "/personal/writing/"
+  weight = 40

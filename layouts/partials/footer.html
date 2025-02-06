@@ -2,17 +2,67 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-content">
-        <div class="footer-left">
-            <div class="footer-links">
-                {{- range .Site.Params.socialIcons }}
-                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a>
-                {{- end }}
+            <div class="footer-left">
+                <div class="footer-links">
+                    {{- range .Site.Params.socialIcons }}
+                    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a>
+                    {{- end }}
+                </div>
             </div>
-        </div>
-        <div class="footer-right">
-            © {{ now.Format "2006" }} • Built with Hugo
-        </div>
+            <div class="footer-right">
+                © {{ now.Format "2006" }} • Built with Hugo
+            </div>
         </div>
     </div>
 </footer>
 {{- end }}
+
+<script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+    const toggleTheme = () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    };
+
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+    // Mobile Menu Functionality
+    // Mobile Menu Functionality
+    const mobileButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+
+    const toggleMobileMenu = () => {
+        const isExpanded = mobileMenu.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        mobileButton.setAttribute('aria-expanded', isExpanded);
+        mobileMenu.setAttribute('aria-hidden', !isExpanded);
+    };
+
+    if (mobileButton) {
+        mobileButton.addEventListener('click', toggleMobileMenu);
+
+        // Close menu when clicking outside or on overlay
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobileButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Also close menu when clicking directly on overlay
+        mobileOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            mobileButton.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+        });
+    }
+</script>

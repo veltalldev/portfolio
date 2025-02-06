@@ -41,7 +41,7 @@
   margin: 0 auto;
   padding: 0 var(--footer-padding);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: relative;
   z-index: 1;

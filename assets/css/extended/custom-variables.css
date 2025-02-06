@@ -1,34 +1,142 @@
-/* assets/css/extended/custom-variables.css */
 :root {
-  /* Custom accent colors */
+  /* Dark theme variables */
   --accent: #64FFDA;
+  --background: #1a1a1a;
+  --card-bg: #1d1d1d;
+  --border: #333;
+  --text-primary: #fff;
+  --text-secondary: #888;
   --accent-subtle: rgba(100, 255, 218, 0.03);
   --accent-mild: rgba(100, 255, 218, 0.1);
   --accent-medium: rgba(100, 255, 218, 0.2);
   --accent-light: rgba(100, 255, 218, 0.4);
-  /* Container widths */
-  --main-container-width: min(860px, 90vw);  /* For article content */
-  --wide-container-width: min(1200px, 95vw); /* For list pages */
   
-  /* Standard padding */
-  --container-padding: var(--gap);
-  --main-width: min(860px, 90vw);
-  --main-padding: var(--gap);
+  /* Layout variables */
+  --main-width: 1200px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --header-height: 60px;
+  --footer-height: 40px;
+
+  /* Container sizes */
+  --main-container-width: min(860px, 90vw);
+  --wide-container-width: min(1200px, 95vw);
+  --container-padding: clamp(var(--space-xs), 2vw, var(--gap));
+
+  /* Content sizes */
+  --main-content-width: min(720px, 50vw);
+
+  /* Spacing Scale */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 4vw, 2rem);
+  --space-xl: clamp(2rem, 5vw, 3rem);
+}
+
+/* Base theme styles */
+.base-theme {
+  background-color: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area */
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--main-width);
+  margin: var(--header-height) auto 0;
+  padding: var(--content-gap) var(--gap);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic link styles */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Code blocks */
+pre, code {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+code {
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Container widths */
+.container {
+  width: 100%;
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+/* Utility classes */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent); }
+.bg-card { background: var(--card-bg); }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --gap: 16px;
+    --content-gap: 16px;
+  }
 }
 
 /* Base container styles */
 .main-container {
-  width: var(--main-width);
+  width: 100%;
+  max-width: var(--main-container-width);
   margin: 0 auto;
-  padding: 0 var(--main-padding);
+  padding: 0 var(--container-padding);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.post-single {
-  width: 100%;
-  max-width: var(--main-width);
 }
 
 .wide-container {

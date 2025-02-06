@@ -17,25 +17,17 @@
     </div>
 
     <!-- Navigation Cards -->
-    <div class="refined-nav">
+    <div class="nav-grid">
       {{ partial "homepage/nav-card.html" (dict 
         "title" "Professional" 
         "description" "Technical writing, projects, and professional development journey"
-        "links" (slice 
-          "Development"
-          "Problem Solving"
-          "Projects"
-        )
+        "links" (sort site.Menus.professional "Weight")
       ) }}
       
       {{ partial "homepage/nav-card.html" (dict 
         "title" "Personal" 
         "description" "Fun things I like to do"
-        "links" (slice 
-          "Gaming"
-          "Media"
-          "Thoughts"
-        )
+        "links" (sort site.Menus.personal "Weight")
       ) }}
     </div>
   </div>

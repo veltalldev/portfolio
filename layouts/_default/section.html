@@ -38,7 +38,7 @@
           {{ if .Params.featured_post }}
           {{ $featuredSlug := .Params.featured_post }}
           {{ range .Pages }}
-          {{ if eq .Params.slug $featuredSlug }}
+          {{ if ne .Params.slug $featuredSlug }}
             <a href="{{ .RelPermalink }}" class="nav-card">
                 <div class="card-content">
                     <h3 class="card-title">{{ .Title }}</h3>

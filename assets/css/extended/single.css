@@ -249,6 +249,26 @@
   transform: translateX(2px);
 }
 
+/* Specific override for nested UL within OL */
+.post-content ol > li > ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
+
+.post-content ol > li > ul > li::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.7;
+  transform: scale(0.7);
+}
+
 .post-content h2 {
   font-size: clamp(1.75rem, 4vw, 2rem);
   letter-spacing: -0.02em;
@@ -478,4 +498,15 @@
     margin-right: -16px;
     border-radius: 0;
   }
+}
+
+/* Add margin to line numbers in code blocks */
+.chroma .line {
+  margin-right: 1rem;  /* Adjust this value as needed */
+}
+
+/* If you want to be more specific to just the line numbers */
+.chroma .ln {
+  margin-right: 1rem;
+  padding-right: 0.5rem;  /* Additional padding for better separation */
 }

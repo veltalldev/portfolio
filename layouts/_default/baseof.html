@@ -23,6 +23,8 @@
 
     {{/* Head section for additional meta tags, scripts, etc. */}}
     {{ block "head" . }}{{ end }}
+
+    {{ partial "extend_head.html" . }}
 </head>
 <body class="base-theme {{ if eq .Kind `page` }}single{{ else }}list{{ end }}">
 

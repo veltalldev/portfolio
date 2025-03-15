@@ -59,7 +59,7 @@ In a sorted array, we have a fascinating relationship between {{< emphasis >}}tw
 2. {{< emphasis >}}Magnitude{{< /emphasis >}}: How large that value is
 
 {{< visualization 
-    src="svg/rotated-array-search/original.svg"
+    src="svg/rotated-array-search/original-sorted.svg"
     title="" >}}
 {{< /visualization >}}
 

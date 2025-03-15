@@ -114,21 +114,22 @@ console.log(curriedAdd(1)(2)(3)); // 6
 
 This works, but it has a significant limitation - we've hardcoded exactly three nested functions. This approach would only work when we know exactly how many arguments we need to process.
 
-To make progress toward our goal of an alternate adding and subtracting function that can handle any number of arguments, we need to restructure our approach. Let's start by modifying our three-argument function to use a running state:
+To make progress toward our goal of a function that can handle any number of arguments, we need to restructure our approach. First, these 3 arguments have to be optional:
 
 ```javascript
 function curriedSum(first) {
-  let sum = first; // Initialize state in the outermost function
+  let sum = first;
   
-  function addSecond(second) {
-    // Update the shared state with the second argument
+  function addSecond([second]) {
+    if(second === undefined) return sum;
+    // Update the shared state with the second argument if it exists
     sum += second; 
     
-    function addThird(third) {
-      // The innermost function still has access to the same 'sum' variable
-      // Each function in the chain can read and modify this shared state
+    function addThird([third]) {
+      if(third === undefined) return sum;
+      // Update the shared state with the third argument if it exists
       sum += third; 
-      return sum;   // Finally return the accumulated sum
+      return sum;
     }
     
     return addThird;
@@ -151,9 +152,15 @@ Notice how the `sum` variable is defined once in the outer function, but updated
 
 This approach differs from our first three-argument function. In the original version (`curriedAdd`), each argument was stored separately and only combined in the final calculation. In this new version (`curriedSum`), we maintain a running total that's updated with each call.
 
-This approach allows us to perform null checks for the subsequent arguments and thus support **up to** being called 3 times, instead of strictly 3 times.
+This approach allows us to perform null checks for the subsequent arguments and thus support **up to** being called 3 times, instead of strictly 3 times. We reserve the ability to exit the execution chain at any point via one of the guard clauses:
+```javascript
+function addSecond([second]) {
+    if(second === undefined) return sum;
+```
 
-But we still have a problem: what if we want to handle four arguments? Or five? We'd need to manually add more nested functions for each additional argument we want to support. The depth is hardcoded into the structure of our function.
+But we still have a problem: what if we want to handle four arguments? Or five? We have flexibility **up to** the depth that we hard-code into the structure, but we don't have a way to extend it indefinitely, short of sitting here and typing out 10,000 layers just in case some process some day might need that depth.
+
+Maybe we can do better.
 
 Looking at our current implementation, we can observe a pattern. Each nested function:
 1. Takes the next argument
@@ -165,7 +172,7 @@ Is there a way to avoid manually nesting these nearly identical operations?
 
 ### The Self-Returning Pattern
 
-Instead of manually nesting these nearly identical functions, what if we had a single function that just kept returning itself? Let's try that approach:
+Instead of manually nesting these nearly identical functions, what if we had a single function that just kept returning itself? It would go through the same routine, and its contribution would vary because the input would change each time. Let's try that approach:
 
 ```javascript
 function curriedSum(first) {
@@ -189,9 +196,9 @@ runner = runner(4);  // sum is now 10
 curriedSum(1)(2)(3)(4)(5); // Can be chained indefinitely
 ```
 
-This is a breakthrough! Instead of hardcoded nesting, we now have a function that can accept any number of arguments through continued chaining. Each call updates the state and returns the same function for the next call.
+This is a breakthrough! Instead of hardcoded nesting, we now have a function that can accept any number of arguments through continued chaining. Each call returns the same function for the next call, but it also updates the shared state so each new call gets effectively a new "input" together with the new parameter.
 
-This pattern feels reminiscent of recursion, where a function calls itself. But is this really recursive? Let's examine the parallel more closely.
+This pattern feels reminiscent of recursion, where a function calls itself. But in order to have a better feel for both, let's examine the parallel more closely.
 
 ## The Recursion Parallel
 
@@ -202,19 +209,15 @@ Let's compare the patterns directly:
 ```
 Recursive Pattern            |  Curried Pattern
 -----------------------------|---------------------------
-function recurse(n) {        |  function curry(first) {
-  if (n <= 1) return 1;      |    let current = first;
-  return recurse(n-1) * n;   |    function calc(next) {
-}                            |      current += next;
-                             |      return calc;
-                             |    }
-                             |    return calc;
-                             |  }
+function recurse(n) {        |  function calc(next) {
+  if (n <= 1) return 1;      |    current += next;
+  return recurse(n-1) * n;   |    return calc;
+}                            |  }
 ```
 
 We can see the `recurse` function calling itself with a different argument, similar to how the `calc` function returns itself to be invoked with a different argument.
 
-But these patterns differ significantly in their execution flow.
+But these patterns differ significantly when we think about how they operate.
 
 ### Outside-In vs. Inside-Out Processing
 
@@ -250,9 +253,11 @@ curriedSum(1)
             └── returns addMore function
 ```
 
-This fundamental difference has significant implications. Since curried functions process "outside-in," they can do partial work without waiting for all arguments. They can immediately process the arguments they have and remain ready for more. Recursive functions, in contrast, must reach their base case before any work completes.
+This fundamental difference has significant implications. Since curried functions process "outside-in," they can do partial work without waiting for all arguments. They can immediately process the arguments they have and remain ready for more. Recursive functions, in contrast, must reach their base case before any work completes, but once even just one case completes, the whole stack unravels one by one.
 
-This is the second key difference: Termination conditions
+This is the second key difference: 
+
+### Termination Conditions
 
 **With recursion:**
 - Termination is built into the function itself
@@ -272,7 +277,7 @@ Now that we understand the self-returning pattern, let's apply it to our origina
 3. Can handle any number of arguments
 4. Returns the final result when needed
 
-All we need to add to our understanding is a mechanism for alternating between addition and subtraction. We already know how to maintain and update states between calls, so this is a trivial matter of declaring, maintaining, updating a boolean flag.
+All we need to add to our current understanding is a mechanism for alternating between addition and subtraction. We already know how to maintain and update states between calls, so this is a trivial matter of declaring, maintaining, updating a boolean flag.
 
 Here's our solution:
 
@@ -283,7 +288,7 @@ function add_subtract(first) {
   
   function compute(next) {
     if (next === undefined) {
-      return result; // Return the final result when called with no arguments
+      return result; // guard clause for exit condition
     }
     
     // State updates
@@ -299,7 +304,7 @@ function add_subtract(first) {
     return compute; // Return itself for chaining
   }
   
-  return compute;
+  return compute; // kick starts the process
 }
 
 // Usage
@@ -311,7 +316,7 @@ Let's examine what makes this work:
 
 1. **State Maintenance**: The variables `result` and `addNext` persist in the closure scope
 2. **Self-Returning Pattern**: The key insight is in the return statement: `return compute` - the function returns itself
-3. **Termination Mechanism**: An empty call `()` serves as the signal to stop and return the result
+3. **Termination Mechanism**: An empty call `f()` serves as the signal to stop and return the result
 4. **Behavior Toggling**: The `addNext` boolean alternates the operation between addition and subtraction
 
 The beauty of this solution is its flexibility - it can handle any number of arguments without hardcoding nested functions. Each call transforms the state and returns the same function ready for the next call.
@@ -346,8 +351,10 @@ Javascript has its quirks because it's meant to be used for the web and we want 
 
 What do we do then in languages with stricter type systems, like Dart? In such environments, a function generally must declare a consistent return type. There are two main approaches to solve this:
 
-1. **Using an empty call for termination** (as we did above): This approach requires us to declare the return type as `dynamic` so that we can sometimes return a `Function` and sometimes return an `int`
+1. **Using an empty call for termination** (as we did above): This approach requires us to declare the return type as `dynamic` so that we can sometimes return a `Function` and sometimes return an `int`. 
 2. **Creating a wrapper class that's both callable and provides access to its state**: This feels more in line with the requirements because we never see empty calls. The only compromise we make is that we have to "peek" at the current value by accessing it via a getter.
+
+But no matter which option we choose, it's only an immitation of the convenience that Javascript has where you can just keep invoking and wherever you choose to stop, the output is automatically the result so far (in value form) that conveninently can also be invoked again (in function form).
 
 Let's look at the second approach using Dart:
 

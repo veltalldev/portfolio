@@ -31,8 +31,8 @@ customCSS = [
 # Profile mode configurations
 [params.profileMode]
 enabled = true
-title = "Welcome to My Portfolio"
-subtitle = "I build elegant solutions to complex problems, focusing on clean code and thoughtful system design. My portfolio showcases both professional work and personal interests, reflecting my journey in software development and technical writing."
+title = "This is a series of snapshots of my personhood through time."
+subtitle = "I try to do things in a thoughtful way."
 imageUrl = "" # Add if you want a profile image
 
 

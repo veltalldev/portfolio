@@ -66,9 +66,9 @@ function curriedAdd(a) {
   }
 }
 
-// Both return 3
-console.log(add(1, 2));
-console.log(curriedAdd(1)(2));
+// Both return the same result: 3
+console.log(add(1, 2));         // Traditional: f(x,y)
+console.log(curriedAdd(1)(2));  // Curried: f(x)(y)
 ```
 
 The regular function processes all arguments at once, while the curried version takes them one at a time, creating a chain of nested functions.
@@ -77,27 +77,43 @@ There's something remarkable happening here that might not be immediately obviou
 
 ### The Magic of Closures
 
-The key to making curried functions work is closure scope. When the inner function is created, it "captures" the value of `a` from its enclosing scope:
+There is something that makes enough sense to be glossed over at first glance here, but let's take a closer look. When we call `curriedAdd(1)`, the return value is defined as:
+
+```javascript
+return function(b) {
+  return a + b;
+}
+```
+
+Is it not strange that `a` is referenced here, even though the outer function has already completed? The inner function maintains access to `a` even after `curriedAdd` has finished executing. This invisible connection to variables from the creation context is what we call a closure.
 
 ```javascript
 function curriedAdd(a) {
-  // 'a' is stored in closure scope
   return function(b) {
-    // Can still access 'a' here
-    return a + b;
+    return a + b;  // How does this inner function still have access to 'a'?
   }
 }
 
-let add1 = curriedAdd(1); // 'a' is now 1 in the closure
-console.log(add1(2));     // 3 (1 + 2)
-console.log(add1(5));     // 6 (1 + 5)
+const add5 = curriedAdd(5);
+console.log(add5(3));  // 8
+console.log(add5(10)); // 15
 ```
 
-The inner function maintains access to `a` even after `curriedAdd` has finished executing. Each time we call `curriedAdd` with a different value, we get a new function with its own persistent reference to that specific value of `a`.
+I like to visualize this as the function carrying an invisible "backpack" of variables from its creation context.
+
+```javascript
+// What's happening behind the scenes
+const add5 = function(b) {
+  // Invisible backpack: { a: 5 }
+  return 5 + b;
+}
+```
+
+This is what makes currying possible - each function in the chain carries its own backpack of variables from its creation context.
 
 ### Extending to Multiple Arguments
 
-The next logical step is to extend our function to handle more than two arguments:
+Let's extend our function to handle three arguments:
 
 ```javascript
 function curriedAdd(a) {
@@ -110,24 +126,28 @@ function curriedAdd(a) {
 
 // Usage
 console.log(curriedAdd(1)(2)(3)); // 6
+
+// We can also capture intermediate functions
+const add1 = curriedAdd(1);
+const add1and2 = add1(2);
+const result = add1and2(3);
+console.log(result); // 6
 ```
 
-This works, but it has a significant limitation - we've hardcoded exactly three nested functions. This approach would only work when we know exactly how many arguments we need to process.
+This works, but it has a significant limitation - we've hardcoded exactly three nested functions. This approach only works when we know exactly how many arguments we need to process.
 
-To make progress toward our goal of a function that can handle any number of arguments, we need to restructure our approach. First, these 3 arguments have to be optional:
+To make our function more flexible, we could add optional argument handling. This allows us to use `curriedSum` with **up to** 3 variables:
 
 ```javascript
 function curriedSum(first) {
   let sum = first;
   
-  function addSecond([second]) {
-    if(second === undefined) return sum;
-    // Update the shared state with the second argument if it exists
+  function addNext(second) {
+    if (second === undefined) return sum;
     sum += second; 
     
-    function addThird([third]) {
-      if(third === undefined) return sum;
-      // Update the shared state with the third argument if it exists
+    function addThird(third) {
+      if (third === undefined) return sum;
       sum += third; 
       return sum;
     }
@@ -135,50 +155,31 @@ function curriedSum(first) {
     return addThird;
   }
   
-  return addSecond;
+  return addNext;
 }
 
 // Usage
-console.log(curriedSum(1)(2)(3)); // 6
-
-// We could also use intermediate variables to see how state progresses:
-let afterFirst = curriedSum(1);    // sum is 1 internally
-let afterSecond = afterFirst(2);   // sum is 3 internally
-let finalResult = afterSecond(3);  // sum is 6, and returned
-console.log(finalResult);          // 6
+console.log(curriedSum(1)(2)(3));  // 6
+console.log(curriedSum(1)(2)());   // 3 (stops after two arguments)
 ```
 
-Notice how the `sum` variable is defined once in the outer function, but updated at each layer. Through the power of closures, each nested function has access to the same `sum` variable and can both read and modify it. The state is propagated through the chain, with each function call adding to the running total.
+Notice how the `sum` variable is defined once in the outer function, but updated at each layer. Through the power of closures, each nested function has access to the same `sum` variable and can both read and modify it.
 
-This approach differs from our first three-argument function. In the original version (`curriedAdd`), each argument was stored separately and only combined in the final calculation. In this new version (`curriedSum`), we maintain a running total that's updated with each call.
-
-This approach allows us to perform null checks for the subsequent arguments and thus support **up to** being called 3 times, instead of strictly 3 times. We reserve the ability to exit the execution chain at any point via one of the guard clauses:
-```javascript
-function addSecond([second]) {
-    if(second === undefined) return sum;
-```
-
-But we still have a problem: what if we want to handle four arguments? Or five? We have flexibility **up to** the depth that we hard-code into the structure, but we don't have a way to extend it indefinitely, short of sitting here and typing out 10,000 layers just in case some process some day might need that depth.
-
-Maybe we can do better.
-
-Looking at our current implementation, we can observe a pattern. Each nested function:
-1. Takes the next argument
-2. Updates the shared state
-3. Defines a function that uses that shared state
-4. Returns that function 
-
-Is there a way to avoid manually nesting these nearly identical operations?
+But we still have a problem: what if we want to handle four arguments? Or five? We're still limited by the number of functions we manually nest. It is immediately obvious that sitting here typing out 10,000 layers of nesting is not the best use of anyone's time.
 
 ### The Self-Returning Pattern
 
-Instead of manually nesting these nearly identical functions, what if we had a single function that just kept returning itself? It would go through the same routine, and its contribution would vary because the input would change each time. Let's try that approach:
+Instead of manually nesting similar functions, what if we had a single function that just kept returning itself? Consider:
 
 ```javascript
 function curriedSum(first) {
   let sum = first; // Initialize state
   
   function addMore(next) {
+    if (next === undefined) {
+      return sum; // Return the result if no argument is provided
+    }
+    
     sum += next;   // Update state with each call
     return addMore; // Return ITSELF for chaining
   }
@@ -186,47 +187,58 @@ function curriedSum(first) {
   return addMore;
 }
 
-// Usage
-let runner = curriedSum(1);
-runner = runner(2);  // sum is now 3
-runner = runner(3);  // sum is now 6
-runner = runner(4);  // sum is now 10
+// Usage showing the progression of state
+let step1 = curriedSum(1);         // sum is 1 internally
+console.log(step1());              // 1
+
+let step2 = step1(2);              // sum is now 3
+console.log(step2());              // 3
+
+let step3 = step2(3);              // sum is now 6
+console.log(step3());              // 6
 
 // Or more concisely:
-curriedSum(1)(2)(3)(4)(5); // Can be chained indefinitely
+console.log(curriedSum(1)(2)(3)()); // 6
 ```
 
-This is a breakthrough! Instead of hardcoded nesting, we now have a function that can accept any number of arguments through continued chaining. Each call returns the same function for the next call, but it also updates the shared state so each new call gets effectively a new "input" together with the new parameter.
+This is a breakthrough! Instead of hardcoded nesting, we now have a function that can accept any number of arguments through continued chaining. Each call returns the same function for the next call, but it also updates the shared state so each new call gets effectively a new "input". 
 
-This pattern feels reminiscent of recursion, where a function calls itself. But in order to have a better feel for both, let's examine the parallel more closely.
+`[same behavior]` + `[new data]` = `[new behavior]`
+
+An important detail to note: unlike our nested approach where each function has its own closure, the self-returning pattern maintains state in a single shared closure that gets updated with each call. It's like having a single "backpack" whose contents change with each invocation, rather than creating a new backpack each time. As long as a closure still exists that references the variables, they will continue to be kept in memory.
 
 ## The Recursion Parallel
 
-While developing this solution, I noticed an interesting parallel between curried functions and recursion. Both involve a function that either directly or indirectly references itself, creating a repeating pattern, as well as a "helper wrapper" function that kick starts the process, enabling the self-generating property.
+While developing this solution, I noticed an interesting parallel between curried functions and recursion. Both involve a function that either directly or indirectly references itself, creating a "blind" repeating pattern. They also involve a "helper wrapper" function that kick starts the process to enable the self-generating property.
+
+In both cases, we are unable to examine "ahead" to understand the arguments we are working with--not even their quantity. We have to design a process that blindly accepts new calls so long as new calls are possible.
 
 Let's compare the patterns directly:
 
-```
-Recursive Pattern            |  Curried Pattern
------------------------------|---------------------------
-function recurse(n) {        |  function calc(next) {
-  if (n <= 1) return 1;      |    current += next;
-  return recurse(n-1) * n;   |    return calc;
-}                            |  }
+```javascript
+// Recursive pattern
+function factorial(n) {
+  // ...
+  return n * factorial(n - 1); // Calls itself
+}
+
+// Self-returning curried pattern
+function compute(next) {
+  // ...
+  return compute; // Returns itself
+}
 ```
 
-We can see the `recurse` function calling itself with a different argument, similar to how the `calc` function returns itself to be invoked with a different argument.
-
-But these patterns differ significantly when we think about how they operate.
+Note the difference: the existence of the parentheses in `factorial()` indicates that we are invoking the function right then and there, whereas the return statement `return compute` without parentheses means we are simply returning the function. Its invocation is determined by whoever on the outside is receiving it.
 
 ### Outside-In vs. Inside-Out Processing
 
-With recursion, operations must wait for deeper calls to complete before continuing:
+As we were discussing, the key difference is in how these patterns process their operations:
 
 **With recursion (Inside-Out):**
 - Operations are SUSPENDED while waiting for deeper calls to complete
-- Memory usage grows with recursion depth
-- Work happens from the innermost call outward (deepest call resolves first, then bubbles up)
+- Memory usage grows with recursion depth (call stack)
+- Work happens from the innermost call outward (deepest call resolves first)
 
 ```
 factorial(3)
@@ -244,84 +256,86 @@ factorial(3)
 ```
 curriedSum(1)
 └── updates state: sum = 1
-└── returns addMore function
+└── returns compute function
    └── curriedSum(1)(2)
       └── updates state: sum = 3
-      └── returns addMore function
+      └── returns compute function
          └── curriedSum(1)(2)(3)
             └── updates state: sum = 6
-            └── returns addMore function
+            └── returns compute function
+            └── curriedSum(1)(2)(3)()
+               └── returns state: 6
 ```
 
-This fundamental difference has significant implications. Since curried functions process "outside-in," they can do partial work without waiting for all arguments. They can immediately process the arguments they have and remain ready for more. Recursive functions, in contrast, must reach their base case before any work completes, but once even just one case completes, the whole stack unravels one by one.
-
-This is the second key difference: 
+This is a crucial distinction. In recursion, we must wait for all nested calls to complete before any work is done. In currying, each step processes immediately, updating the state and returning a new function that's ready for the next call.
 
 ### Termination Conditions
 
+A related key difference between recursion and currying is how they terminate:
+
 **With recursion:**
-- Termination is built into the function itself
-- The function identifies when it has reached a "base case"
+- Termination is built into the function itself (base case)
+- The function identifies when it has reached its conclusion
 - The chain resolves automatically once this condition is met
 
 **With currying:**
 - Termination typically relies on an external signal
 - The chain continues as long as someone keeps invoking returned functions
-- Termination happens when the external context stops calling functions or sends a specific signal (like our empty call)
+- Termination happens when the caller stops the chain or sends a specific signal
+
 
 ## Solving the Add-Subtract Challenge
 
-Now that we understand the self-returning pattern, let's apply it to our original challenge. We need a function that:
+Now that we have a grasp on the self-returning pattern, let's apply it to our original challenge. We need a function that:
 1. Keeps track of a running result
 2. Alternates between adding and subtracting
 3. Can handle any number of arguments
 4. Returns the final result when needed
 
-All we need to add to our current understanding is a mechanism for alternating between addition and subtraction. We already know how to maintain and update states between calls, so this is a trivial matter of declaring, maintaining, updating a boolean flag.
+All we need to add to our current understanding is a mechanism for alternating between addition and subtraction. We already know how to maintain and update states between calls, so this is a trivial matter of declaring, maintaining, and updating a boolean flag.
 
 Here's our solution:
 
 ```javascript
 function add_subtract(first) {
+  // Declare states in closure
   let result = first;
-  let addNext = true; // Start with addition
+  let addNext = true;
   
   function compute(next) {
     if (next === undefined) {
-      return result; // guard clause for exit condition
+      return result; // Return the result when called with no arguments
     }
     
-    // State updates
-    // 1. Update the sum 
+    // Update the state 1: sum
     if (addNext) {
       result += next;
     } else {
       result -= next;
     }
-    // 2. Update the flag
+    // Update state 2: flag
     addNext = !addNext;
-
-    return compute; // Return itself for chaining
+    
+    // Return itself for chaining
+    return compute;
   }
   
-  return compute; // kick starts the process
+  return compute;
 }
 
-// Usage
+// Usage with explicit termination
 console.log(add_subtract(1)(2)(3)()); // 1 + 2 - 3 = 0
 console.log(add_subtract(-5)(10)(3)(9)()); // -5 + 10 - 3 + 9 = 11
 ```
 
 Let's examine what makes this work:
 
-1. **State Maintenance**: The variables `result` and `addNext` persist in the closure scope
-2. **Self-Returning Pattern**: The key insight is in the return statement: `return compute` - the function returns itself
-3. **Termination Mechanism**: An empty call `f()` serves as the signal to stop and return the result
-4. **Behavior Toggling**: The `addNext` boolean alternates the operation between addition and subtraction
+1. **State Maintenance**: The variables `result` and `addNext` persist in the closure
+2. **Self-Returning Pattern**: The function returns itself with `return compute`
+3. **Termination Mechanism**: An empty call `f()` signals to stop and return the result
+4. **Behavior Toggling**: The `addNext` boolean alternates between addition and subtraction
 
-The beauty of this solution is its flexibility - it can handle any number of arguments without hardcoding nested functions. Each call transforms the state and returns the same function ready for the next call.
-
-### The Type Constraint Challenge
+### The Termination Challenge
 
 Notice some details that we glossed over earlier:
 ```javascript
@@ -330,7 +344,7 @@ console.log(add_subtract(1)(2)(3)()); // 1 + 2 - 3 = 0
 console.log(add_subtract(-5)(10)(3)(9)()); // -5 + 10 - 3 + 9 = 11
 ```
 
-Here we explicitly call `f()` when we wish to retrieve the value instead of performing more operations. This is a necessity given the design we made, but it doesn't match the problem requirements which had no final empty calls.
+Here we explicitly call `f()` when we wish to retrieve the value instead of performing more operations. This is a necessity because a curried function **always** returns a function, but it doesn't match the problem requirements which had no final empty calls.
 
 Recall:
 ```javascript
@@ -338,25 +352,45 @@ add_subtract(1)(2)(3) -> 1 + 2 - 3 -> 0
 ```
 So how do we fix this?
 
-In our solution, our function needs to do two different things: sometimes return a function (for chaining) and sometimes return a value (for the final result). In JavaScript, this actually works fine because the language is loosely typed - a function can return different types without issue. One additional quirk of Javascript is that a function can both be called or evaluated to its final value if not called, so returning the function as a single type is sufficient for both uses:
+In our solution, our function needs to do two different things: sometimes return a function (for chaining) and sometimes return a value. This is **impossible** for naturally obvious reasons.
+
+The desired behavior needs a workaround, and the specific details of that workaround depends on the language being used.
+
+#### JavaScript Conveniences
+Due to its web environment, JavaScript was designed to fail as little as possible, which leads to the highly comical behaviors that make it famous. One of those quirks is something we can leverage to mock the behavior we desire: `valueOf` and `toString` hooks.
 
 ```javascript
-f(5); // ---> f is understood as a function being called
-print(f); // ---> f === the value that f would evaluate to if called
+function add_subtract(first) {
+  // ...
+
+  // Add conversion methods to make the function behave like a value
+  compute.valueOf = function() {
+    return result; // For numeric contexts
+  };
+  
+  compute.toString = function() {
+    return result.toString(); // For string contexts
+  };
+  
+  return compute;
+}
+
+// Now these work without empty calls
+console.log(+add_subtract(1)(2)(3)); // 0 (+ forces numeric conversion)
+console.log(add_subtract(1)(2)(3) + ""); // "0" (string concatenation forces toString)
+console.log(`Result: ${add_subtract(1)(2)(3)}`); // "Result: 0" (template literal forces toString)
 ```
 
-Javascript has its quirks because it's meant to be used for the web and we want as little disruptive problems as possible, so we overlook these kinds of things. In a stricter language, this does not fly.
+By adding `valueOf()` and `toString()` methods to our returned function, we make it behave like a value in contexts that expect one. This is a JavaScript-specific technique that takes advantage of the language's automatic type conversion.
 
-### Implementation in Stricter Type Systems
+#### Implementation in Stricter Type Systems
 
-What do we do then in languages with stricter type systems, like Dart? In such environments, a function generally must declare a consistent return type. There are two main approaches to solve this:
+What do we do then in languages with stricter type systems, like Dart? In such environments, a function generally must declare a consistent return type and stick to that type. There are two main approaches to solve this:
 
-1. **Using an empty call for termination** (as we did above): This approach requires us to declare the return type as `dynamic` so that we can sometimes return a `Function` and sometimes return an `int`. 
-2. **Creating a wrapper class that's both callable and provides access to its state**: This feels more in line with the requirements because we never see empty calls. The only compromise we make is that we have to "peek" at the current value by accessing it via a getter.
+1. **Using an empty call for termination** (as we did above): This approach requires us to declare the return type as `dynamic` so that we can sometimes return a `Function` and sometimes return an `int`. This is the fundamental way to use curried functions and is the default choice for every language.
+2. **Creating a wrapper class that's both callable and provides access to its state**: This approach is more in line with the requirements of never seeing empty calls. The only compromise we make is that we have to "peek" at the current value by accessing it via a getter.
 
-But no matter which option we choose, it's only an immitation of the convenience that Javascript has where you can just keep invoking and wherever you choose to stop, the output is automatically the result so far (in value form) that conveninently can also be invoked again (in function form).
-
-Let's look at the second approach using Dart:
+Let's look at a Dart implementation using the second approach:
 
 ```dart
 class Computation {
@@ -389,45 +423,110 @@ class Computation {
   num get value => _result;
 }
 
-Computation add_subtract(dynamic first) => Computation(first is num ? first : 0);
+Computation add_subtract(num first) => Computation(first);
+
+// Usage:
+final calc = add_subtract(1)(2)(3);
+print(calc.value); // 0
+print(calc); // 0
 ```
 
 This Dart implementation uses a class with a `call()` method, which makes instances of the class callable like functions. The class also provides direct access to its internal state through the `value` getter property.
 
-This approach reveals an interesting insight: in languages with stricter type systems, object-oriented techniques can help implement functional patterns. The class encapsulates state while providing callable behavior, effectively bridging the gap between paradigms.
+This approach reveals an interesting insight: in languages with stricter type systems, object-oriented techniques can help implement functional patterns. The class encapsulates state while providing callable behavior, effectively mirroring the behavior of a functional closure and bridging the gap between paradigms.
+
+#### Key Takeaway
+
+The general idea is this:
+- The fundamental facts of reality creates a divergence between how the curried function presents itself and how we expect it, i.e. as a **function** vs as a **value AND a function**
+- In order to achieve the flexibility that we want, we need to anticipate every context where the returned value is expected to behave like a value, then provide the workaround for that context. As an example, the two most prominent ways in which we interact with the value is:
+  - Looking at it via print statements
+  - Using it in computations
+- Both of these behaviors (and possibly more) can be mocked with some workaround, but it is important to recognize that every language must do so with varying degrees of effort.
 
 ## Practical Applications
 
-Now that we've explored curried functions in depth, let's look at how they can be useful in everyday programming:
+Now that we've explored curried functions in depth, let's look at some practical applications:
 
-1. **Partial Application**: Create specialized functions by fixing some arguments
-   ```javascript
-   // Create a family of adder functions
-   const add5 = curriedAdd(5);
-   const add10 = curriedAdd(10);
-   
-   // Use them later with different second arguments
-   console.log(add5(3));  // 8
-   console.log(add10(3)); // 13
-   ```
+### 1. Partial Application
 
-2. **Function Composition**: Build complex operations from simple parts
-   ```javascript
-   const double = x => x * 2;
-   const add3 = x => x + 3;
-   
-   // With currying and composition helpers
-   const compose = f => g => x => f(g(x));
-   const doubleThenAdd3 = compose(add3)(double);
-   ```
+Create specialized functions by fixing some arguments:
 
-3. **Data Transformation Pipelines**: Process data through a series of steps
-   ```javascript
-   const processData = data => validate(data)(transform)(format)(display);
-   
-   // Each step returns a function that accepts the next processor
-   // This creates readable, sequential processing chains
-   ```
+```javascript
+const add = a => b => a + b;
+
+// Create specialized adders
+const add5 = add(5);
+const add10 = add(10);
+
+// Use them with different values
+console.log(add5(3));  // 8
+console.log(add5(7));  // 12
+console.log(add10(3)); // 13
+```
+
+This technique is useful for creating families of related functions that share common behavior but differ in some specific parameter.
+
+### 2. Function Composition
+
+Build complex operations from simple parts:
+
+```javascript
+const compose = f => g => x => f(g(x));
+
+const double = x => x * 2;
+const add3 = x => x + 3;
+
+// Combine functions
+const doubleThenAdd3 = compose(add3)(double);
+const add3ThenDouble = compose(double)(add3);
+
+console.log(doubleThenAdd3(5)); // (5 * 2) + 3 = 13
+console.log(add3ThenDouble(5)); // (5 + 3) * 2 = 16
+```
+
+This allows for the construction of complex operations from simple, reusable parts.
+
+### 3. API Configuration
+
+Create flexible, configurable API clients:
+
+```javascript
+const api = baseUrl => endpoint => params => 
+  fetch(`${baseUrl}${endpoint}?${new URLSearchParams(params)}`);
+
+// Configure the API client for different services
+const myApi = api('https://example.com');
+const usersEndpoint = myApi('/users');
+
+// Use with specific parameters
+usersEndpoint({page: 1}).then(response => response.json());
+usersEndpoint({page: 2}).then(response => response.json());
+```
+
+This pattern creates a clean, readable way to configure and use API clients with different settings.
+
+### 4. Data Transformation Pipelines
+
+Process data through a series of steps:
+
+```javascript
+const process = validate => transform => format => display => data => {
+  const validated = validate(data);
+  const transformed = transform(validated);
+  const formatted = format(transformed);
+  return display(formatted);
+};
+
+// Configure a specific pipeline
+const processUserData = process(validateUser)(transformUser)(formatUser)(displayUser);
+
+// Use it with different data sets
+processUserData(userData1);
+processUserData(userData2);
+```
+
+This creates readable, sequential processing chains that can be configured for different scenarios.
 
 ## Key Insights
 

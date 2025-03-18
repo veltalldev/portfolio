@@ -1,80 +1,62 @@
-class LinkNode<T> {
-  final T _value;
-  LinkNode? next = null;
-  LinkNode(this._value, [this.next]);
+void mergeSortedArrays(List<int> nums1, int n1, List<int> nums2, int n2) {
+  int readPtr1 = n1 - 1;
+  int readPtr2 = n2 - 1;
+  int writePtr = n1 + n2 - 1;
 
-  T get value => _value;
-}
-
-LinkNode? buildLinkList(List<int> values, int pos) {
-  if (values.isEmpty) return null;
-  final head = LinkNode(values[0]);
-  LinkNode current = head;
-  LinkNode? loopPos = null;
-  for (var i = 1; i < values.length; i++) {
-    current.next = LinkNode(values[i]);
-    if (pos == i - 1) {
-      loopPos = current;
+  while (readPtr1 >= 0 && readPtr2 >= 0) {
+    if (nums1[readPtr1] > nums2[readPtr2]) {
+      nums1[writePtr] = nums1[readPtr1];
+      readPtr1--;
+    } else {
+      nums1[writePtr] = nums2[readPtr2];
+      readPtr2--;
     }
-    current = current.next!;
+    writePtr--;
   }
-  if (pos > -1) current.next = loopPos;
-  return head;
+  if (readPtr1 == -1) {
+    while (readPtr2 >= 0) {
+      nums1[writePtr--] = nums2[readPtr2--];
+    }
+  }
+  if (readPtr2 == -1) {
+    // we're done, no more work to do
+  }
 }
 
-LinkNode? detectCycleStart(LinkNode? head) {
-  if (head == null || head.next == null) return null;
+void test(List<int> nums1, int n1, List<int> nums2, n2, List<int> expected) {
+  mergeSortedArrays(nums1, n1, nums2, n2);
+  assert(listEquals(nums1, expected));
+}
 
-  LinkNode? slow = head;
-  LinkNode? fast = head;
-  bool hasCycle = false;
-
-  while (fast != null && fast.next != null) {
-    slow = slow!.next;
-    fast = fast.next!.next;
-
-    if (slow == fast) {
-      hasCycle = true;
+bool listEquals(List<int> list1, List<int> list2) {
+  bool listEqual = list1.length == list2.length;
+  for (var i = 0; i < list1.length; i++) {
+    if (list1[i] != list2[i]) {
+      listEqual = false;
       break;
     }
   }
-
-  // default exit condition is finding a null tail
-  if (!hasCycle) return null;
-
-  // else, we find it
-  slow = head;
-  while (slow != fast) {
-    // walk both forward, one step at a time
-    slow = slow!.next; // will cover distancce `x`
-    fast = fast!.next; // will cover distance `z`
-  }
-
-  return slow;
+  return listEqual;
 }
 
-void main(List<String> args) {
-  testCycleDetection();
-}
+void main() {
+  test([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3, [1, 2, 2, 3, 5, 6]);
+  test([1, 2, 3, 4, 5], 5, [], 0, [1, 2, 3, 4, 5]);
+  test([0, 0, 0], 0, [1, 2, 3], 3, [1, 2, 3]);
+  test([2, 2, 2, 0, 0, 0], 3, [2, 2, 2], 3, [2, 2, 2, 2, 2, 2]);
+  test([1, 2, 3, 0, 0, 0], 3, [4, 5, 6], 3, [1, 2, 3, 4, 5, 6]);
+  test([4, 5, 6, 0, 0, 0], 3, [1, 2, 3], 3, [1, 2, 3, 4, 5, 6]);
+  test([1, 3, 5, 0, 0, 0], 3, [2, 4, 6], 3, [1, 2, 3, 4, 5, 6]);
+  test([1, 0], 1, [2], 1, [1, 2]);
+  test([-100, 0, 100, 0, 0, 0], 3, [-1000, 1000, 10000], 3, [
+    -1000,
+    -100,
+    0,
+    100,
+    1000,
+    10000,
+  ]);
+  test([-3, -2, -1, 0, 0, 0], 3, [-6, -5, -4], 3, [-6, -5, -4, -3, -2, -1]);
 
-void testCycleDetection() {
-  // Test case 1: [3,2,0,-4] with pos=1
-  var list1 = buildLinkList([3, 2, 0, -4], 1);
-  var result1 = detectCycleStart(list1);
-  print("Test 1: ${result1?.value == 2 ? 'PASS' : 'FAIL'}");
-
-  // Test case 2: [1,2] with pos=0
-  var list2 = buildLinkList([1, 2], 0);
-  var result2 = detectCycleStart(list2);
-  print("Test 2: ${result2?.value == 1 ? 'PASS' : 'FAIL'}");
-
-  // Test case 3: [1] with pos=-1 (no cycle)
-  var list3 = buildLinkList([1], -1);
-  var result3 = detectCycleStart(list3);
-  print("Test 3: ${result3 == null ? 'PASS' : 'FAIL'}");
-
-  // Test case 4: Empty list
-  var list4 = buildLinkList([], -1);
-  var result4 = detectCycleStart(list4);
-  print("Test 4: ${result4 == null ? 'PASS' : 'FAIL'}");
+  print("All tests passed");
 }

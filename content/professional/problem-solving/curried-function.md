@@ -307,7 +307,7 @@ function add_subtract(first) {
       return result; // Return the result when called with no arguments
     }
     
-    // Update the state 1: sum
+    // Update state 1: sum
     if (addNext) {
       result += next;
     } else {

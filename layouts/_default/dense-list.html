@@ -1,1 +1,15 @@
-<h1>Hi there hello</h1>
+<div style="background: #333; color: white; padding: 10px; margin: 20px 0; font-family: monospace;">
+      <p>Title: {{ .Title }}</p>
+        <p>Number of Pages: {{ len .Pages }}</p>
+          <p>Layout being used: {{ .Layout }}</p>
+            <p>Featured Post: {{ .Params.featured_post }}</p>
+              <!-- Check if content is empty -->
+                <p>Has Content: {{ if .Content }}Yes{{ else }}No{{ end }}</p>
+                  <!-- List all available pages -->
+                    <p>Available Pages:</p>
+                      <ul>
+                          {{ range .Pages }}
+                                <li>{{ .Title }} ({{ .RelPermalink }})</li>
+                                    {{ end }}
+                                      </ul>
+                                      </div>

@@ -1,62 +1,62 @@
 {{/* layouts/_default/section.html */}}
 {{ define "main" }}
 <div class="refined-container page-background">
-    <div class="content-wrapper">
-        <header class="hero-section">
-            <h1 class="section-title">{{ .Title }}</h1>
-            {{ with .Description }}
-            <p class="section-description">{{ . }}</p>
-            {{ end }}
-        </header>
+  <div class="content-wrapper">
+    <header class="hero-section">
+      <h1 class="section-title">{{ .Title }}</h1>
+      {{ with .Description }}
+      <p class="section-description">{{ . }}</p>
+      {{ end }}
+    </header>
 
+    {{ if .Params.featured_post }}
+    {{ $featuredSlug := .Params.featured_post }}
+    {{ range .Pages }}
+    {{ if eq .Params.slug $featuredSlug }}
+    <a href="{{ .RelPermalink }}" class="nav-card featured-card">
+      <div class="card-content">
+        <div class="featured-label">Featured Solution</div>
+        <h2 class="card-title">{{ .Title }}</h2>
+        <div class="post-meta">
+          <time>{{ .Date.Format "January 2, 2006" }}</time>
+          {{ if .Params.readingTime }}
+          • {{ .Params.readingTime }} min read
+          {{ end }}
+        </div>
+        {{ with .Description }}
+        <p class="card-desc">{{ . }}</p>
+        {{ end }}
+      </div>
+    </a>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    {{ partial "components/section-divider" (dict "style" "7") }}
+
+    <div class="posts-grid">
       {{ if .Params.featured_post }}
       {{ $featuredSlug := .Params.featured_post }}
       {{ range .Pages }}
-        {{ if eq .Params.slug $featuredSlug }}
-          <a href="{{ .RelPermalink }}" class="nav-card featured-card">
-            <div class="card-content">
-                <div class="featured-label">Featured Solution</div>
-                <h2 class="card-title">{{ .Title }}</h2>
-                <div class="post-meta">
-                    <time>{{ .Date.Format "January 2, 2006" }}</time>
-                    {{ if .Params.readingTime }}
-                    • {{ .Params.readingTime }} min read
-                    {{ end }}
-                </div>
-                {{ with .Description }}
-                <p class="card-desc">{{ . }}</p>
-                {{ end }}
-            </div>
-        </a>
-        {{ end }}
-        {{ end }}
-        {{ end }}
-
-        {{ partial "components/section-divider" (dict "style" "7") }}
-
-        <div class="posts-grid">
-          {{ if .Params.featured_post }}
-          {{ $featuredSlug := .Params.featured_post }}
-          {{ range .Pages }}
-          {{ if ne .Params.slug $featuredSlug }}
-            <a href="{{ .RelPermalink }}" class="nav-card">
-                <div class="card-content">
-                    <h3 class="card-title">{{ .Title }}</h3>
-                    <div class="post-meta">
-                        <time>{{ .Date.Format "January 2, 2006" }}</time>
-                        {{ if .Params.readingTime }}
-                        • {{ .Params.readingTime }} min read
-                        {{ end }}
-                    </div>
-                    {{ with .Description }}
-                    <p class="card-desc">{{ . }}</p>
-                    {{ end }}
-                </div>
-            </a>
+      {{ if ne .Params.slug $featuredSlug }}
+      <a href="{{ .RelPermalink }}" class="nav-card">
+        <div class="card-content">
+          <h3 class="card-title">{{ .Title }}</h3>
+          <div class="post-meta">
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{ if .Params.readingTime }}
+            • {{ .Params.readingTime }} min read
             {{ end }}
-            {{ end }}
-            {{ end }}
+          </div>
+          {{ with .Description }}
+          <p class="card-desc">{{ . }}</p>
+          {{ end }}
         </div>
+      </a>
+      {{ end }}
+      {{ end }}
+      {{ end }}
     </div>
+  </div>
 </div>
 {{ end }}

@@ -4,5 +4,4 @@ description: Deep dives into algorithms, system design, and problem-solving appr
 icon: book-text
 iconColor: blue-500
 layout: section
-featured_post: "PhotoGen"
 ---

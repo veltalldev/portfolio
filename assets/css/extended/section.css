@@ -87,13 +87,13 @@
 
 .dense-title {
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.45rem;
 }
 
 .dense-summary {
   color: var(--text-secondary);
   line-height: 1.2rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0rem;
 }
 
 .dense-meta {

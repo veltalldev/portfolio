@@ -30,31 +30,48 @@
     </a>
     {{ end }}
     {{ end }}
-    {{ end }}
-
+    
     {{ partial "components/section-divider" (dict "style" "7") }}
+    {{ end }}
 
     <div class="posts-grid">
       {{ if .Params.featured_post }}
-      {{ $featuredSlug := .Params.featured_post }}
-      {{ range .Pages }}
-      {{ if ne .Params.slug $featuredSlug }}
-      <a href="{{ .RelPermalink }}" class="nav-card">
-        <div class="card-content">
-          <h3 class="card-title">{{ .Title }}</h3>
-          <div class="post-meta">
-            <time>{{ .Date.Format "January 2, 2006" }}</time>
-            {{ if .Params.readingTime }}
-            • {{ .Params.readingTime }} min read
+        {{ $featuredSlug := .Params.featured_post }}
+        {{ range .Pages }}
+          {{ if ne .Params.slug $featuredSlug }}
+          <a href="{{ .RelPermalink }}" class="nav-card">
+            <div class="card-content">
+              <h3 class="card-title">{{ .Title }}</h3>
+              <div class="post-meta">
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                {{ if .Params.readingTime }}
+                • {{ .Params.readingTime }} min read
+                {{ end }}
+              </div>
+              {{ with .Description }}
+              <p class="card-desc">{{ . }}</p>
+              {{ end }}
+            </div>
+          </a>
+          {{ end }}
+        {{ end }}
+      {{ else }}
+        {{ range .Pages }}
+        <a href="{{ .RelPermalink }}" class="nav-card">
+          <div class="card-content">
+            <h3 class="card-title">{{ .Title }}</h3>
+            <div class="post-meta">
+              <time>{{ .Date.Format "January 2, 2006" }}</time>
+              {{ if .Params.readingTime }}
+              • {{ .Params.readingTime }} min read
+              {{ end }}
+            </div>
+            {{ with .Description }}
+            <p class="card-desc">{{ . }}</p>
             {{ end }}
           </div>
-          {{ with .Description }}
-          <p class="card-desc">{{ . }}</p>
-          {{ end }}
-        </div>
-      </a>
-      {{ end }}
-      {{ end }}
+        </a>
+        {{ end }}
       {{ end }}
     </div>
   </div>

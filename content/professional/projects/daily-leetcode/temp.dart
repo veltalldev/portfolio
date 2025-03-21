@@ -1,83 +1,88 @@
-import 'dart:collection';
-
-void main() {
-  // Test suite
-  testSimpleSquare();
-  testOriginalExample();
-  testLineHorizontal();
-  testLineVertical();
-  testAllLand();
-  testSingleCell();
-  testComplexShape();
-  testLShapedIsland();
-  testUShapedIsland();
-
-  print("All tests passed!");
-}
-
-void test(List<List<int>> grid, int expected) {
-  final actual = countPerimeterOfIsland(grid);
-  print("actual = $actual");
-  assert(actual == expected);
-}
-
-int countPerimeterOfIsland(List<List<int>> grid) {
+int countIslands(List<List<int>> grid) {
   // some edge cases
-  if (grid.length == 0) return 0;
+  if (grid.isEmpty) return 0;
 
   // setup
-  int perimeter = 0;
-  final geo = padGridWithWater(grid);
+  int islandCount = 0;
 
   // main loop to find land
-  for (var i = 1; i < geo.length; i++) {
-    for (var j = 1; j < geo[0].length; j++) {
-      if (geo[i][j] == 1) {
-        // BFS intialization
-        final queue = Queue();
-        queue.add((i, j));
-        geo[i][j] = 2;
-        // main loop
-        while (queue.isNotEmpty) {
-          final (a, b) = queue.removeFirst();
-          final neighbors = [(a + 1, b), (a - 1, b), (a, b + 1), (a, b - 1)];
-          // each neighbor is either water or land, process accordingly
-          for (var (x, y) in neighbors) {
-            if (geo[x][y] == 0) {
-              perimeter++;
-            }
-            if (geo[x][y] == 1) {
-              queue.add((x, y));
-              geo[x][y] = 2; // update current cell
-            }
-          }
-        }
-        break; // optional short circuit
+  grid.forEachCoordinate((x, y, value) {
+    if (grid[x][y] == 1) {
+      islandCount++;
+      processIsland(x, y, grid); // dfs process
+    }
+  });
+  return islandCount;
+}
+
+void processIsland(int x, int y, List<List<int>> grid) {
+  if (!grid.isValidCoordinate(x, y) || grid[x][y] == 0) {
+    return;
+  }
+  grid[x][y] = 0;
+  for (var (nx, ny) in grid.getAdjacentCoordinates(x, y)) {
+    processIsland(nx, ny, grid);
+  }
+}
+
+extension GridExtension<T> on List<List<T>> {
+  /// Iterates through each cell in the grid with its coordinates
+  void forEachCoordinate(void Function(int x, int y, T value) callback) {
+    for (int i = 0; i < length; i++) {
+      for (int j = 0; j < this[i].length; j++) {
+        callback(i, j, this[i][j]);
       }
     }
   }
 
-  return perimeter;
-}
+  /// Returns the number of rows in the grid
+  int get rows => length;
 
-padGridWithWater(List<List<int>> grid) {
-  final m = grid[0].length;
-  return <List<int>>[
-    List.filled(m + 2, 0),
-    for (var row in grid) [0, ...row, 0],
-    List.filled(m + 2, 0),
-  ];
-}
+  /// Returns the number of columns in the grid (assumes uniform width)
+  int get columns => isEmpty ? 0 : this[0].length;
 
-void printMatrix<T>(List<List<T>> matrix) {
-  for (var row in matrix) {
-    print(row.join(' '));
+  /// Checks if coordinates are within the grid boundaries
+  bool isValidCoordinate(int x, int y) {
+    return x >= 0 && x < rows && y >= 0 && y < columns;
+  }
+
+  /// Gets a list of valid adjacent coordinates (up, right, down, left)
+  List<(int, int)> getAdjacentCoordinates(int x, int y) {
+    final directions = [
+      (-1, 0),
+      (0, 1),
+      (1, 0),
+      (0, -1),
+    ]; // up, right, down, left
+    return directions
+        .map((dir) => (x + dir.$1, y + dir.$2))
+        .where((coord) => isValidCoordinate(coord.$1, coord.$2))
+        .toList();
+  }
+
+  /// Gets a list of all coordinates in the grid as (x,y) pairs
+  List<(int, int)> get allCoordinates {
+    List<(int, int)> coords = [];
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        coords.add((i, j));
+      }
+    }
+    return coords;
+  }
+
+  /// Maps each grid cell to a new value based on a transform function
+  List<List<R>> mapGrid<R>(R Function(int x, int y, T value) transform) {
+    return List.generate(
+      rows,
+      (i) => List.generate(columns, (j) => transform(i, j, this[i][j])),
+    );
   }
 }
 
 // Helper for running tests
 void runTest(String testName, List<List<int>> grid, int expected) {
-  final actual = countPerimeterOfIsland(grid);
+  final actual = countIslands(grid);
   if (actual != expected) {
     throw Exception(
       'Test "$testName" failed: expected $expected but got $actual',
@@ -86,82 +91,77 @@ void runTest(String testName, List<List<int>> grid, int expected) {
   print('Test "$testName" passed!');
 }
 
-// Test cases
-void testOriginalExample() {
-  final grid = [
-    [0, 1, 0, 0],
-    [1, 1, 1, 0],
-    [0, 1, 0, 0],
-    [1, 1, 0, 0],
-  ];
-  runTest("Original Example", grid, 16);
-}
-
-void testSimpleSquare() {
-  final grid = [
-    [1, 1],
-    [1, 1],
-  ];
-  runTest("Simple Square", grid, 8);
-}
-
-void testLineHorizontal() {
-  final grid = [
-    [1, 1, 1],
-  ];
-  runTest("Horizontal Line", grid, 8);
-}
-
-void testLineVertical() {
-  final grid = [
-    [1],
-    [1],
-    [1],
-  ];
-  runTest("Vertical Line", grid, 8);
-}
-
-void testAllLand() {
-  final grid = [
+void main() {
+  // Test case 1: Single island
+  runTest('Single island', [
     [1, 1, 1],
     [1, 1, 1],
     [1, 1, 1],
-  ];
-  runTest("All Land", grid, 12);
-}
+  ], 1);
 
-void testSingleCell() {
-  final grid = [
-    [1],
-  ];
-  runTest("Single Cell", grid, 4);
-}
+  // Test case 2: No islands
+  runTest('No islands', [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ], 0);
 
-void testComplexShape() {
-  final grid = [
-    [0, 1, 0, 0, 0],
-    [1, 1, 1, 1, 0],
-    [0, 1, 0, 1, 0],
-    [0, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0],
-  ];
-  runTest("Complex Shape", grid, 20);
-}
+  // Test case 3: Multiple separate islands
+  runTest('Multiple separate islands', [
+    [1, 1, 0, 0, 0],
+    [1, 1, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 1],
+  ], 3);
 
-void testLShapedIsland() {
-  final grid = [
-    [1, 0],
-    [1, 0],
-    [1, 1],
-  ];
-  runTest("L-Shaped Island", grid, 10);
-}
-
-void testUShapedIsland() {
-  final grid = [
+  // Test case 4: Diagonal islands (diagonals don't connect)
+  runTest('Diagonal islands', [
     [1, 0, 1],
+    [0, 0, 0],
     [1, 0, 1],
-    [1, 1, 1],
-  ];
-  runTest("U-Shaped Island", grid, 16);
+  ], 4);
+
+  // Test case 5: Complex island shapes
+  runTest('Complex island shapes', [
+    [1, 1, 0, 0, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1],
+    [0, 0, 1, 1, 1],
+  ], 2);
+
+  // Test case 6: Single row
+  runTest('Single row', [
+    [1, 0, 1, 0, 1],
+  ], 3);
+
+  // Test case 7: Single column
+  runTest('Single column', [
+    [1],
+    [0],
+    [1],
+    [0],
+    [1],
+  ], 3);
+
+  // Test case 8: Island with hole
+  runTest('Island with hole', [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1],
+  ], 1);
+
+  // Test case 9: Empty grid
+  runTest('Empty grid', [], 0);
+
+  // Test case 10: Larger grid with multiple islands
+  runTest('Larger grid with multiple islands', [
+    [1, 1, 0, 0, 0, 0, 1, 1],
+    [1, 0, 0, 0, 0, 1, 1, 1],
+    [0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0],
+  ], 4);
+
+  print('All tests passed!');
 }

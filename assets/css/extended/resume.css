@@ -1,0 +1,367 @@
+/* Resume Page Styles - assets/css/extended/resume.css */
+
+.resume-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--theme);
+  color: var(--content);
+  line-height: 1.6;
+}
+
+.resume-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.resume-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.resume-header-left {
+  flex: 1;
+}
+
+.resume-header h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.resume-subtitle {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.resume-contact {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+.resume-contact span {
+  color: var(--secondary);
+}
+
+.resume-contact a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume-contact a:hover {
+  text-decoration: underline;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.resume-download-btn,
+.resume-print-btn {
+  background: var(--accent);
+  color: var(--theme);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resume-download-btn:hover,
+.resume-print-btn:hover {
+  background: var(--accent-medium);
+  transform: translateY(-1px);
+}
+
+.resume-section {
+  margin-bottom: 2.5rem;
+}
+
+.resume-section h2 {
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.resume-section h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.resume-section p {
+  margin: 0 0 1rem 0;
+  color: var(--content);
+}
+
+.resume-section ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.resume-section li {
+  margin-bottom: 0.5rem;
+  color: var(--content);
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.skill-category h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Project Styling */
+.project {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--code-bg);
+  border-left: 4px solid var(--accent);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-header h3 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.project-date {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.project ul {
+  margin: 0;
+}
+
+.project li strong {
+  color: var(--accent);
+}
+
+/* Achievement Categories */
+.achievement-category,
+.development-category {
+  margin-bottom: 2rem;
+}
+
+.achievement-category h3,
+.development-category h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Qualities Grid */
+.qualities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.quality {
+  background: var(--code-bg);
+  border-left: 3px solid var(--accent);
+}
+
+.quality strong {
+  color: var(--accent);
+}
+
+/* Education Section */
+.education {
+  margin-bottom: 2rem;
+}
+
+.availability {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--accent-subtle);
+  border-radius: 6px;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+/* Print Styles - University of Washington Color Scheme */
+@media print {
+  :root {
+    --accent: #4B2E83;        /* UW Purple */
+    --accent-secondary: #B7A57A; /* UW Metallic Gold */
+    --background: white;
+    --card-bg: #F8F5FF;       /* Very light purple tint */
+    --border: #E5E0F0;        /* Light purple-gray */
+    --text-primary: #2C1810;  /* Deep brown-black */
+    --text-secondary: #5D4E75; /* Muted purple-gray */
+    --accent-subtle: #F5F3FF;  /* Lightest purple */
+    --theme: white;
+    --content: #2C1810;
+    --primary: #2C1810;
+    --secondary: #5D4E75;
+    --code-bg: #F8F5FF;
+  }
+  
+  .resume-container {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    background: white;
+    color: #2C1810;
+  }
+  
+  .resume-actions {
+    display: none;
+  }
+  
+  .resume-header {
+    border-bottom: 2px solid #4B2E83;
+    page-break-after: avoid;
+  }
+  
+  .resume-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .project {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    background: #F8F5FF;
+    border-left: 4px solid #4B2E83;
+  }
+  
+  .resume-section h2 {
+    color: #4B2E83;
+    border-bottom: 1px solid #5D4E75;
+  }
+  
+  .resume-header h1 {
+    color: #4B2E83;
+  }
+  
+  .project-header h3,
+  .achievement-category h3,
+  .development-category h3,
+  .skill-category h3 {
+    color: #4B2E83;
+  }
+  
+  .quality {
+    background: #F8F5FF;
+    border-left: 3px solid #B7A57A;
+  }
+  
+  .quality strong {
+    color: #4B2E83;
+  }
+  
+  .project li strong {
+    color: #B7A57A;
+  }
+  
+  .availability {
+    background: #F5F3FF;
+    color: #5D4E75;
+  }
+  
+  a {
+    color: #4B2E83;
+    text-decoration: none;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .resume-container {
+    padding: 1rem;
+  }
+  
+  .resume-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .resume-contact {
+    text-align: left;
+    margin-top: 1rem;
+  }
+  
+  .resume-header h1 {
+    font-size: 2rem;
+  }
+  
+  .resume-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .qualities-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Dark Mode Specific Adjustments */
+:root[data-theme="dark"] .resume-container {
+  --accent: #64FFDA;
+  --accent-subtle: rgba(100, 255, 218, 0.05);
+  --accent-medium: rgba(100, 255, 218, 0.2);
+}
+
+/* Light Mode Specific Adjustments */
+:root[data-theme="light"] .resume-container {
+  --accent: #0066CC;
+  --accent-subtle: rgba(0, 102, 204, 0.05);
+  --accent-medium: rgba(0, 102, 204, 0.2);
+}

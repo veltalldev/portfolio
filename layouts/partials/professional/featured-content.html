@@ -1,24 +1,58 @@
+{{/* layouts/partials/professional/featured-content.html */}}
 <section class="featured-content">
-    <div class="section-header">
-        <h2 class="section-title">Featured</h2>
-    </div>
-    <div class="featured-card">
-        <div class="resume-preview">
-            <div class="resume-content">
-                <h1>VU DINH</h1>
-                <h3>Junior Software Engineer</h3>
-                <div class="contact-info">
-                  <p>veltalldev@gmail.com</p>
-                  <p>github.com/veltalldev</p>
-                  <p>Westminster, CA</p>
-                </div>
-                <p>Self-driven software engineer with strong analytical and problem-solving capabilities.
-                    Combines technical depth with clear communication and systematic thinking.</p>
-            </div>
-            <div class="resume-actions">
-                <a href="{{ " resume" | relURL }}" class="action-button">View Full Resume</a>
-                <a href="{{ " resume.pdf" | relURL }}" class="action-button">Download PDF</a>
-            </div>
+  <h2 class="section-title">Featured</h2>
+  <div class="featured-card">
+    <div class="resume-preview">
+      <div class="resume-content">
+        <h1>VU DINH</h1>
+        <h3>Software Developer | Analytical Problem Solver | Systems Thinker</h3>
+        <div class="contact-info">
+          veltalldev@gmail.com | (626) 392-1131 | Westminster, CA
         </div>
+        <p>Entry-level software developer with demonstrated experience in full-stack application development, distributed systems architecture, and analytical problem-solving. Proven ability to translate complex requirements into practical solutions...</p>
+      </div>
+      <div class="resume-actions">
+        <a href="/professional/resume/" class="action-button" id="view-resume">View Full Resume</a>
+        <a href="/resume/vu-dinh-resume.pdf" class="action-button" id="download-resume" download="Vu-Dinh-Resume.pdf">Download PDF</a>
+      </div>
     </div>
+  </div>
 </section>
+
+{{/* JavaScript for enhanced interactions */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Track resume views
+  const viewButton = document.getElementById('view-resume');
+  const downloadButton = document.getElementById('download-resume');
+  
+  if (viewButton) {
+    viewButton.addEventListener('click', function(e) {
+      // Optional: Add analytics tracking here
+      console.log('Resume viewed');
+    });
+  }
+  
+  if (downloadButton) {
+    downloadButton.addEventListener('click', function(e) {
+      // Check if PDF exists, fallback to page if not
+      fetch(this.href, { method: 'HEAD' })
+        .then(response => {
+          if (!response.ok) {
+            e.preventDefault();
+            // Fallback: open resume page in new tab
+            window.open('/professional/resume/', '_blank');
+            console.log('PDF not found, opening resume page');
+          } else {
+            console.log('Resume downloaded');
+          }
+        })
+        .catch(() => {
+          e.preventDefault();
+          window.open('/professional/resume/', '_blank');
+          console.log('Download failed, opening resume page');
+        });
+    });
+  }
+});
+</script>

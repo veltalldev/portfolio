@@ -204,6 +204,7 @@
 .quality {
   background: var(--code-bg);
   border-left: 3px solid var(--accent);
+  margin-left: 2rem;
 }
 
 .quality strong {

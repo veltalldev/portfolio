@@ -39,6 +39,17 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="skills-grid">
 <div class="skill-category">
 
+### Core Competencies
+- Full-stack application architecture
+- Distributed systems design
+- Database modeling
+- Hardware-software integration
+- Requirements analysis and system design
+- Performance optimization and debugging
+
+</div>
+<div class="skill-category">
+
 ### Programming Languages & Frameworks
 - Flutter/Dart (Mobile development)
 - Python (Backend systems, FastAPI)
@@ -55,17 +66,6 @@ Entry-level software developer with demonstrated experience in full-stack applic
 - Infrastructure: Distributed systems, VPN networking (Tailscale)
 - AI Integration: LLM-assisted development workflows
 - Version Control: Git (semantic commit messages)
-
-</div>
-<div class="skill-category">
-
-### Core Competencies
-- Full-stack application architecture
-- Distributed systems design
-- Database modeling
-- Hardware-software integration
-- Requirements analysis and system design
-- Performance optimization and debugging
 
 </div>
 </div>

@@ -48,15 +48,7 @@ Entry-level software developer with demonstrated experience in full-stack applic
 - Performance optimization and debugging
 
 </div>
-<div class="skill-category">
 
-### Programming Languages & Frameworks
-- Flutter/Dart (Mobile development)
-- Python (Backend systems, FastAPI)
-- JavaScript (Web applications)
-- SQL (Database design)
-
-</div>
 <div class="skill-category">
 
 ### Technologies & Tools
@@ -66,6 +58,15 @@ Entry-level software developer with demonstrated experience in full-stack applic
 - Infrastructure: Distributed systems, VPN networking (Tailscale)
 - AI Integration: LLM-assisted development workflows
 - Version Control: Git (semantic commit messages)
+
+</div>
+<div class="skill-category">
+
+### Programming Languages & Frameworks
+- Flutter/Dart (Mobile development)
+- Python (Backend systems, FastAPI)
+- JavaScript (Web applications)
+- SQL (Database design)
 
 </div>
 </div>

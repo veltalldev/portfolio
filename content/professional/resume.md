@@ -76,7 +76,8 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="project">
 <div class="project-header">
 
-### Distributed Gaming Automation System <span class="project-date">Personal Project | 2024</span>
+<h3> Distributed Gaming Automation Systems</h3>
+<span class="project-date">Personal Project | 2024</span>
 
 </div>
 
@@ -90,7 +91,7 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="project">
 <div class="project-header">
 
-### Business Payroll Management System
+<h3>Business Payroll Management System</h3>
 <span class="project-date">Family Restaurant | 2024</span>
 
 </div>
@@ -105,7 +106,7 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="project">
 <div class="project-header">
 
-### Custom Educational Mobile Application
+<h3>Custom Educational Mobile Application</h3>
 <span class="project-date">Personal/Family Project | 2024</span>
 
 </div>

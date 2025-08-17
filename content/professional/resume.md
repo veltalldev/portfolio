@@ -23,12 +23,7 @@ cover:
       <div class="resume-contact">
         <span>veltalldev@gmail.com</span>
         <span>(626) 392-1131</span>
-        <span><a href="{{ "professional/" | absURL }}">{{ "professional/" | absURL }}</a></span>
       </div>
-    </div>
-    <div class="resume-actions">
-      <a href="{{ "resume/vu-dinh-resume.pdf" | relURL }}" class="resume-download-btn" download="Vu-Dinh-Resume.pdf">📄 Download PDF</a>
-      <button onclick="window.print()" class="resume-print-btn">🖨️ Print</button>
     </div>
   </div>
 

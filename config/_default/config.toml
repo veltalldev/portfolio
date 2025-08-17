@@ -27,6 +27,7 @@ customCSS = [
   "css/extended/svg.css",
   "css/extended/text-exchange.css",
   "css/extended/toc.css",
+  "css/extended/resume.css",
 ]
 # Profile mode configurations
 [params.profileMode]

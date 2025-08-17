@@ -121,7 +121,7 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="project">
 <div class="project-header">
 
-### Personal Data Management Application
+<h3>Personal Data Management Application</h3>
 <span class="project-date">Personal Project | 2024</span>
 
 </div>

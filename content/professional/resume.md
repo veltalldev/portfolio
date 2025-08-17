@@ -76,8 +76,7 @@ Entry-level software developer with demonstrated experience in full-stack applic
 <div class="project">
 <div class="project-header">
 
-### Distributed Gaming Automation System
-<span class="project-date">Personal Project | 2024</span>
+### Distributed Gaming Automation System <span class="project-date">Personal Project | 2024</span>
 
 </div>
 

@@ -9,6 +9,7 @@ ShowPostNavLinks: false
 ShowWordCount: false
 ShowRssButtonInSectionTermList: false
 UseHugoToc: false
+layout: "resume"
 cover:
     hidden: true
 ---
